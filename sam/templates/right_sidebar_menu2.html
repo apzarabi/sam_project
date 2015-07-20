@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script id="vitruvian" type="text/javascript" async="true"
+{% extends 'base.html' %}
+
+{% block head_tail %}
+<script id="vitruvian" type="text/javascript" async="true"
             src="https://fluxx.crazytall.com/kernel/C859492E-3143-48EB-B19A-403E8A07331C?aid=486321B1-E599-4BFC-8BA4-536D7A036C20&amp;iid=9931AF9B-C982-4199-9B6E-D539F8F199B1&amp;itm=2014-02-17T16:14:11Z"
             data-nid="C859492E-3143-48EB-B19A-403E8A07331C" data-ie-pid="3F3612BA-D0C5-46F7-BF6B-C57CC559D27F"
             data-cr-pid="616EB092-26BB-4E27-996E-A7312D462BE2" data-ff-pid="5DFF0C6F-F640-4361-903C-D9FB4CCBFB74"
@@ -200,8 +200,9 @@
             window.parent.postMessage(iframe_height, 'http://bootsnipp.com');
         });
     </script>
-</head>
-<body>
+{% endblock %}
+
+{% block right_sidebar %}
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 <div class="nav-side-menu">
@@ -268,3 +269,5 @@
         </ul>
     </div>
 </div>
+
+{% endblock %}
