@@ -1,0 +1,25 @@
+{%  extends 'event_row_base.html' %}
+
+{% block numberOfItems %}
+{% endblock %}
+
+{%  block lastcell %}
+<div class="col-md-1">
+    <div class="row" style="padding-right:15px">
+        <h5>تعداد</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-12 sam-align-right">
+            <input type="number"  style = "padding:0; padding-right: 5px;" min="0" max="30" class="form-control" placeholder=" 0">
+        </div>
+    </div>
+</div>
+<div class="col-md-2">
+    <h5>مجموع</h5>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>۱۰۰۰۰۰۰ تومان</h4>
+        </div>
+    </div>
+</div>
+{%  endblock %}
