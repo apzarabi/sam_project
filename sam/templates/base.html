@@ -22,11 +22,7 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'frameworks/bootstrap-rtl/examples/rtl/rtl.css' %}" rel="stylesheet">
 
-    <style>
-        .my-border {
-            border: 1px dotted black;
-        }
-    </style>
+    <link href="{% static 'css/main_style_sheet.css' %}" rel="stylesheet">
     {% block head_tail %} {% endblock %}
   </head>
 
@@ -69,20 +65,20 @@
     <div class="container theme-showcase" role="main">
         <div class="row">
             <div class="clearfix">
-            <div class="col-md-4 my-border">
+            <div class="col-md-3 sam-border">
                 {% block right_sidebar %} hi{% endblock %}
             </div>
-            <div class="col-md-8 my-border">
+            <div class="col-md-9 sam-border">
                 {% block main_column %} {% endblock %}
             </div>
              </div>
         </div>
         <div class="row">
             {% block footer %}
-            <div class="col-md-3 my-border">
+            <div class="col-md-3 sam-border">
                 نمونه‌ای از سمت راست فوتر در فایل base.html
             </div>
-            <div class="col-md-4 col-md-offset-5 my-border">
+            <div class="col-md-4 col-md-offset-5 sam-border">
             نمونه‌ای از سمت چپ فوتر در فایل base.html
             </div>
             {% endblock %}
