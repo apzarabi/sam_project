@@ -1,3 +1,21 @@
 .sam-border {
     border: 1px dotted darkgrey;
 }
+
+.sam-align-left {
+    text-align: left;
+}
+
+.sam-align-left-bold {
+    text-align: left;
+    font-weight: bold;
+}
+
+.sam-align-right {
+    text-align: right;
+}
+
+.sam-align-right-bold {
+    text-align: right;
+    font-weight: bold;
+}

@@ -9,3 +9,7 @@ def test(request):
 
 def sidebar(request):
     return render(request, 'right_sidebar_profile.html', {})
+
+
+def dealer(request):
+    return render(request, 'right_sidebar_profile_dealer.html', {})
