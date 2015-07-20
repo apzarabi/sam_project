@@ -22,6 +22,9 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'frameworks/bootstrap-rtl/examples/rtl/rtl.css' %}" rel="stylesheet">
 
+    <!-- style for raty -->
+    <link href="{% static 'frameworks/raty/lib/jquery.raty.css' %}" rel="stylesheet">
+
     <link href="{% static 'css/main_style_sheet.css' %}" rel="stylesheet">
     {% block head_tail %} {% endblock %}
   </head>
@@ -93,6 +96,7 @@
     <script src="{% static 'jquery-1.11.1.min.js' %}" type="text/javascript" charset="utf-8"></script>
     <script src="{% static 'frameworks/bootstrap-rtl/bootstrap/dist/js/bootstrap.min.js' %}" type="text/javascript" charset="utf-8"></script>
     <script src="{% static 'frameworks/bootstrap-rtl/bootstrap/docs/assets/js/docs.min.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'frameworks/raty/lib/jquery.raty.js' %}"></script>
 
     {% block body_tail %} {% endblock %}
   </body>

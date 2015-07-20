@@ -2,6 +2,7 @@
     border: 1px dotted darkgrey;
 }
 
+<<<<<<< HEAD
 .sam-align-left {
     text-align: left;
 }
@@ -18,4 +19,8 @@
 .sam-align-right-bold {
     text-align: right;
     font-weight: bold;
+=======
+.raty-star {
+    margin-top: -20px;
+>>>>>>> f3323d436441ba32ec903d62ea631bc5e8c4eae9
 }

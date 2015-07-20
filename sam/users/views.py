@@ -13,3 +13,11 @@ def sidebar(request):
 
 def dealer(request):
     return render(request, 'right_sidebar_profile_dealer.html', {})
+
+
+def customer(request):
+    return render(request, 'right_sidebar_profile_customer.html', {})
+
+
+def admin(request):
+    return render(request, 'right_sidebar_profile_admin.html', {})
