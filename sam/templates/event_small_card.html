@@ -1,89 +1,14 @@
-{% extends 'base.html' %}
 {% load static %}
 
-{% block main_column %}
-<div class="row">
-    <div class="col-md-4 sam-border">
-        <div class="thumbnail">
-            <img class="img-responsive img-rounded" src="{% static 'tmp_media/music.jpg' %}"/>
-            <div class="caption"> <h4>  گگگگگگگگگگگگگگگگ  <small class="badge"> محله </small></h4></div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="raty-star"> </div>
-                </div>
-                <div class="col-md-6"> از ۷۵۰۰۰ تومان </div>
+<div class="col-md-4 sam-border">
+    <div class="thumbnail">
+        <img class="img-responsive img-rounded" src="{% static 'tmp_media/music.jpg' %}"/>
+        <div class="caption"> <h4>  نام رویداد  <small class="badge"> محله </small></h4></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="raty-star"> </div>
             </div>
+            <div class="col-md-6"> از ۷۵۰۰۰ تومان </div>
         </div>
     </div>
-    <div class="col-md-4 sam-border">
-        <div class="thumbnail">
-            <img class="img-responsive img-rounded" src="{% static 'tmp_media/music.jpg' %}"/>
-            <div class="caption"> <h4> نام رویداد <small class="badge"> محله </small></h4></div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="raty-star"> </div>
-                </div>
-                <div class="col-md-6"> از ۷۵۰۰۰ تومان </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 sam-border">
-        <div class="thumbnail">
-            <img class="img-responsive img-rounded" src="{% static 'tmp_media/music.jpg' %}"/>
-            <div class="caption"> <h4> نام رویداد <small class="badge"> محله </small></h4></div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="raty-star"> </div>
-                </div>
-                <div class="col-md-6"> از ۷۵۰۰۰ تومان </div>
-            </div>
-        </div>
-    </div>
-      <div class="clearfix visible-md-block"></div>
-
-    <div class="col-md-4 sam-border">
-        <div class="thumbnail">
-            <img class="img-responsive img-rounded" src="{% static 'tmp_media/music.jpg' %}"/>
-            <div class="caption"> <h4> نام رویداد <small class="badge"> محله </small></h4></div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="raty-star"> </div>
-                </div>
-                <div class="col-md-6"> از ۷۵۰۰۰ تومان </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 sam-border">
-        <div class="thumbnail">
-            <img class="img-responsive img-rounded" src="{% static 'tmp_media/music.jpg' %}"/>
-            <div class="caption"> <h4> نام رویداد <small class="badge"> محله </small></h4></div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="raty-star"> </div>
-                </div>
-                <div class="col-md-6"> از ۷۵۰۰۰ تومان </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 sam-border">
-        <div class="thumbnail">
-            <img class="img-responsive img-rounded" src="{% static 'tmp_media/music.jpg' %}"/>
-            <div class="caption"> <h4> نام رویداد <small class="badge"> محله </small></h4></div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="raty-star"> </div>
-                </div>
-                <div class="col-md-6"> از ۷۵۰۰۰ تومان </div>
-            </div>
-        </div>
-    </div>
-
 </div>
-{% endblock %}
-
-{% block body_tail %}
-<script>
-    $.fn.raty.defaults.path = "{% static 'frameworks/raty/lib/images' %}";
-    $('.raty-star').raty();
-</script>
-{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_column %}
+<div class="row">
+    {% include 'event_big_card.html' %}
+</div>
+<div class="row">
+    {% include 'event_small_card.html' %}
+    {% include 'event_small_card.html' %}
+    {% include 'event_small_card.html' %}
+    {% include 'event_small_card.html' %}
+    {% include 'event_small_card.html' %}
+</div>
+{% endblock %}
+
+{% block body_tail %}
+<script>
+    $.fn.raty.defaults.path = "{% static 'frameworks/raty/lib/images' %}";
+    $('.raty-star').raty();
+</script>
+{% endblock %}
