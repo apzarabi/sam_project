@@ -18,6 +18,7 @@
 .sam-align-right-bold {
     text-align: right;
     font-weight: bold;
+<<<<<<< HEAD
 }
 
 .raty-star {
@@ -37,4 +38,6 @@
     text-align: center;
     border-color: #3f0004;
     border-radius: 3px;
+=======
+>>>>>>> a657e8d6386aefe7f03b849b99396d99b7775d15
 }

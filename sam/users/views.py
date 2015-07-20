@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+
 # Create your views here.
 
 
@@ -21,3 +22,11 @@ def customer(request):
 
 def admin(request):
     return render(request, 'right_sidebar_profile_admin.html', {})
+
+
+def menu(request):
+    return render(request, 'right_sidebar_menu.html', {})
+
+
+def menu2(request):
+    return render(request, 'right_sidebar_menu2.html', {})
