@@ -2,7 +2,6 @@
     border: 1px dotted darkgrey;
 }
 
-<<<<<<< HEAD
 .sam-align-left {
     text-align: left;
 }
@@ -19,12 +18,23 @@
 .sam-align-right-bold {
     text-align: right;
     font-weight: bold;
-=======
-.raty-star {
-    margin-top: -20px;
->>>>>>> f3323d436441ba32ec903d62ea631bc5e8c4eae9
 }
 
-.sam-event-row-units{
+.raty-star {
+    margin-top: -20px;
 
+}
+
+.sam-event-row-accepted{
+    background-color: #8fee80;
+    text-align: center;
+    border-color: #0a3f16;
+    border-radius: 3px;
+}
+
+.sam-event-row-rejected{
+    background-color: #ff978e;
+    text-align: center;
+    border-color: #3f0004;
+    border-radius: 3px;
 }
