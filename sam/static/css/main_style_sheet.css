@@ -1,5 +1,5 @@
 .sam-border {
-    border: 1px dotted darkgrey;
+    border: 0 dotted darkgrey;
 }
 
 .sam-align-left {
@@ -18,4 +18,8 @@
 .sam-align-right-bold {
     text-align: right;
     font-weight: bold;
+}
+
+.thumbnail.sam-event-big-card>div>div:nth-of-type(2)>[class="raty-star"] {
+    margin-top: 223px;
 }
