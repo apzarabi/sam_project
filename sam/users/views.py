@@ -53,13 +53,13 @@ def payment_success(request):
     return render(request, 'successful_payment.html', {})
 
 
-def home_log_out(request):
-    return render(request, 'home_log_out.html', {})
-
-
 def print_ticket(request):
     return render(request, 'printable_ticket.html', {})
 
 
 def customer_profile(request):
     return render(request, 'customer_profile', {})
+
+
+def dealer_profile(request):
+    return render(request, 'dealer_profile.html', {})
