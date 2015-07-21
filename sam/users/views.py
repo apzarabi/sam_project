@@ -46,10 +46,7 @@ def payment(request):
 
 def search(request):
     return render(request, 'search.html', {})
-<<<<<<< HEAD
 
 
 def admin(request):
     return render(request, 'admin_profile.html', {})
-=======
->>>>>>> f27cc8aec813da88955eb6d3b420d2557fb967b1
