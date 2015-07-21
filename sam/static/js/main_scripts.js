@@ -33,3 +33,18 @@ if(select_report !== undefined ){
         console.log(time_to);
     });
 }
+
+
+
+////////////// FOR CREATING EVENT //////////////
+
+var add_button = $("#add-ticket-type");
+if(add_button !== undefined){
+    var target = $("#sam-ticket-types");
+
+    add_button.click(function(){
+        console.log("in");
+        var e ="<li>"+  "تعداد=" + $("#count").val() + " قیمت=" + $("#price").val() + "</li>";
+        target.append(e);
+    });
+}

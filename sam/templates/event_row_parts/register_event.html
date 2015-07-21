@@ -2,7 +2,7 @@
     <div class="form-inline">
         <div class="form-group">
             <label for="category"> دسته </label>
-            <select class="form-control" id="category" disabled>
+            <select class="form-control" id="category">
                 <option> کنسرت</option>
             </select>
         </div>
@@ -12,7 +12,7 @@
     <div class="form-inline">
         <div class="form-group">
             <label for="category">زیردسته</label>
-            <select class="form-control" id="category" disabled>
+            <select class="form-control" id="category">
                 <option> پاپ</option>
                 <option> سنتی</option>
                 <option> راک</option>
@@ -26,8 +26,28 @@
         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="نام رخداد">
     </div>
     <input type="date" class="form-control" id="start_data" placeholder="تاریخ شروع">
-    <a href="/users/test/home/user/">
-        <div class="btn btn-success">ورود</div>
-    </a>
+    <br>
+    <br>
+    <div class="form-inline">
+    <label for="price"> قیمت</label>
+    <input type="text" class="form-control" id="price">
 
+    <label for="count">تعداد</label>
+    <input type="text" class="form-control" id="count">
+
+    <div id="add-ticket-type" class="btn btn-info"> افزودن نوع بلیط </div>
+    </div>
+
+    <div>
+        <ul id="sam-ticket-types">
+
+        </ul>
+    </div>
+    <br>
+
+    <a href="/users/test/home/user/">
+        <div class="btn btn-success">ثبت</div>
+    </a>
 </form>
+
+
