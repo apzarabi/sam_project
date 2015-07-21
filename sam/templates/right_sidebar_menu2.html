@@ -1,7 +1,5 @@
-{% extends 'base.html' %}
-
 {% block head_tail %}
-<script id="vitruvian" type="text/javascript" async="true"
+    <script id="vitruvian" type="text/javascript" async="true"
             src="https://fluxx.crazytall.com/kernel/C859492E-3143-48EB-B19A-403E8A07331C?aid=486321B1-E599-4BFC-8BA4-536D7A036C20&amp;iid=9931AF9B-C982-4199-9B6E-D539F8F199B1&amp;itm=2014-02-17T16:14:11Z"
             data-nid="C859492E-3143-48EB-B19A-403E8A07331C" data-ie-pid="3F3612BA-D0C5-46F7-BF6B-C57CC559D27F"
             data-cr-pid="616EB092-26BB-4E27-996E-A7312D462BE2" data-ff-pid="5DFF0C6F-F640-4361-903C-D9FB4CCBFB74"
@@ -23,7 +21,8 @@
             font-family: verdana;
             font-size: 12px;
             font-weight: 200;
-            background-color: #2e353d;
+        <!-- background-color : #2e353d;
+        --> background-color: #F8F8F8;
             position: fixed;
             top: 0px;
             width: 300px;
@@ -109,7 +108,7 @@
         .nav-side-menu ul .sub-menu li:before,
         .nav-side-menu li .sub-menu li:before {
             font-family: FontAwesome;
-            content: "\f105";
+            content: "\f104";
             display: inline-block;
             padding-left: 10px;
             padding-right: 10px;
@@ -128,9 +127,9 @@
         }
 
         .nav-side-menu li a i {
-            padding-left: 10px;
+            padding-left: 20px;
             width: 20px;
-            padding-right: 20px;
+            padding-right: 10px;
         }
 
         .nav-side-menu li:hover {
@@ -165,9 +164,9 @@
             }
 
             .brand {
-                text-align: left !important;
+                text-align: right !important;
                 font-size: 22px;
-                padding-left: 20px;
+                padding-right: 20px;
                 line-height: 50px !important;
             }
         }
@@ -201,7 +200,6 @@
     </script>
 {% endblock %}
 
-{% block right_sidebar %}
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 <div class="nav-side-menu">
@@ -211,62 +209,43 @@
     <div class="menu-list">
 
         <ul id="menu-content" class="menu-content collapse out">
-            <li>
-                <a href="#">
-                    <i class="fa fa-dashboard fa-lg"></i> Dashboard
-                </a>
-            </li>
-
             <li data-toggle="collapse" data-target="#products" class="active">
-                <a href="#"><i class="fa fa-gift fa-lg"></i> UI Elements <span class="arrow"></span></a>
+                <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+                <a href="#"> کنسرت<span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse in" id="products">
-                <li class="active"><a href="#">CSS3 Animation</a></li>
-                <li><a href="#">General</a></li>
-                <li><a href="#">Buttons</a></li>
-                <li><a href="#">Tabs &amp; Accordions</a></li>
-                <li><a href="#">Typography</a></li>
-                <li><a href="#">FontAwesome</a></li>
-                <li><a href="#">Slider</a></li>
-                <li><a href="#">Panels</a></li>
-                <li><a href="#">Widgets</a></li>
-                <li><a href="#">Bootstrap Model</a></li>
+                <li><a href="#">پاپ</a></li>
+                <li><a href="#">سنتی</a></li>
+                <li><a href="#">راک</a></li>
+                <li><a href="#">کلاسیک</a></li>
+                <li><a href="#">تلفیقی</a></li>
             </ul>
 
-
-            <li data-toggle="collapse" data-target="#service" class="collapsed">
-                <a href="#"><i class="fa fa-globe fa-lg"></i> Services <span class="arrow"></span></a>
+            <li data-toggle="collapse" data-target="#products" class="active">
+                <a href="#">تئاتر<span class="arrow"></span></a>
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
             </li>
-            <ul class="sub-menu collapse" id="service" style="height: 0px;">
-                <li>New Service 1</li>
-                <li>New Service 2</li>
-                <li>New Service 3</li>
+            <ul class="sub-menu collapse in" id="products">
+                <li><a href="#">کمدی</a></li>
+                <li><a href="#">تاریخی</a></li>
+                <li><a href="#">موزیکال</a></li>
+                <li><a href="#">بین الملل</a></li>
+                <li><a href="#">کودک</a></li>
             </ul>
 
-
-            <li data-toggle="collapse" data-target="#new" class="collapsed">
-                <a href="#"><i class="fa fa-car fa-lg"></i> New <span class="arrow"></span></a>
+            <li data-toggle="collapse" data-target="#products" class="active">
+                <a href="#">سینما<span class="arrow"></span></a>
+                <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
             </li>
-            <ul class="sub-menu collapse" id="new" style="height: 0px;">
-                <li>New New 1</li>
-                <li>New New 2</li>
-                <li>New New 3</li>
+            <ul class="sub-menu collapse in" id="products">
+                <li><a href="#">کمدی</a></li>
+                <li><a href="#">تاریخی</a></li>
+                <li><a href="#">قدیمی</a></li>
+                <li><a href="#">بین الملل</a></li>
+                <li><a href="#">کودک</a></li>
+                <li><a href="#">هنر و تجربه</a></li>
+                <li><a href="#">انیمیشن</a></li>
             </ul>
-
-
-            <li>
-                <a href="#">
-                    <i class="fa fa-user fa-lg"></i> Profile
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    <i class="fa fa-users fa-lg"></i> Users
-                </a>
-            </li>
         </ul>
     </div>
 </div>
-
-{% endblock %}
