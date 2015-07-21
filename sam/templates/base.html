@@ -27,7 +27,7 @@
 
     <link href="{% static 'css/main_style_sheet.css' %}" rel="stylesheet">
     <!-- GOOGLE MAP -->
-    {% block google_map_hdr %} {%  endblock %}
+    {% block google_map_hdr %} {% endblock %}
     <!-- END OF GOOGLE MAP -->
     {% block head_tail %} {% endblock %}
 </head>
@@ -35,51 +35,24 @@
 <body role="document">
 
 <!-- Fixed navbar -->
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">یک صفحه‌ی رندم برای تست</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <!--/.nav-collapse -->
-    </div>
-</div>
+{% include "nav_bar.html" %}
 
 <div class="container theme-showcase" role="main">
     <div class="row">
         <div class="clearfix">
-            <div class="col-md-3 sam-border">
-                {% block right_sidebar %} hi{% endblock %}
+            <div class="col-md-3 sam-sidebar-column-padding">
+                {% block right_sidebar %}
+                    <div class="row">
+                        {% include 'right_sidebar_menu2.html' %}
+                    </div>
+                {% endblock %}
             </div>
-            <div class="col-md-9 sam-border">
+            <div class="col-md-9 sam-main-column-padding">
                 {% block main_column %} {% endblock %}
             </div>
         </div>
     </div>
+    <!--
     <div class="row">
         {% block footer %}
             <div class="col-md-3 sam-border">
@@ -90,6 +63,7 @@
             </div>
         {% endblock %}
     </div>
+    -->
 </div>
 <!-- /container -->
 
