@@ -20,8 +20,8 @@
     font-weight: bold;
 }
 
-.raty-star {
-    margin-top: -20px;
+.sam-event-small-card-detail {
+    margin-top: -10px;
 
 }
 
@@ -112,4 +112,32 @@
 .sam-float-left{
     float:left;
 
+=======
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.sam-price-place {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+.sam-price-place>h2 {
+    margin: 5px 0;
+}
+.sam-price-number{
+    color: rgb(82,160,82);
+    padding-left: 5px;
+    padding-right: 5px;
+    box-sizing: border-box;
+}
+
+.sam-event-big-card-detail {
+    color: #777;
+}
+
+.sam-purchase-modal-body {
+    padding: 30px;
+>>>>>>> ec636e274b87a37ffd3c53b10766bf82d3519645
 }
