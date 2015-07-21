@@ -19,15 +19,16 @@
             </div>
             <h4>کنسرت رضا یزدانی</h4>
         </div>
-
-        <div class="col-md-2">
-            <h5>قیمت بلیت</h5>
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>۱۲۰۰۰۰ تومان</h4>
+        {% block price %}
+            <div class="col-md-2">
+                <h5>قیمت بلیت</h5>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>۱۲۰۰۰۰ تومان</h4>
+                    </div>
                 </div>
             </div>
-        </div>
+        {% endblock %}
         {% block numberOfItems %}
             <div class="col-md-2">
                 <h5>تعداد بلیت‌ها</h5>
