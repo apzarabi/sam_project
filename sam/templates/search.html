@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_column %}
+
+    <div class="well">
+        <h3>نتیجه ی جست و جو</h3>
+
+        <div class="row">
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+        </div>
+    </div>
+
+{% endblock %}

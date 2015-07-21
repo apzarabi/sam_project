@@ -42,3 +42,7 @@ def home_log_out(request):
 
 def payment(request):
     return render(request, 'payment.html', {})
+
+
+def search(request):
+    return render(request, 'search.html', {})
