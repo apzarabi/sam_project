@@ -1,7 +1,10 @@
 from django.conf.urls import url
 
 urlpatterns = [
-    url(r'^/test/search/category/subcategory/$', 'users.views.search', name='testsearch'),
+    url(r'^test/ticket/$', 'users.views.print_ticket', name='ticket'),
+    url(r'^test/home/user/$', 'users.views.home_log_out', name='homelogout'),
+    url(r'^test/payment/successful/$', 'users.views.payment_success', name='success'),
+    url(r'^test/search/category/subcategory/$', 'users.views.search', name='testsearch'),
     url(r'^test/payment/$', 'users.views.payment', name='testpayment'),
     url(r'^test/home/$', 'users.views.home', name='home'),
     url(r'^test/home/logout$', 'users.views.home_log_out', name='home_logout'),

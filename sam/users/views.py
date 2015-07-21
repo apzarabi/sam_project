@@ -1,9 +1,6 @@
 from django.shortcuts import render
 
 
-# Create your views here.
-
-
 def test(request):
     return render(request, 'base.html', {})
 
@@ -45,12 +42,20 @@ def payment(request):
 
 
 def search(request):
-<<<<<<< HEAD
     return render(request, 'subcategory_view.html', {})
-=======
-    return render(request, 'search.html', {})
 
 
 def admin(request):
     return render(request, 'admin_profile.html', {})
->>>>>>> 390f1bebceccd7cde48e13b2feeccc864be7e7a1
+
+
+def payment_success(request):
+    return render(request, 'successful_payment.html', {})
+
+
+def home_log_out(request):
+    return render(request, 'home_log_out.html', {})
+
+
+def print_ticket(request):
+    return render(request, 'printable_ticket.html', {})
