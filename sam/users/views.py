@@ -41,4 +41,4 @@ def payment(request):
 
 
 def search(request):
-    return render(request, 'search.html', {})
+    return render(request, 'subcategory_view.html', {})

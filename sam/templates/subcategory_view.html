@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main_column %}
+
+    <div class="well">
+
+        <ol class="breadcrumb">
+            <li><a href="#">کنسرت</a></li>
+            <li class="active">راک</li>
+        </ol>
+        <div class="row">
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+        </div>
+    </div>
+
+{% endblock %}
+
