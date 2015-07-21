@@ -59,3 +59,7 @@ def home_log_out(request):
 
 def print_ticket(request):
     return render(request, 'printable_ticket.html', {})
+
+
+def customer_profile(request):
+    return render(request, 'customer_profile', {})

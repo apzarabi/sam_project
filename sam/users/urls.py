@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^test/admin/$', 'users.views.admin_test', name='test'),
     url(r'^test/$', 'users.views.test', name='test'),
     url(r'^admin/$', 'users.views.admin', name='admin'),
+    url(r'^profile/username', 'users.views.customer_profile', name='customer_profile')
 ]
