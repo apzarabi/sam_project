@@ -20,7 +20,7 @@ def customer(request):
     return render(request, 'right_sidebar_profile_customer.html', {})
 
 
-def admin(request):
+def admin_test(request):
     return render(request, 'right_sidebar_profile_admin.html', {})
 
 
@@ -42,3 +42,7 @@ def payment(request):
 
 def search(request):
     return render(request, 'search.html', {})
+
+
+def admin(request):
+    return render(request, 'admin_profile.html', {})
