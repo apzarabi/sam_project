@@ -1,9 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
+{%  block google_map_hdr %}
+    <script
+        src="http://maps.googleapis.com/maps/api/js">
+        </script>
+
+        <script>
+        function initialize() {
+          var mapProp = {
+            center:new google.maps.LatLng(35.7448416,51.3753212),
+            zoom:15,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+          };
+          var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+            var marker = new google.maps.Marker({
+              position: new google.maps.LatLng(35.7448416,51.3753212),
+              map: map,
+              title: 'برج میلاد'
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+{% endblock %}
+
 
 {% block main_column %}
 <div class="row">
     {% include 'event_big_card.html' %}
+    {% include 'event_info_addr_card.html' %}
 </div>
 <div class="row">
     {% include 'event_small_card.html' %}
