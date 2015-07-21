@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{%  block google_map_hdr %}
+{% block google_map_hdr %}
     <script
         src="http://maps.googleapis.com/maps/api/js">
         </script>
@@ -27,6 +27,8 @@
 {% block main_column %}
 <div class="row">
     {% include 'event_big_card.html' %}
+</div>
+<div class="row">
     {% include 'event_info_addr_card.html' %}
 </div>
 <div class="row">

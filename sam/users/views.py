@@ -35,3 +35,6 @@ def menu2(request):
 def home(request):
     return render(request, 'home.html', {})
 
+
+def payment(request):
+    return render(request, 'payment.html', {})

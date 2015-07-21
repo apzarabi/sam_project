@@ -183,8 +183,6 @@
         }
 
     </style>
-    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         window.alert = function () {
         };
@@ -209,11 +207,11 @@
     <div class="menu-list">
 
         <ul id="menu-content" class="menu-content collapse out">
-            <li data-toggle="collapse" data-target="#products" class="active">
+            <li data-toggle="collapse" data-target="#concert" class="active collapsed" aria-expanded="false">
                 <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
                 <a href="#"> کنسرت<span class="arrow"></span></a>
             </li>
-            <ul class="sub-menu collapse in" id="products">
+            <ul class="sub-menu collapse" id="concert" aria-expanded="false" style="height: 0px;">
                 <li><a href="#">پاپ</a></li>
                 <li><a href="#">سنتی</a></li>
                 <li><a href="#">راک</a></li>
@@ -221,11 +219,11 @@
                 <li><a href="#">تلفیقی</a></li>
             </ul>
 
-            <li data-toggle="collapse" data-target="#products" class="active">
-                <a href="#">تئاتر<span class="arrow"></span></a>
+            <li data-toggle="collapse" data-target="#theater" class="active collapsed" aria-expanded="false">
                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                <a href="#">تئاتر<span class="arrow"></span></a>
             </li>
-            <ul class="sub-menu collapse in" id="products">
+            <ul class="sub-menu collapse" id="theater" aria-expanded="false" style="height: 0px;">
                 <li><a href="#">کمدی</a></li>
                 <li><a href="#">تاریخی</a></li>
                 <li><a href="#">موزیکال</a></li>
@@ -233,11 +231,11 @@
                 <li><a href="#">کودک</a></li>
             </ul>
 
-            <li data-toggle="collapse" data-target="#products" class="active">
-                <a href="#">سینما<span class="arrow"></span></a>
+            <li data-toggle="collapse" data-target="#cinema" class="active collapsed" aria-expanded="false">
                 <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
+                <a href="#">سینما<span class="arrow"></span></a>
             </li>
-            <ul class="sub-menu collapse in" id="products">
+            <ul class="sub-menu collapse" id="cinema" aria-expanded="false" >
                 <li><a href="#">کمدی</a></li>
                 <li><a href="#">تاریخی</a></li>
                 <li><a href="#">قدیمی</a></li>

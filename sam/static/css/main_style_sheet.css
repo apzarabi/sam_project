@@ -40,7 +40,7 @@
 }
 
 .thumbnail.sam-event-big-card > div > div:nth-of-type(2) > [class="raty-star"] {
-    margin-top: 223px;
+    margin-top: 14px;
 }
 
 .static-popover {
@@ -113,9 +113,7 @@
 
 .sam-float-left {
     float: left;
-
-= = = = = = = margin-top : 5 px;
-    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .sam-price-place {
@@ -142,5 +140,12 @@
 
 .sam-purchase-modal-body {
     padding: 30px;
-> > > > > > > ec636e274b87a37ffd3c53b10766bf82d3519645
+}
+
+.sam-main-column-padding {
+    padding-top: 80px;
+}
+
+.sam-sidebar-column-padding{
+    padding-top: 160px !important;
 }

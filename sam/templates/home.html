@@ -2,10 +2,49 @@
 {% load static %}
 
 {% block right_sidebar %}
-    {% include 'right_sidebar_menu2.html' %}
+    <div class="row">
+        {% include 'right_sidebar_menu2.html' %}
+    </div>
 {% endblock %}
 
 {% block main_column %}
-    <div class="well">جدیدترین ها</div>
-    {% include 'event_big_card.html' %}
+    <div class="row">
+        {% include 'event_big_card.html' %}
+    </div>
+    <div class="well">
+        <h3>جدیدترین ها</h3>
+
+        <div class="row">
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+        </div>
+    </div>
+    <div class="well">
+        <h3>محبوب ترین ها</h3>
+
+        <div class="row">
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+        </div>
+    </div>
+    <div class="well">
+        <h3>پرفروش ترین ها</h3>
+
+        <div class="row">
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+            {% include 'event_small_card.html' %}
+        </div>
+    </div>
 {% endblock %}
