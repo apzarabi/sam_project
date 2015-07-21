@@ -8,16 +8,16 @@ def event_cards(request):
 
 
 def event_row_verify(request):
-    return render(request, 'event_row_verify.html', {})
+    return render(request, 'event_row_parts/event_row_verify.html', {})
 
 
 def event_row_condition(request):
-    return render(request, 'event_row_condition.html', {})
+    return render(request, 'event_row_parts/event_row_condition.html', {})
 
 
 def event_row_purchase(request):
-    return render(request, 'event_row_purchase.html', {})
+    return render(request, 'event_row_parts/event_row_purchase.html', {})
 
 
 def event_row_print(request):
-    return render(request, 'event_row_print.html', {})
+    return render(request, 'event_row_parts/event_row_print.html', {})
