@@ -111,6 +111,13 @@
     padding-bottom: 100%;
 }
 
+
+.sam-search-area{
+    float: left !important;
+    padding-left: 4.7% !important;
+    padding-right: 3.5% !important;
+}
+
 .sam-float-left {
     float: left;
     margin-top: 5px;
@@ -148,4 +155,5 @@
 
 .sam-sidebar-column-padding{
     padding-top: 160px !important;
+>>>>>>> fd5a252ed8daea49f735d10020c7c52f97e1108a
 }
