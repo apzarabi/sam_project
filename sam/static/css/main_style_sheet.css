@@ -1,5 +1,5 @@
 .sam-border {
-    border: 1px dotted darkgrey;
+    border: 0 dotted darkgrey;
 }
 
 .sam-align-left {
@@ -18,4 +18,126 @@
 .sam-align-right-bold {
     text-align: right;
     font-weight: bold;
+}
+
+.sam-event-small-card-detail {
+    margin-top: -10px;
+
+}
+
+.sam-event-row-accepted{
+    background-color: #8fee80;
+    text-align: center;
+    border-color: #0a3f16;
+    border-radius: 3px;
+}
+
+.sam-event-row-rejected{
+    background-color: #ff978e;
+    text-align: center;
+    border-color: #3f0004;
+    border-radius: 3px;
+}
+
+.thumbnail.sam-event-big-card>div>div:nth-of-type(2)>[class="raty-star"] {
+    margin-top: 223px;
+}
+
+.static-popover {
+    display: block !important;
+    margin-top: 10px !important;
+    z-index: 0 !important;
+
+}
+
+.sam-map-title{
+    color: #937f81 !important;
+    font-size: 1.3em !important;
+    font-style:italic !important;
+}
+
+.sam-info-title{
+    color: #744b6e;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.sam-information{
+    margin:2%;
+    font-size: 1em;
+}
+.sam-map-content{
+    font-style:italic !important;
+    font-size: 1em !important;
+}
+
+.sam-map-box{
+    background-color: #f0ede5 !important;
+}
+
+
+.sam-map-title-box{
+    margin-top:10px;
+    background-color: #d7d4cc !important;
+}
+
+.map_container{
+    position: relative;
+    width:95%;
+    padding-bottom: 95%; /* Ratio 16:9 ( 100%/16*9 = 56.25% ) */
+}
+.map_container .map_canvas{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.sam-google-map-box{
+    padding:0px;
+    padding-top:3%;
+    float:left;
+    padding-bottom: 1%;
+}
+.sam-info{
+    position: relative;
+    width:100%;
+    background-color: #e8e5dd;
+    padding-bottom: 100%;
+}
+
+.sam-float-left{
+    float:left;
+
+=======
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.sam-price-place {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+.sam-price-place>h2 {
+    margin: 5px 0;
+}
+.sam-price-number{
+    color: rgb(82,160,82);
+    padding-left: 5px;
+    padding-right: 5px;
+    box-sizing: border-box;
+}
+
+.sam-event-big-card-detail {
+    color: #777;
+}
+
+.sam-purchase-modal-body {
+    padding: 30px;
+>>>>>>> ec636e274b87a37ffd3c53b10766bf82d3519645
 }

@@ -1,22 +1,104 @@
 {% load static %}
 
 <div class="col-md-12 sam-border">
-    <div class="thumbnail">
+    <div class="thumbnail sam-event-big-card">
         <div class="row">
             <div class="col-md-8">
-                <img class="img-responsive img-rounded" src="{% static 'tmp_media/music.jpg' %}"/>
-            </div>
-            <div class="col-md-4 sam-border">
-                <div class="row">
-                    <div class="col-md-11">
-                        <ol class="breadcrumb">
-                  <li><a href="#"> موسیقی </a></li>
-                  <li><a href="#"> کنسرت پاپ </a></li>
-                </ol>
+
+
+                <div id="carousel-event-big-card" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-event-big-card" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-event-big-card" data-slide-to="1"></li>
+                        <li data-target="#carousel-event-big-card" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="{% static 'tmp_media/music3.jpg' %}"/>
+                        </div>
+
+                        <div class="item">
+                            <img src="{% static 'tmp_media/music2.jpg' %}"/>
+                        </div>
+
+                        <div class="item">
+                            <img src="{% static 'tmp_media/music.jpg' %}"/>
+                        </div>
                     </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-event-big-card" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-event-big-card" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
 
+            </div>
+
+            <div class="col-md-4 sam-border">
+                <ol class="breadcrumb">
+                    <li><a href="#"> موسیقی </a></li>
+                    <li><a href="#"> کنسرت پاپ </a></li>
+                </ol>
+
                 <h1>نام رویداد <small class="badge"> محله </small></h1>
+                <br>
+                <div class="sam-event-big-card-detail">
+                    <div class="row">
+                        <div class="col-md-2 ">
+                            <h2><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></h2>
+                        </div>
+                        <div class="col-md-4"> <h2>۵۵ </h2></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h2><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></h2>
+                        </div>
+                        <div class="col-md-4"> <h2>۱۳۹۴/۴/۳۰</h2> </div>
+                    </div>
+                </div>
+                <div class="raty-star"> </div>
+                <div class="sam-price-place">
+                    <h2><small>
+                        از
+                    </small>
+                        <span class="sam-price-number">
+                            ۷۵۰۰۰
+                        </span>
+                        <small>
+                            تومان
+                        </small>
+                    </h2>
+                </div>
+                <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#price-details">
+                    خرید کنید
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="price-details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">خرید نام رویداد</h4>
+                            </div>
+                            <div class="modal-body sam-purchase-modal-body">
+                                {% include 'event_row_purchase.html' %}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                                <button type="button" class="btn btn-success">پرداخت</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

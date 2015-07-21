@@ -1,0 +1,23 @@
+{%  extends 'event_row_base.html' %}
+
+{% block numberOfItems %}
+   <div class="col-md-2">
+                <h5>تعداد بلیت‌ها</h5>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>۲۰ عدد</h4>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
+
+{%  block lastcell %}
+<div class="col-md-1">
+    <div class="row">
+    </div>
+    <h5></h5>
+    <button class="btn btn-default " type="button" title="چاپ بلیت">
+        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+    </button>
+</div>
+{%  endblock %}
