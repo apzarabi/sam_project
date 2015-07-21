@@ -30,3 +30,11 @@ def menu(request):
 
 def menu2(request):
     return render(request, 'right_sidebar_menu2.html', {})
+
+
+def home(request):
+    return render(request, 'home.html', {})
+
+
+def payment(request):
+    return render(request, 'payment.html', {})

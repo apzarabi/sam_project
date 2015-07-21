@@ -1,6 +1,10 @@
 {% extends 'right_sidebar_profile.html' %}
 {% load static %}
 
+{% block image %}
+    <img class="img-responsive img-circle" src="{% static 'tmp_media/semantic_ui_default_avatar/joe.jpg' %}">
+{% endblock %}
+
 {% block info %}
     <h3>نام فروشنده</h3>
     <div class="row">

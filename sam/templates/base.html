@@ -27,7 +27,7 @@
 
     <link href="{% static 'css/main_style_sheet.css' %}" rel="stylesheet">
     <!-- GOOGLE MAP -->
-    {% block google_map_hdr %} {%  endblock %}
+    {% block google_map_hdr %} {% endblock %}
     <!-- END OF GOOGLE MAP -->
     {% block head_tail %} {% endblock %}
 </head>
@@ -40,14 +40,15 @@
 <div class="container theme-showcase" role="main">
     <div class="row">
         <div class="clearfix">
-            <div class="col-md-3 sam-border">
-                {% block right_sidebar %} hi{% endblock %}
+            <div class="col-md-3 sam-sidebar-column-padding">
+                {% block right_sidebar %} {% endblock %}
             </div>
-            <div class="col-md-9 sam-border">
+            <div class="col-md-9 sam-main-column-padding">
                 {% block main_column %} {% endblock %}
             </div>
         </div>
     </div>
+    <!--
     <div class="row">
         {% block footer %}
             <div class="col-md-3 sam-border">
@@ -58,6 +59,7 @@
             </div>
         {% endblock %}
     </div>
+    -->
 </div>
 <!-- /container -->
 
