@@ -109,10 +109,10 @@
     padding-bottom: 100%;
 }
 
-.sam-float-left{
-    float:left;
-    margin-top: 5px;
-    margin-bottom: 10px;
+.sam-search-area{
+    float: left !important;
+    padding-left: 4.7% !important;
+    padding-right: 3.5% !important;
 }
 
 .sam-price-place {
@@ -137,4 +137,7 @@
 
 .sam-purchase-modal-body {
     padding: 30px;
+}
+.sam-float-left{
+    float:left;
 }
