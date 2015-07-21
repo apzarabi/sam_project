@@ -38,3 +38,7 @@ def home(request):
 
 def payment(request):
     return render(request, 'payment.html', {})
+
+
+def search(request):
+    return render(request, 'search.html', {})

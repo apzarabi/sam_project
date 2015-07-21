@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block right_sidebar %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="thumbnail">
+                {% block image %}
+                    <img class="img-responsive img-circle" src="{% static 'tmp_media/default_profile.png' %}">
+                {% endblock %}
+
+                <div class="caption">
+                    {% block info %}
+                        <h3>نام کاربر</h3>
+                        <p>اطلاعات کاربر</p>
+                    {% endblock %}
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-8">
+                        <button type="button" class="btn btn-primary">وبرایش</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

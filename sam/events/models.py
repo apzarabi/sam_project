@@ -33,7 +33,7 @@ class Event(models.Model):
 
 
 class EventPicture(models.Model):
-    picture = models.ImageField(u"تصویر", upload_to="event_pics", null=False, blank=False)
+    # picture = models.ImageField(u"تصویر", upload_to="event_pics", null=False, blank=False)
     event = models.ForeignKey(Event)
 
 

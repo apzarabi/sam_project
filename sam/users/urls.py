@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
 urlpatterns = [
+    url(r'^test/search/$', 'users.views.search', name='testsearch'),
     url(r'^test/payment/$', 'users.views.payment', name='testpayment'),
     url(r'^test/home/$', 'users.views.home', name='testhome'),
     url(r'^test/menu2/$', 'users.views.menu2', name='test'),
