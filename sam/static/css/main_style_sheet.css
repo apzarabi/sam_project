@@ -6,6 +6,13 @@
     text-align: left;
 }
 
+.sam-login-button{
+    margin-top:10px;
+}
+.sam-align-center {
+    text-align: center;
+}
+
 .sam-align-left-bold {
     text-align: left;
     font-weight: bold;
@@ -153,6 +160,10 @@
     padding-top: 80px;
 }
 
+.sam-name{
+    color: #d3d3d3;
+    font-weight: bold;
+}
 .sam-sidebar-column-padding{
     padding-top: 160px !important;
 >>>>>>> fd5a252ed8daea49f735d10020c7c52f97e1108a
