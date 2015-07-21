@@ -35,7 +35,9 @@
 <body role="document">
 
 <!-- Fixed navbar -->
+{% block navbar %}
 {% include "nav_bar_login.html" %}
+{% endblock %}
 
 <div class="container theme-showcase" role="main">
     <div class="row">
@@ -79,5 +81,6 @@
 <script src="{% static 'frameworks/raty/lib/jquery.raty.js' %}"></script>
 
 {% block body_tail %} {% endblock %}
+{% include "login_modal.html" %}
 </body>
 </html>

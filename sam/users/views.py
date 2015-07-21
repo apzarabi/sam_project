@@ -36,6 +36,10 @@ def home(request):
     return render(request, 'home.html', {})
 
 
+def home_log_out(request):
+    return render(request, 'home_log_out.html', {})
+
+
 def payment(request):
     return render(request, 'payment.html', {})
 
