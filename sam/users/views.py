@@ -36,13 +36,20 @@ def home(request):
     return render(request, 'home.html', {})
 
 
+def home_log_out(request):
+    return render(request, 'home_log_out.html', {})
+
+
 def payment(request):
     return render(request, 'payment.html', {})
 
 
 def search(request):
     return render(request, 'search.html', {})
+<<<<<<< HEAD
 
 
 def admin(request):
     return render(request, 'admin_profile.html', {})
+=======
+>>>>>>> f27cc8aec813da88955eb6d3b420d2557fb967b1

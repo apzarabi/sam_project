@@ -1,9 +1,17 @@
 {% extends "nav_bar.html" %}
 
 {%  block login_logout %}
-<div class="col-md-12 sam-align-center sam-login-button">
-    <button type="button" class=" btn btn-default">
-        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-        ورود</button>
+<div class="row">
+    <div class="col-md-6 sam-align-center">
+    <button id="userBtn" class="btn col-md-9 sam-float-left" data-toggle="modal" data-target="#LoginModal" type="button" class=" btn btn-default">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            ورود</button>
+    </div>
+    <div class="col-md-6 sam-align-center sam-float-right">
+    <button id="userBtn" class="btn col-md-9 sam-float-right" type="button" class=" btn btn-default">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+    ثبت نام
+        </button>
+    </div>
 </div>
 {% endblock %}
