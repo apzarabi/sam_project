@@ -1,3 +1,4 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+admin.site.register((Category, Subcategory, Event, EventPicture, TicketType, Ticket, Order, Comment, Rate))
