@@ -36,7 +36,7 @@
 
 <!-- Fixed navbar -->
 {% block navbar %}
-{% include "nav_bar_login.html" %}
+    {% comment %} {% include "nav_bar_login.html" %} {% endcomment %}
 {% endblock %}
 
 <div class="container theme-showcase" role="main">
@@ -45,7 +45,7 @@
             <div class="col-md-3 sam-sidebar-column-padding">
                 {% block right_sidebar %}
                     <div class="row">
-                        {% include 'right_sidebar_menu2.html' %}
+                        {% comment %}{% include 'right_sidebar_menu2.html' %}{% endcomment %}
                     </div>
                 {% endblock %}
             </div>

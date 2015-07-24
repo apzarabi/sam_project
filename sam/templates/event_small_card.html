@@ -2,12 +2,12 @@
 
 <div class="col-md-4 sam-border">
     <div class="thumbnail">
-        <img class="img-responsive img-rounded" src="{% static 'tmp_media/music.jpg' %}"/>
+        <img class="img-responsive img-rounded" src="{{ event.first_picture.picture.url }}" />
 
         <div class="caption">
             <a href="/events/event_cards/">
-                <h4> نام رویداد
-                    <small class="badge"> محله</small>
+                <h4> {{ event.name }}
+                    <small class="badge"> {{ event.neighborhood }}</small>
                 </h4>
             </a>
         </div>
@@ -16,7 +16,7 @@
                 <div class="raty-star"></div>
             </div>
             <div class="col-md-3 col-md-offset-3 ">
-                ۵ <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                {{ event.sold_tickets_number }} <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
             </div>
         </div>
 

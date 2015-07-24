@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import uuid
 from django.db import models
-
 from users.models import Dealer, Customer
 
 def get_picture_path(instance, filename):
@@ -46,6 +45,7 @@ class Event(models.Model):
     )
     name = models.CharField(u"نام رویداد", max_length=255, null=False, blank=False)
     address = models.TextField(u"آدرس", null=False, blank=False)
+    neighborhood = models.CharField(u"نام محله\خلاصه‌ی مکان", max_length=50, null=False, blank=False)
     description = models.TextField(u"توضیحات", null=False, blank=False)
     condition = models.IntegerField(u"وضعیت", choices=CONDITION_CHOICES, default=2, null=False, blank=False)
     condition_description = models.TextField(u"توضیحات وضعیت", null=False, blank=False)
@@ -62,6 +62,24 @@ class Event(models.Model):
 
     def __unicode__(self):
         return u"رویداد {} ".format(self.name)
+
+    def first_picture(self):
+        return EventPicture.objects.filter(event=self).first()
+
+    def first_date(self):
+        return TicketType.objects.filter(event=self).order_by('datetime').first().datetime.date()
+
+    def cheapest_ticket(self):
+        return TicketType.objects.filter(event=self).order_by('price').first().price
+
+    def total_number_of_tickets(self):
+        return TicketType.objects.filter(event=self).aggregate(models.Sum('total'))['total__sum']
+
+    def available_tickets(self):
+        return TicketType.objects.filter(event=self).aggregate(models.Sum('available'))['available__sum']
+
+    def sold_tickets_number(self):
+        return self.total_number_of_tickets() - self.available_tickets()
 
 class EventPicture(models.Model):
     picture = models.ImageField(u"تصویر", upload_to=get_picture_path, null=False, blank=False)
@@ -89,7 +107,7 @@ class TicketType(models.Model):
         verbose_name_plural = u"نوع‌بلیط‌ها"
 
     def __unicode__(self):
-        return u"{}".format(self.name)
+        return u"بلیط {} از رویداد {}".format(self.name, self.event.name)
 
 
 class Order(models.Model):
