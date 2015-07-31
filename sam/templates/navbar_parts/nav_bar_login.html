@@ -1,0 +1,18 @@
+{% extends "navbar_parts/nav_bar.html" %}
+
+{%  block login_logout %}
+<div class="sam-align-center">
+    <div class="col-md-2"></div>
+    <div class=" col-md-9 btn-group sam-login-logout" role="group" aria-label="..." style="padding-top: 2%">
+        <button id="userBtn" class="btn btn-default col-md-6" type="button" data-toggle="modal" data-target="#register_modal"  class=" btn btn-default">
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+    ثبت نام
+        </button>
+        <button id="userBtn" class="btn btn-default col-md-6" type="button" data-toggle="modal" data-target="#login_modal"  class=" btn btn-default">
+ورود
+
+        </button>
+    </div>
+</div>
+
+{% endblock %}
