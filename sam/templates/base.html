@@ -32,7 +32,8 @@
     {% block head_tail %} {% endblock %}
 </head>
 
-<body role="document">
+<body role="document" >
+<div class="sam-website-wrapper">
 
 <!-- Fixed navbar -->
 {% block navbar %}
@@ -42,32 +43,23 @@
 <div class="container theme-showcase" role="main">
     <div class="row">
         <div class="clearfix">
-            <div class="col-md-3 sam-sidebar-column-padding">
+            <div class="col-md-3">
                 {% block right_sidebar %}
-                    <div class="row">
-                        {% comment %}{% include 'right_sidebar_menu2.html' %}{% endcomment %}
-                    </div>
+                        {% include 'right_sidebar_menu.html' %}
                 {% endblock %}
             </div>
-            <div class="col-md-9 sam-main-column-padding">
+            <div class="col-md-9">
                 {% block main_column %} {% endblock %}
             </div>
         </div>
     </div>
-    <!--
-    <div class="row">
-        {% block footer %}
-            <div class="col-md-3 sam-border">
-                نمونه‌ای از سمت راست فوتر در فایل base.html
-            </div>
-            <div class="col-md-4 col-md-offset-5 sam-border">
-                نمونه‌ای از سمت چپ فوتر در فایل base.html
-            </div>
-        {% endblock %}
-    </div>
-    -->
 </div>
 <!-- /container -->
+<div class="push"></div>
+ </div>
+ <div class="footer">
+   {% include "footer.html" %}
+ </div>
 
 
 <!-- Bootstrap core JavaScript

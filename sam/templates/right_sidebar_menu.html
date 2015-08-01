@@ -1,220 +1,294 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Navigation Sidebar with Toggle - Bootsnipp.com</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <style type="text/css">
-        .row {
-            margin-right: 0px;
-            margin-right: 0px;
-        }
-
-        #wrapper {
-            padding-right: 70px;
-            transition: all .4s ease 0s;
-            height: 100%
-        }
-
-        #sidebar-wrapper {
-            margin-right: -150px;
-            right: 70px;
-            width: 150px;
-            background: #222;
-            position: fixed;
-            height: 100%;
-            z-index: 10000;
-            transition: all .4s ease 0s;
-        }
-
-        .sidebar-nav {
-            display: block;
-            float: right;
-            width: 150px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        #page-content-wrapper {
-            padding-right: 0;
-            margin-right: 0;
-            width: 100%;
-            height: auto;
-        }
-
-        #wrapper.active {
-            padding-right: 150px;
-        }
-
-        #wrapper.active #sidebar-wrapper {
-            right: 150px;
-        }
-
-        #page-content-wrapper {
-            width: 100%;
-        }
-
-        #sidebar_menu li a, .sidebar-nav li a {
-            color: #999;
-            display: block;
-            float: right;
-            text-decoration: none;
-            width: 150px;
-            background: #252525;
-            border-top: 1px solid #373737;
-            border-bottom: 1px solid #1A1A1A;
-            -webkit-transition: background .5s;
-            -moz-transition: background .5s;
-            -o-transition: background .5s;
-            -ms-transition: background .5s;
-            transition: background .5s;
-        }
-
-        .sidebar_name {
-            padding-top: 25px;
-            color: #fff;
-            opacity: .7;
-        }
-
-        .sidebar-nav li {
-            line-height: 40px;
-            text-indent: 20px;
-        }
-
-        .sidebar-nav li a {
-            color: #999999;
-            display: block;
-            text-decoration: none;
-        }
-
-        .sidebar-nav li a:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.2);
-            text-decoration: none;
-        }
-
-        .sidebar-nav li a:active,
-        .sidebar-nav li a:focus {
-            text-decoration: none;
-        }
-
-        .sidebar-nav > .sidebar-brand {
-            height: 65px;
-            line-height: 60px;
-            font-size: 18px;
-        }
-
-        .sidebar-nav > .sidebar-brand a {
-            color: #999999;
-        }
-
-        .sidebar-nav > .sidebar-brand a:hover {
-            color: #fff;
-            background: none;
-        }
-
-        #main_icon {
-            float: right;
-            padding-right: 65px;
-            padding-top: 20px;
-        }
-
-        .sub_icon {
-            float: right;
-            padding-right: 65px;
-            padding-top: 10px;
-        }
-
-        .content-header {
-            height: 65px;
-            line-height: 65px;
-        }
-
-        .content-header h1 {
-            margin: 0;
-            margin-right: 20px;
-            line-height: 65px;
-            display: inline-block;
-        }
-
-        @media (max-width: 767px) {
-            #wrapper {
-                padding-right: 70px;
-                transition: all .4s ease 0s;
-            }
-
-            #sidebar-wrapper {
-                right: 70px;
-            }
-
-            #wrapper.active {
-                padding-right: 150px;
-            }
-
-            #wrapper.active #sidebar-wrapper {
-                right: 150px;
-                width: 150px;
-                transition: all .4s ease 0s;
-            }
-        }
-
-    </style>
-    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        window.alert = function () {
-        };
-        var defaultCSS = document.getElementById('bootstrap-css');
-        function changeCSS(css) {
-            if (css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="' + css + '" type="text/css" />');
-            else $('head > link').filter(':first').replaceWith(defaultCSS);
-        }
-        $(document).ready(function () {
-            var iframe_height = parseInt($('html').height());
-            window.parent.postMessage(iframe_height, 'http://bootsnipp.com');
-        });
-    </script>
-</head>
-<body>
-<div id="wrapper" class="active">
-
-    <!-- Sidebar -->
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <ul id="sidebar_menu" class="sidebar-nav">
-            <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon"
-                                                                             class="glyphicon glyphicon-align-justify"></span></a>
-            </li>
-        </ul>
-        <ul class="sidebar-nav" id="sidebar">
-            <li><a>Link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-            <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-        </ul>
-    </div>
-
-    <!-- Page content -->
-    <div id="page-content-wrapper">
-        <!-- Keep all page content within the page-content inset div! -->
-        <div class="page-content inset">
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default" id="cat1">
+        <div class="panel-heading">
             <div class="row">
-                <div class="col-md-12">
-                    <p class="well lead">An Experiment using the sidebar template from startbootstrap.com which I
-                        integrated in my website (<a href="http://animeshmanglik.name">animeshmanglik.name</a>)</p>
-
-                    <p class="well lead">Click on the Menu to Toggle Sidebar . Hope you enjoy it!</p>
-                </div>
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                    <div class="col-md-12">
+                    <span class="glyphicon glyphicon-stop">
+                    </span>موسیقی
+                    </div>
+                </a>
+            </h4>
+            </div>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>همه
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>کنسرت‌های موسیقی سنتی
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>کنسرت‌های پاپ
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>کنسرت‌های راک
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>کنسرت‌های موسیقی غربی
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
-
+    <div class="panel panel-default"  id="cat2">
+        <div class="panel-heading">
+            <div class="row">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                    <div class="col-md-12">
+                    <span class="glyphicon glyphicon-stop">
+                    </span>تئاتر
+                    </div>
+                </a>
+            </h4>
+            </div>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>همه
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>تئاتر‌های درام
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>تئاتر‌های کمدی
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>تئاتر‌های تراژدی
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" id="cat3">
+        <div class="panel-heading">
+            <div class="row">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                    <div class="col-md-12">
+                    <span class="glyphicon glyphicon-stop">
+                    </span>سینما
+                    </div>
+                </a>
+            </h4>
+            </div>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>همه
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>انیمیشن‌ها
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>فیلم‌های رمانتیک
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>فیلم‌های ماجراجویانه
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" id="cat4">
+        <div class="panel-heading">
+            <div class="row">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                    <div class="col-md-12">
+                    <span class="glyphicon glyphicon-stop">
+                    </span>ورزش
+                    </div>
+                </a>
+            </h4>
+            </div>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>مسابقات فوتبال
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>مسابقات والیبال
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>مسابقات بسکتبال
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>همه
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" id="cat5">
+        <div class="panel-heading">
+            <div class="row">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                    <div class="col-md-12">
+                    <span class="glyphicon glyphicon-stop">
+                    </span>هنر‌های تجسمی
+                    </div>
+                </a>
+            </h4>
+            </div>
+        </div>
+        <div id="collapseFive" class="panel-collapse collapse">
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>نمایشگاه‌های عکس
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>نمایشگاه‌های مجسمه
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>نمایشگاه‌های نقاشی
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="http://www.jquery2dotnet.com">
+                            <div class="col-md-12">
+                            <span class="glyphicon glyphicon-minus text-primary"></span>همه
+                            </div>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
-<script type="text/javascript">
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("active");
-    });
-</script>
-</body>
-</html>
+
+
+

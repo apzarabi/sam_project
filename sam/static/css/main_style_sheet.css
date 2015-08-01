@@ -1,3 +1,11 @@
+body{
+    padding-top: 200px;
+}
+@media (min-width: 979px) {
+  body {
+    padding-top: 80px;
+  }
+}
 .sam-border {
     border: 0 dotted darkgrey;
 }
@@ -172,4 +180,90 @@
 }
 .sam-sidebar-column-padding{
     padding-top: 160px !important;
+}
+
+.panel-body { padding:0px; }
+.panel-body table tr td :before {
+    padding-left: 15px;
+}
+.panel-body .table {margin-bottom: 0px; }
+
+.panel-body table tr a{ color: inherit !important;}
+.panel-body table tr span{ color: inherit !important;}
+
+#cat1 .panel-body table tr { color: #58009d !important; }
+#cat2 .panel-body table tr { color: #5b78f3 !important; }
+#cat3 .panel-body table tr { color: #8BC34A !important; }
+#cat4 .panel-body table tr { color: #ffbb1b !important; }
+#cat5 .panel-body table tr { color: #ff3298 !important; }
+
+/*#cat1 .panel-body table tr :hover{
+    background-color: #58009d !important;
+    color:white !important;
+}
+
+#cat2 .panel-body table tr :hover{
+    background-color: #5b78f3 !important;
+    color:white !important;
+}
+
+#cat3 .panel-body table tr :hover{
+    background-color: #8BC34A !important;
+    color:white !important;
+}
+
+#cat4 .panel-body table tr :hover{
+    background-color: #ffbb1b !important;
+    color:white !important;
+}
+
+#cat5 .panel-body table tr :hover{
+    background-color: #ff3298 !important;
+    color:white !important;
+}*/
+
+.panel-group .panel .panel-body table tr :hover{
+    background-color: rgb(231, 235, 239) !important;
+}
+
+
+.panel-group > #cat1 {background-color: rgba(88, 0, 157, 0.04) !important;}
+.panel-group > #cat2 {background-color: rgba(91, 120, 243, 0.07) !important;}
+.panel-group > #cat3 {background-color: rgba(139, 195, 74, 0.04) !important;}
+.panel-group > #cat4 {background-color: rgba(255, 187, 27, 0.04) !important;}
+.panel-group > #cat5 {background-color: rgba(255, 50, 152, 0.04) !important;}
+
+.panel-group > #cat1 > div > div > h4 > a { color: #58009d !important;}
+.panel-group > #cat2 > div > div > h4 > a { color: #5b78f3 !important;}
+.panel-group > #cat3 > div > div > h4 > a { color: #8BC34A !important;}
+.panel-group > #cat4 > div > div > h4 > a { color: #ffbb1b !important;}
+.panel-group > #cat5 > div > div > h4 > a { color: #ff3298 !important;}
+
+
+.panel-group{color:black !important;}
+
+.sam-footer{
+    background-image: linear-gradient(to bottom,#3c3c3c 0,#222 100%);
+    padding-bottom: 0px;
+}
+
+
+html, body {
+    height: 100%;
+}
+.sam-website-wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.footer, .push {
+    background-image: linear-gradient(to bottom,#3c3c3c 0,#222 100%);
+    min-height: 100px; /* .push must be the same height as .footer */
+    padding-top:10px;
+    padding-bottom: 0px;
+    padding-right:40px;
+    padding-left:40px;
+    color:white;
 }

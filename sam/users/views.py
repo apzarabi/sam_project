@@ -25,10 +25,6 @@ def menu(request):
     return render(request, 'right_sidebar_menu.html', {})
 
 
-def menu2(request):
-    return render(request, 'right_sidebar_menu2.html', {})
-
-
 def home(request):
     return render(request, 'home.html', {})
 
