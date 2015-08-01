@@ -226,6 +226,26 @@ body{
     background-color: rgb(231, 235, 239) !important;
 }
 
+.choices{
+    padding-top:10px;
+}
+
+.sam-event-edit{
+    background-color: #f0ede5 !important;
+    padding-top:10px !important;
+    padding-bottom: 10px !important;
+    color: #a3a7ab !important;
+}
+
+.sam-event-button{
+    background-color: #a3a7ab !important;
+    color:white !important;
+}
+
+textarea{
+    background-color: rgba(255, 255, 255, 0.51) !important;
+    resize:none !important;
+}
 
 .panel-group > #cat1 {background-color: rgba(88, 0, 157, 0.04) !important;}
 .panel-group > #cat2 {background-color: rgba(91, 120, 243, 0.04) !important;}

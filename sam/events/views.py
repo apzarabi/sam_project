@@ -9,6 +9,11 @@ def event_cards(request):
     return render(request, 'test_event_cards.html', {'event': event})
 
 
+def event_edit_page(request):
+    event = Event.objects.get(id=1)
+    return render(request, 'event_edit/event_edit_page.html', {'event': event})
+
+
 def event_row_verify(request):
     return render(request, 'event_row_parts/event_row_verify.html', {})
 
