@@ -54,7 +54,7 @@ def print_ticket(request):
 
 
 def customer_profile(request):
-    return render(request, 'customer_profile', {})
+    return render(request, 'customer_profile.html', {})
 
 
 def dealer_profile(request):
