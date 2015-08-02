@@ -37,7 +37,7 @@
 
 <!-- Fixed navbar -->
 {% block navbar %}
-    {% include "navbar_parts/nav_bar_login.html" %}
+    {% include "navbar_parts/nav_bar.html" %}
 {% endblock %}
 
 <div class="container theme-showcase" role="main">
@@ -61,6 +61,8 @@
    {% include "footer.html" %}
  </div>
 
+{% include "login_modal.html" %}
+{% include "signup_modal.html" %}
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -73,8 +75,13 @@
 <script src="{% static 'frameworks/raty/lib/jquery.raty.js' %}"></script>
 <script src="{% static 'js/main_scripts.js' %}"></script>
 
+<!-- for login modal -->
+{% if login_errors %}
+<script type="text/javascript">
+    $('#login_modal').modal('show');
+</script>
+{% endif %}
+
 {% block body_tail %} {% endblock %}
-{% include "login_modal.html" %}
-{% include "signup_modal.html" %}
 </body>
 </html>

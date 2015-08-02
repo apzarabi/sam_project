@@ -1,6 +1,8 @@
 from django.conf.urls import url
 
 urlpatterns = [
+    url(r'^login/$', 'users.views.login', name="login"),
+    url(r'^logout/$', 'users.views.logout', name="logout"),
     url(r'^test/ticket/$', 'users.views.print_ticket', name='ticket'),
     url(r'^test/home/user/$', 'users.views.home_log_out', name='homelogout'),
     url(r'^test/payment/successful/$', 'users.views.payment_success', name='success'),

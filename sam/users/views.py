@@ -1,5 +1,29 @@
-from django.shortcuts import render
+# -*- coding: utf-8 -*-
+from django.core.urlresolvers import reverse
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login as login_auth, logout as auth_logout
 
+
+def login(request):
+    errors = ""
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login_auth(request, user)
+                return redirect(reverse('users:home'))
+            else:
+                errors = "شما نمی‌تواند وارد سامانه شوید."
+        else:
+            errors = "نام کاربری یا رمز عبور غلط است."
+
+    return render(request, 'home.html', {'login_errors': errors})
+
+def logout(request):
+    auth_logout(request)
+    return redirect(reverse('users:home'))
 
 def test(request):
     return render(request, 'base.html', {})
@@ -31,6 +55,7 @@ def home(request):
 
 def home_log_out(request):
     return render(request, 'home_log_out.html', {})
+
 
 
 def payment(request):

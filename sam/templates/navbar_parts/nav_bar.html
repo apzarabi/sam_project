@@ -1,8 +1,11 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="col-md-12 container">
         <div class="col-md-4 sam-align-center">
-        {% block login_logout %}
-        {% endblock %}
+            {% if user.is_authenticated %}
+                {% include 'navbar_parts/nav_bar_logout.html' %}
+            {% else %}
+                {% include 'navbar_parts/nav_bar_login.html' %}
+            {% endif %}
         </div>
         <div class="col-md-4 sam-align-center">
             <div class="col-md-4"></div>
