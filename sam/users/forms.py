@@ -9,9 +9,12 @@ from .models import UserInfo, Customer, Dealer
 
 EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
 
+persian_default_errors = {
+    'required': u"این فیلد الزامی است.",
+}
 class UserForm(forms.ModelForm):
-    password = forms.CharField(max_length=80, widget=forms.PasswordInput)
-    re_password = forms.CharField(max_length=80, widget=forms.PasswordInput)
+    password = forms.CharField(max_length=80, widget=forms.PasswordInput, error_messages=persian_default_errors)
+    re_password = forms.CharField(max_length=80, widget=forms.PasswordInput, error_messages=persian_default_errors)
 
     class Meta:
         model = User
@@ -39,6 +42,12 @@ class UserForm(forms.ModelForm):
                                                      'id': "username",
                                                      'placeholder': u"نام کاربری",
                                                      })
+        username_error = {'unique': u"نام کاربری باید یکتا باشد."}
+        username_error.update(persian_default_errors)
+        self.fields['username'].error_messages = username_error
+        self.fields['email'].error_messages = persian_default_errors
+        self.fields['re_password'].error_messages = persian_default_errors
+        self.fields['password'].error_messages = persian_default_errors
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -78,9 +87,7 @@ class UserInfoForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(UserInfoForm, self).__init__(*args, **kwargs)
-        self.fields['picture'].widget.attrs.update({'type': "file",
-                                                  'id': "picture",
-                                                  })
+        self.fields['picture'].error_messages = persian_default_errors
 
 class DealerForm(forms.ModelForm):
     class Meta:
@@ -97,6 +104,8 @@ class DealerForm(forms.ModelForm):
         self.fields['certificate'].widget.attrs.update({'type': "file",
                                                         'id': "certificate",
                                                         })
+        self.fields['registryNumber'].error_messages = persian_default_errors
+        self.fields['certificate'].error_messages = persian_default_errors
 
 
 class CustomerForm(forms.ModelForm):
@@ -106,6 +115,7 @@ class CustomerForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(CustomerForm, self).__init__(*args, **kwargs)
+        self.fields['date'].error_messages = persian_default_errors
         self.fields['date'].widget.attrs.update({'type': "date",
                                                   'class': "form-control",
                                                   'id': "customer_date",

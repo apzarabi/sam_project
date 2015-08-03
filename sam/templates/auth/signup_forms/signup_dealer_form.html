@@ -1,0 +1,8 @@
+<div class="row">
+    <form name="signup_dealer" method="post" action="{% url 'users:signup_dealer' %}">
+        {% include 'auth/signup_forms/signup_general_form.html' %}
+        {{ dealerForm }}
+        <br>
+        <button type="submit" class="btn btn-success">ثبت نام</button>
+    </form>
+</div>

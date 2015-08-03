@@ -1,0 +1,9 @@
+<div class="row">
+    <form name="signup_customer" method="post" action="{% url 'users:signup_customer' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% include 'auth/signup_forms/signup_general_form.html' %}
+        {{ customerForm }}
+        <br>
+        <button type="submit" class="btn btn-success">ثبت نام</button>
+    </form>
+</div>

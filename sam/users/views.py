@@ -34,12 +34,58 @@ def login(request):
 
     return render(request, 'home.html', {'login_errors': errors})
 
+
+def signup(request):
+    return render(request, 'auth/signup_modal.html', {
+                                                    'userForm': UserForm(),
+                                                    'userInfoForm': UserInfoForm(),
+                                                    'customerForm': CustomerForm(),
+    })
+
+
+def signup_customer(request):
+    errors = {}
+    if request.method == 'POST':
+        userForm = UserForm(request.POST)
+        userInfoForm = UserInfoForm(request.POST, request.FILES)
+        customerForm = CustomerForm(request.POST)
+        if not userForm.is_valid():
+            errors = errors.copy()
+            errors.update(userForm.errors)
+        if not userInfoForm.is_valid():
+            errors = errors.copy()
+            errors.update(userInfoForm.errors)
+        if not customerForm.is_valid():
+            errors = errors.copy()
+            errors.update(customerForm.errors)
+        if not errors:
+            new_user = userForm.save()
+            new_user_info = userInfoForm.save(commit=False)
+            new_user_info.user = new_user
+            new_user_info.save()
+            new_customer = customerForm.save(commit=False)
+            new_customer.userInfo = new_user_info
+            new_customer.save()
+            auth_user = authenticate(username=new_user.username, password=request.POST['password'])
+            login_auth(request, auth_user)
+            return redirect(reverse('users:home'))
+        else:   # if errors
+            print("sign up errors: {}".format(errors))
+            return render(request, 'auth/signup_modal.html', {'signup_customer_errors': errors,
+                                                 'userForm': userForm,
+                                                  'userInfoForm': userInfoForm,
+                                                  'customerForm': customerForm,
+            })
+
+    pass
+
+def signup_dealer(request):
+    pass
+
 def home(request):
     forms = make_sign_up_form()
     context = {}
     context.update(forms)
-    print('forms: {}'.format(forms))
-    print('i was here {}'.format(context))
     return render(request, 'home.html', context)
 
 def logout(request):
