@@ -18,13 +18,19 @@
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
                                 <div class="item active">
-                                    <img src="{% static 'tmp_media/music3.jpg' %}">
+                                    <a href= {% url 'events:event_view' event.id %}>
+                                        <img src="{% static 'tmp_media/music3.jpg' %}">
+                                    </a>
                                 </div>
                                 <div class="item">
-                                    <img src="{% static 'tmp_media/music2.jpg' %}">
+                                    <a href= {% url 'events:event_view' event.id %}>
+                                        <img src="{% static 'tmp_media/music2.jpg' %}">
+                                    </a>
                                 </div>
                                 <div class="item">
-                                    <img src="{% static 'tmp_media/music.jpg' %}">
+                                    <a href= {% url 'events:event_view' event.id %}>
+                                        <img src="{% static 'tmp_media/music.jpg' %}">
+                                    </a>
                                 </div>
                             </div>
                             <!-- Controls -->
@@ -43,10 +49,11 @@
                             <li><a href="#">{{event.category}}</a></li>
                             <li><a href="#">{{event.subcategory.name}}</a></li>
                         </ol>
-                        <h1> <a href="/events/event_cards/">
-                            {{event.name}} <small class="badge">{{event.neighborhood}}</small>
+                        <h2>
+                            <a href= {% url 'events:event_view' event.id %}>
+                                {{event.name | farsi_num}} <small class="badge">{{event.neighborhood | farsi_num}}</small>
                             </a>
-                        </h1>
+                        </h2>
                         <br>
                         <div class="sam-event-big-card-detail">
                             <div class="row">
@@ -62,7 +69,7 @@
                                     <h2><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></h2>
                                 </div>
                                 <div class="col-md-4">
-                                    <h2>{{event.first_date | farsi_num}}</h2>
+                                    <h2>{{event.first_date|farsi_num}}</h2>
                                 </div>
                             </div>
                         </div>

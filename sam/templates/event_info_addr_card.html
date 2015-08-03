@@ -12,20 +12,22 @@
                                <span class="glyphicon glyphicon-pushpin sam-info-title" aria-hidden="true"></span>
                                 توضیحات
                             </h5>
-                            <p> این یک جمله امتحانی است. این یک جمله امتحانی است. این یک جمله امتحانی است. این یک جمله امتحانی است. این یک جمله امتحانی است. این یک جمله امتحانی است. این یک جمله امتحانی است. این یک جمله امتحانی است.</p>
-                            <p> اینم همین طور</p>
-                            <p> اینم همین طوراینم همین طوراینم همین طوراینم همین طوراینم همین طوراینم همین طوراینم همین طوراینم همین طوراینم همین طور</p>
-                             <h5 class="sam-info-title">
+                            <p>{{event.description}}</p>
+                            <!--<h5 class="sam-info-title">
                                <span class="glyphicon glyphicon-phone-alt sam-info-title" aria-hidden="true"></span>
 شماره تماس:
                             </h5>
                             <p>شعبه یک (ونک) -------------- ۰۲۱-۷۷۹۷۱۲۳۳</p>
-                            <p>شعبه دو (تهران پارس) ---------- ۰۲۱-۸۸۹۰۱۲۱۲</p>
+                            <p>شعبه دو (تهران پارس) ---------- ۰۲۱-۸۸۹۰۱۲۱۲</p>-->
                              <h5 class="sam-info-title">
                                <span class="glyphicon glyphicon-briefcase sam-info-title" aria-hidden="true"></span>
 فروشنده:
                             </h5>
-                            <p> شرکت رهیافت ایران کنسرت</p>
+                            {% if event.dealer.name|length > 0 %}
+                              <p>{{ event.dealer.name }}</p>
+                            {% else %}
+                              <p>نامشخص</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -38,7 +40,7 @@
                                 آدرس
                             </h3>
                             <div class="popover-content sam-map-content">
-                                <p>تهران، اتوبان همت، قبل از شیخ فضل الله، مجمتع برج میلاد تهران</p>
+                                <p>{{ event.address }}</p>
                             </div>
                         </div>
                     </div>

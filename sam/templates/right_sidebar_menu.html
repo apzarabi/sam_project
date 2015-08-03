@@ -47,23 +47,19 @@
                 </div>
             </div>
             {% endfor %}
-            <div class="row">
-                <div class="col-md-12 sam-border">
-                    {% include 'event_small_card.html' %}
+            {% if offered_events|length > 0 %}
+                <div class="row sam-offered-events">
+                    <div class="col-md-12 ">
+                      <div class="col-md-12  thumbnail">
+                          <h4>{{ side_bar_offer_topic }}</h4>
+
+                          {% for item in offered_events %}
+                              {% include "event_small_card.html" with event=item %}
+                          {% endfor %}
+                      </div>
+                   </div>
                 </div>
-                <div class="col-md-12 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-12 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-12 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-12 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-            </div>
+            {% endif %}
         </div>
     </body>
 </html>

@@ -230,6 +230,10 @@ body{
     padding-top:10px;
 }
 
+.sam-offered-events{
+    margin-top:20px;
+}
+
 .sam-event-edit{
     background-color: #f0ede5 !important;
     padding-top:10px !important;

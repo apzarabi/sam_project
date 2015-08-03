@@ -52,6 +52,7 @@ class Event(models.Model):
     verification_file = models.FileField(u"مدرک اعتبار سنجی", null=True, blank=True)
     latitude = models.FloatField(u"عرض جغرافیایی", null=False, blank=False)
     longitude = models.FloatField(u"طول جغرافیایی", null=False, blank=False)
+    #phone_number = models.IntegerField(u"شماره تلفن", null=False, blank=False)
 
     subcategory = models.ForeignKey(Subcategory)
     dealer = models.ForeignKey(Dealer)
@@ -83,6 +84,16 @@ class Event(models.Model):
 
     def category(self):
         return self.subcategory.category.name
+
+    def rating(self):
+        temp=0
+        for rate in self.rate_set.all():
+            temp+=rate.rate_number
+        if self.rate_set.count()>0:
+            return int(temp/self.rate_set.count())
+        else :
+            return 4
+
         
 class EventPicture(models.Model):
     picture = models.ImageField(u"تصویر", upload_to=get_picture_path, null=False, blank=False)

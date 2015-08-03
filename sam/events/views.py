@@ -29,3 +29,13 @@ def event_row_purchase(request):
 
 def event_row_print(request):
     return render(request, 'event_row_parts/event_row_print.html', {})
+
+
+def event_view(request, event_id):
+    print(event_id)
+    event_id = int(event_id)
+    event = Event.objects.get(id=event_id)
+    categories = Category.objects.all()
+    offered_events = event.subcategory.event_set.exclude(id=event.id).filter(pk__in=[0,1,2,3,4,5])
+    return render(request, 'event_page.html', {'offered_events':offered_events, 'event': event,  'categories':categories, 'side_bar_offer_topic':"از همین زیردسته"})
+
