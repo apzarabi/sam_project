@@ -3,6 +3,9 @@ from django.conf.urls import url
 urlpatterns = [
     url(r'^login/$', 'users.views.login', name="login"),
     url(r'^logout/$', 'users.views.logout', name="logout"),
+    url(r'^test/signup', 'users.views.signup', name='signup'),
+    url(r'^signup/customer', 'users.views.signup_customer', name='signup_customer'),
+    url(r'^signup/dealer', 'users.views.signup_dealer', name='signup_dealer'),
     url(r'^home/$', 'users.views.home', name='home'),
     url(r'^test/ticket/$', 'users.views.print_ticket', name='ticket'),
     url(r'^test/home/user/$', 'users.views.home_log_out', name='homelogout'),
