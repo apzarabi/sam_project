@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as login_auth, logout as auth_logout
 
+from events.models import *
 
 def login(request):
     errors = ""
@@ -50,7 +51,8 @@ def menu(request):
 
 
 def home(request):
-    return render(request, 'home.html', {})
+    event = Event.objects.get(id=1)
+    return render(request, 'home.html', {'event': event})
 
 
 def home_log_out(request):

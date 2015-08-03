@@ -81,6 +81,9 @@ class Event(models.Model):
     def sold_tickets_number(self):
         return self.total_number_of_tickets() - self.available_tickets()
 
+    def category(self):
+        return self.subcategory.category.name
+        
 class EventPicture(models.Model):
     picture = models.ImageField(u"تصویر", upload_to=get_picture_path, null=False, blank=False)
     event = models.ForeignKey(Event)
