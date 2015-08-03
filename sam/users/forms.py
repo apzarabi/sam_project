@@ -105,7 +105,9 @@ class DealerForm(forms.ModelForm):
                                                         'id': "certificate",
                                                         })
         self.fields['registryNumber'].error_messages = persian_default_errors
-        self.fields['certificate'].error_messages = persian_default_errors
+        certificate_error = {'unique': u"این شماره‌ی ثبت در سامانه وجود دارد."}
+        certificate_error.update(persian_default_errors)
+        self.fields['certificate'].error_messages = certificate_error
 
 
 class CustomerForm(forms.ModelForm):

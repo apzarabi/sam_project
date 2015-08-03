@@ -20,6 +20,9 @@ class UserInfo(models.Model):
     picture = models.ImageField(u"تصویر", upload_to=get_user_avatar_path, null=False, blank=False)
     datetime = models.DateTimeField(u"تاریخ عضویت", default=timezone.now, null=False, blank=False)
 
+    def get_class(self):
+        return "userInfo"
+
     def __unicode__(self):
         return u"اطلاعت پایه‌ای کاربر {}".format(self.user.username)
 
@@ -31,6 +34,9 @@ class Customer(models.Model):
     class Meta:
         verbose_name = u"خریدار"
         verbose_name_plural = u"خریداران"
+
+    def get_class(self):
+        return "customer"
 
     def __unicode__(self):
         return u"خریدار {}".format(self.userInfo.user.username)
@@ -55,6 +61,9 @@ class Dealer(models.Model):
     class Meta:
         verbose_name = u"فروشنده"
         verbose_name_plural = u"فروشندگان"
+
+    def get_class(self):
+        return "dealer"
 
     def __unicode__(self):
         return u"فروشنده {}".format(self.userInfo.user.username)

@@ -4,10 +4,10 @@ from events.models import *
 
 def event_cards(request):
     event = Event.objects.get(id=1)
-    cat = Category.objects.all()
-    #return HttpResponse('<img class="img-responsive img-rounded" src="/media/pictures/77b6026e-b32f-4ae3-bb41-1719dcfca165.JPG">')
+    categories = Category.objects.all()
+    # return HttpResponse('<img class="img-responsive img-rounded" src="/media/pictures/77b6026e-b32f-4ae3-bb41-1719dcfca165.JPG">')
     print("here")
-    return render(request, 'test_event_cards.html', {'event': event, 'categories': cat})
+    return render(request, 'test_event_cards.html', {'event': event, "categories": categories})
 
 
 def event_edit_page(request):

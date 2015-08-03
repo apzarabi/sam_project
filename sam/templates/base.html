@@ -61,7 +61,6 @@
    {% include "footer.html" %}
  </div>
 
-{% include "login_modal.html" %}
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -74,12 +73,6 @@
 <script src="{% static 'frameworks/raty/lib/jquery.raty.js' %}"></script>
 <script src="{% static 'js/main_scripts.js' %}"></script>
 
-<!-- for login modal -->
-{% if login_errors %}
-<script type="text/javascript">
-    $('#login_modal').modal('show');
-</script>
-{% endif %}
 
 {% block body_tail %} {% endblock %}
 </body>
