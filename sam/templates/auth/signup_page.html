@@ -7,15 +7,18 @@
     <li role="presentation" class="active"><a href="#signup_customer" aria-controls="signup_customer" role="tab" data-toggle="tab">ثبت‌نام خریدار</a></li>
     <li role="presentation"><a href="#signup_dealer" aria-controls="signup_dealer" role="tab" data-toggle="tab">ثبت‌نام فروشنده</a></li>
 </ul>
-
+<br>
 <!-- Tab panes -->
-<div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="signup_customer">
-        {% include 'auth/signup_forms/signup_customer_form.html' %}
-    </div>
-    <div role="tabpanel" class="tab-pane" id="signup_dealer">
-        {% include 'auth/signup_forms/signup_dealer_form.html' %}
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="signup_customer">
+                {% include 'auth/signup_forms/signup_customer_form.html' %}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="signup_dealer">
+                {% include 'auth/signup_forms/signup_dealer_form.html' %}
+            </div>
+        </div>
     </div>
 </div>
-
 {% endblock %}

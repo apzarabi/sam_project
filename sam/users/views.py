@@ -32,16 +32,16 @@ def login(request):
         else:
             errors = "نام کاربری یا رمز عبور غلط است."
 
-    return render(request, 'home.html', {'login_errors': errors})
+    return render(request, 'auth/login_page.html', {'login_errors': errors})
 
 
 def signup(request):
-    return render(request, 'auth/signup_modal.html', {
+    return render(request, 'auth/signup_page.html', {
                                                     'userForm': UserForm(),
                                                     'userInfoForm': UserInfoForm(),
                                                     'customerForm': CustomerForm(),
+                                                    'dealerForm': DealerForm(),
     })
-
 
 def signup_customer(request):
     errors = {}
@@ -71,16 +71,46 @@ def signup_customer(request):
             return redirect(reverse('users:home'))
         else:   # if errors
             print("sign up errors: {}".format(errors))
-            return render(request, 'auth/signup_modal.html', {'signup_customer_errors': errors,
+            return render(request, 'auth/signup_page.html', {'signup_customer_errors': errors,
                                                  'userForm': userForm,
                                                   'userInfoForm': userInfoForm,
                                                   'customerForm': customerForm,
             })
 
-    pass
 
 def signup_dealer(request):
-    pass
+    errors = {}
+    if request.method == 'POST':
+        userForm = UserForm(request.POST)
+        userInfoForm = UserInfoForm(request.POST, request.FILES)
+        dealerForm = DealerForm(request.POST)
+        if not userForm.is_valid():
+            errors = errors.copy()
+            errors.update(userForm.errors)
+        if not userInfoForm.is_valid():
+            errors = errors.copy()
+            errors.update(userInfoForm.errors)
+        if not dealerForm.is_valid():
+            errors = errors.copy()
+            errors.update(dealerForm.errors)
+        if not errors:
+            new_user = userForm.save()
+            new_user_info = userInfoForm.save(commit=False)
+            new_user_info.user = new_user
+            new_user_info.save()
+            new_customer = dealerForm.save(commit=False)
+            new_customer.userInfo = new_user_info
+            new_customer.save()
+            auth_user = authenticate(username=new_user.username, password=request.POST['password'])
+            login_auth(request, auth_user)
+            return redirect(reverse('users:home'))
+        else:   # if errors
+            print("sign up errors: {}".format(errors))
+            return render(request, 'auth/signup_page.html', {'signup_customer_errors': errors,
+                                                 'userForm': userForm,
+                                                  'userInfoForm': userInfoForm,
+                                                  'dealerForm': dealerForm,
+            })
 
 def home(request):
     forms = make_sign_up_form()
