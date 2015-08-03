@@ -36,44 +36,11 @@ def login(request):
 
 
 def signup(request):
-    print('signing up')
-    errors = {}
-    if request.method == 'POST':
-        userForm = UserForm(request.POST)
-        userInfoForm = UserInfoForm(request.POST)
-        customerForm = CustomerForm(request.POST)
-        if not userForm.is_valid():
-            errors = errors.copy()
-            errors.update(userForm.errors)
-        if not userInfoForm.is_valid():
-            errors = errors.copy()
-            errors.update(userInfoForm.errors)
-        if not customerForm.is_valid():
-            errors = errors.copy()
-            errors.update(customerForm.errors)
-        if not errors:
-            new_user = userForm.save()
-            new_user_info = userInfoForm.save(commit=False)
-            new_user_info.user = new_user
-            new_user_info.save()
-            new_customer = customerForm.save()
-            auth_user = authenticate(username=new_user.username, password=request.POST['password'])
-            login_auth(request, auth_user)
-            print('sign up completed')
-            return redirect(reverse('users:home'))
-        else:   # if errors
-            print("sign up errors: {}".format(errors))
-            return render(request, 'auth/signup_modal.html', {'signup_customer_errors': errors,
-                                                              'userForm': userForm,
-                                                              'userInfoForm': userInfoForm,
-                                                              'customerForm': customerForm,
-                                                              })
-    else:
-        return render(request, 'auth/signup_modal.html', {
-                                                        'userForm': UserForm(),
-                                                        'userInfoForm': UserInfoForm(),
-                                                        'customerForm': CustomerForm(),
-        })
+    return render(request, 'auth/signup_modal.html', {
+                                                    'userForm': UserForm(),
+                                                    'userInfoForm': UserInfoForm(),
+                                                    'customerForm': CustomerForm(),
+    })
 
 
 def signup_customer(request):
@@ -96,7 +63,9 @@ def signup_customer(request):
             new_user_info = userInfoForm.save(commit=False)
             new_user_info.user = new_user
             new_user_info.save()
-            new_customer = customerForm.save()
+            new_customer = customerForm.save(commit=False)
+            new_customer.userInfo = new_user_info
+            new_customer.save()
             auth_user = authenticate(username=new_user.username, password=request.POST['password'])
             login_auth(request, auth_user)
             return redirect(reverse('users:home'))
