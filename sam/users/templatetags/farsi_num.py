@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-__author__ = 'MoTE'
 from django import template
 register = template.Library()
 
