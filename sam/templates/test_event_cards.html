@@ -1,58 +1,60 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block google_map_hdr %}
-    <script
-        src="http://maps.googleapis.com/maps/api/js">
-        </script>
-
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        {% extends 'base.html' %}
+        {% load static %}
+        <!--
+            {% block google_map_hdr %}
+            <script src="http://maps.googleapis.com/maps/api/js"></script>
+            <script>
+                function initialize() {
+                  var mapProp = {
+                    center:new google.maps.LatLng(35.7448416,51.3753212),
+                    zoom:15,
+                    mapTypeId:google.maps.MapTypeId.ROADMAP
+                  };
+                  var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                    var marker = new google.maps.Marker({
+                      position: new google.maps.LatLng(35.7448416,51.3753212),
+                      map: map,
+                      title: 'برج میلاد'
+                    });
+                }
+                google.maps.event.addDomListener(window, 'load', initialize);
+            </script>
+            {% endblock %}
+            -->
+        {% block main_column %}
+        <div class="row">
+            {% include 'event_big_card.html' %}
+        </div>
+        <div class="row">
+            {% include 'event_info_addr_card.html' %}
+        </div>
+        <div class="row">
+            <div class="col-md-4 sam-border">
+                {% include 'event_small_card.html' with event=event%}
+            </div>
+            <div class="col-md-4 sam-border">
+                {% include 'event_small_card.html' %}
+            </div>
+            <div class="col-md-4 sam-border">
+                {% include 'event_small_card.html' %}
+            </div>
+            <div class="col-md-4 sam-border">
+                {% include 'event_small_card.html' %}
+            </div>
+            <div class="col-md-4 sam-border">
+                {% include 'event_small_card.html' %}
+            </div>
+        </div>
+        {% endblock %}
+        {% block body_tail %}
         <script>
-        function initialize() {
-          var mapProp = {
-            center:new google.maps.LatLng(35.7448416,51.3753212),
-            zoom:15,
-            mapTypeId:google.maps.MapTypeId.ROADMAP
-          };
-          var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
-            var marker = new google.maps.Marker({
-              position: new google.maps.LatLng(35.7448416,51.3753212),
-              map: map,
-              title: 'برج میلاد'
-            });
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-{% endblock %}
-
-
-{% block main_column %}
-<div class="row">
-    {% include 'event_big_card.html' %}
-</div>
-<div class="row">
-    {% include 'event_info_addr_card.html' %}
-</div>
-<div class="row">
-    <div class="col-md-4 sam-border">
-        {% include 'event_small_card.html' with event=event%}
-    </div>
-    <div class="col-md-4 sam-border">
-        {% include 'event_small_card.html' %}
-    </div>
-    <div class="col-md-4 sam-border">
-        {% include 'event_small_card.html' %}
-    </div>
-    <div class="col-md-4 sam-border">
-        {% include 'event_small_card.html' %}
-    </div>
-    <div class="col-md-4 sam-border">
-        {% include 'event_small_card.html' %}
-    </div>
-</div>
-{% endblock %}
-
-{% block body_tail %}
-<script>
-    $.fn.raty.defaults.path = "{% static 'frameworks/raty/lib/images' %}";
-    $('.raty-star').raty();
-</script>
-{% endblock %}
+            $.fn.raty.defaults.path = "{% static 'frameworks/raty/lib/images' %}";
+            $('.raty-star').raty();
+        </script>
+        {% endblock %}
+    </body>
+</html>

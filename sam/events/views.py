@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.http import HttpResponse
 from django.shortcuts import render
 from events.models import *
@@ -5,8 +7,6 @@ from events.models import *
 def event_cards(request):
     event = Event.objects.get(id=1)
     categories = Category.objects.all()
-    # return HttpResponse('<img class="img-responsive img-rounded" src="/media/pictures/77b6026e-b32f-4ae3-bb41-1719dcfca165.JPG">')
-    print("here")
     return render(request, 'test_event_cards.html', {'event': event, "categories": categories})
 
 
