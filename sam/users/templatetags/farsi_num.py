@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-__author__ = 'MoTE'
 from django import template
 register = template.Library()
 
@@ -9,7 +8,6 @@ def farsi_num(eng_int):
     print(eng_int)
     farsi_num = ('۰', '١', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹')
     #     farsi_nums = (...)
-    
     number = str(eng_int)
     ret = ""
     for digit in number:

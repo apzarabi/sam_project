@@ -1,24 +1,29 @@
+
 {% load static %}
-
-    <div class="thumbnail">
-        <a href= {% url 'events:event_view' event.id %}>
-            <img class="img-responsive img-rounded" src="{{ event.first_picture.picture.url }}" />
-        </a>
-
-        <div class="caption">
+<html>
+    <head></head>
+    <body>
+        {% load static %}
+        <div class="thumbnail">
             <a href= {% url 'events:event_view' event.id %}>
-                <h4> {{ event.name }}
-                    <small class="badge"> {{ event.neighborhood }}</small>
-                </h4>
+                <img class="img-responsive img-rounded" src="{{ event.first_picture.picture.url }}" />
             </a>
-        </div>
-        <div class="row sam-event-small-card-detail">
-            <div class="col-md-6 ">
-                <div class="raty-star"></div>
-            </div>
-            <div class="col-md-3 col-md-offset-3 ">
-                {{ event.sold_tickets_number }} <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-            </div>
-        </div>
 
-    </div>
+            <div class="caption">
+                <a href= {% url 'events:event_view' event.id %}>
+                    <h4> {{ event.name }}
+                        <small class="badge"> {{ event.neighborhood }}</small>
+                    </h4>
+                </a>
+            </div>
+            <div class="row sam-event-small-card-detail">
+                    <div class="col-md-6 ">
+                        <div class="raty-star"></div>
+                    </div>
+                    <div class="col-md-3 col-md-offset-3 ">
+                        {{ event.sold_tickets_number }} <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                    </div>
+            </div>
+        </div>
+    </body>
+</html>

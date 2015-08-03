@@ -1,8 +1,8 @@
-{% load farsi_num %}
 <!DOCTYPE html>
 <html>
     <head></head>
     <body>
+        {% load farsi_num %}
         {% load static %}
         <div class="col-md-12 sam-border">
             <div class="thumbnail sam-event-big-card">
@@ -11,17 +11,26 @@
                         <div id="carousel-event-big-card" class="carousel slide" data-ride="carousel">
                             <!-- Indicators -->
                             <ol class="carousel-indicators">
+                                {% for image in event.eventpicture_set.all %}
+                                {% if forloop.counter0 == 0 %}
                                 <li data-target="#carousel-event-big-card" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-event-big-card" data-slide-to="1"></li>
-                                <li data-target="#carousel-event-big-card" data-slide-to="2"></li>
+                                {% endif %}
+                                {% if forloop.counter0 != 0 %}
+                                <li data-target="#carousel-event-big-card" data-slide-to="{{forloop.counter0}}"></li>
+                                {% endif %}
+                                {% endfor %}
                             </ol>
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
+                                {% for image in event.eventpicture_set.all %}
+                                {% if forloop.counter0 == 0 %}
                                 <div class="item active">
                                     <a href= {% url 'events:event_view' event.id %}>
-                                        <img src="{% static 'tmp_media/music3.jpg' %}">
+                                       <img src="{{ image.picture.url }}">
                                     </a>
                                 </div>
+                                {% endif %}
+                                {% if forloop.counter0 != 0 %}
                                 <div class="item">
                                     <a href= {% url 'events:event_view' event.id %}>
                                         <img src="{% static 'tmp_media/music2.jpg' %}">
@@ -29,9 +38,11 @@
                                 </div>
                                 <div class="item">
                                     <a href= {% url 'events:event_view' event.id %}>
-                                        <img src="{% static 'tmp_media/music.jpg' %}">
+                                        <img src="{{ image.picture.url }}">
                                     </a>
                                 </div>
+                                {% endif %}
+                                {% endfor %}
                             </div>
                             <!-- Controls -->
                             <a class="left carousel-control" href="#carousel-event-big-card" role="button" data-slide="next">
