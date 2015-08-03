@@ -2,9 +2,10 @@
 <html>
     <head></head>
     <body>
+        {% load module %}
         <div class="panel-group" id="accordion">
             {% for category in categories %}
-            <div class="panel panel-default cat{{ category.id|divisibleby:5|add:1 }}">
+            <div class="panel panel-default cat{{ category.id|module }}">
                 <div class="panel-heading">
                     <div class="row">
                         <h4 class="panel-title">
@@ -21,17 +22,17 @@
                     <div class="panel-body">
                         <table class="table">
                             <tbody>
-                                {% for subcat in category.subcategory_set.all %}
+                        {% for subcat in category.subcategory_set.all %}
                                 <tr>
                                     <td>
-                                        <a href="http://www.jquery2dotnet.com">
+                                        <a href="{% url 'events:show_subcategory' category.id %}">
                                             <div class="col-md-12">
                                                 <span class="glyphicon glyphicon-minus text-primary"></span>{{subcat.name}}
                                             </div>
                                         </a>
                                     </td>
                                 </tr>
-                                {% endfor %}
+                            {% endfor %}
                                 <tr>
                                     <td>
                                         <a href="http://www.jquery2dotnet.com">
