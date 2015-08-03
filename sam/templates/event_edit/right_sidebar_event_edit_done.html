@@ -1,0 +1,39 @@
+{% load static %}
+
+<div class="col-md-12 sam-event-edit">
+    <div class="col-md-12">
+        <div class="row">
+              <button class="col-md-12 btn sam-event-button thumbnail" href="#" target="_blank">
+    بازگشت به صفحه بررسی رویداد‌ها
+              </button>
+        </div>
+      <div class="row">
+          <h5><b>
+              توضیحات مدیر:
+          </b></h5>
+      </div>
+        <div class="row">
+            <textarea class="form-control" rows="10" id="information"></textarea>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row choices">
+                    <label class="col-md-6 label label-success">
+                        <input type="radio" id="accept" name="quality[21]" disabled value="تایید" />
+تایید
+                    </label>
+                    <label class="col-md-6 label label-danger">
+                        <input type="radio" id="reject" name="quality[21]" checked="check" disabled value="عدم تایید" >
+عدم تایید
+                    </label>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row sam-align-center">
+          <h5>
+            نتیجه بررسی با موفقیت ارسال شد.
+          </h5>
+        </div>
+    </div>
+</div>
