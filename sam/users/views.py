@@ -4,6 +4,18 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as login_auth, logout as auth_logout
 
 from events.models import *
+from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm
+
+def make_sign_up_form():
+    """ every view that has sign up button, should call this method and put the
+     return form of this method to context with key='sign_up_form' """
+    ret = {
+        'userForm': UserForm(),
+        'userInfoForm': UserInfoForm(),
+        'customerForm': CustomerForm(),
+        'dealerForm': DealerForm(),
+    }
+    return ret
 
 def login(request):
     errors = ""
@@ -21,6 +33,14 @@ def login(request):
             errors = "نام کاربری یا رمز عبور غلط است."
 
     return render(request, 'home.html', {'login_errors': errors})
+
+def home(request):
+    forms = make_sign_up_form()
+    context = {}
+    context.update(forms)
+    print('forms: {}'.format(forms))
+    print('i was here {}'.format(context))
+    return render(request, 'home.html', context)
 
 def logout(request):
     auth_logout(request)
@@ -57,7 +77,6 @@ def home(request):
 
 def home_log_out(request):
     return render(request, 'home_log_out.html', {})
-
 
 
 def payment(request):

@@ -1,0 +1,18 @@
+<div class="form-group">
+    <label for="{{ userForm.username.field.widget.attrs.id }}">نام کاربری</label>
+    {{ userForm.username }}
+</div>
+<div class="form-group">
+    <label for="{{ userForm.email.field.widget.attrs.id }}">آدرس ایمیل</label>
+    {{ userForm.email }}
+</div>
+<div class="form-group">
+    <label for="{{ userForm.password.field.widget.attrs.id }}">رمز عبور</label>
+    {{ userForm.password }}
+</div>
+<div class="form-group">
+    <label for="{{ userForm.re_password.field.widget.attrs.id }}"> تکرار رمز عبور</label>
+    {{ userForm.re_password }}
+</div>
+{{ userInfoForm }}
+<br>

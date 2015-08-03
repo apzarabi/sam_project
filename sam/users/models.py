@@ -50,7 +50,7 @@ class Dealer(models.Model):
     condition_description = models.TextField(u"توضیحات وضعیت", null=False, blank=False)
     userInfo = models.OneToOneField(UserInfo, null=False, blank=False)
     registryNumber = models.CharField(u"شماره‌ی ثبت", max_length=10, null=False, blank=False, unique=True)
-    certificate = models.FileField(u"درک اعتبار سنجی", upload_to='certifications/', null=True, blank=True)
+    certificate = models.FileField(u"مدرک اعتبار سنجی", upload_to='certifications/', null=True, blank=True)
 
     class Meta:
         verbose_name = u"فروشنده"

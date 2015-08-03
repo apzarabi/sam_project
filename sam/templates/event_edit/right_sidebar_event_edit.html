@@ -1,0 +1,48 @@
+{% load static %}
+
+<div class="col-md-12 sam-event-edit">
+    <div class="col-md-12">
+        <div class="row">
+              <button class="col-md-12 btn sam-event-button thumbnail" href="#" target="_blank">
+    بازگشت به صفحه بررسی رویداد‌ها
+              </button>
+        </div>
+      <div class="row">
+              <button class="col-md-12 btn sam-event-button thumbnail" href="#" target="_blank">
+                  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+    مشاهده مدارک اعتبارسنجی
+              </button>
+      </div>
+      <div class="row">
+          <h5><b>
+    توضیحات مدیر:
+          </b></h5>
+      </div>
+        <form>
+            <div class="row">
+                <textarea class="form-control" rows="10" id="information"></textarea>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row choices">
+                        <label class="col-md-6 label label-success">
+                            <input type="radio" id="accept" name="quality[21]" value="تایید" />
+                            تایید
+                        </label>
+                        <label class="col-md-6 label label-danger">
+                            <input type="radio" id="reject" name="quality[21]" checked="checked" value="عدم تایید" />
+                            عدم تایید
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <button type="submit" class=" col-md-12 btn sam-event-button ">
+                    <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                    ارسال
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
