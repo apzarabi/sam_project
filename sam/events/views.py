@@ -9,6 +9,8 @@ def event_cards(request):
     categories = Category.objects.all()
     return render(request, 'test_event_cards.html', {'event': event, 'categories': categories})
 
+def register_event(request):
+    pass
 
 def event_edit_page(request):
     event = Event.objects.get(id=1)

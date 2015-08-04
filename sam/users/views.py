@@ -119,6 +119,10 @@ def show_profile(request):
     user = request.user
     print("is auth? {}".format(user.is_authenticated()))
     categories = Category.objects.all()
+    if user.is_superuser:
+                return render(request, 'admin_profile.html', {'user': user,
+                                                              'profile_user': user,
+                                                              'categories': categories})
     try:
         customer = user.userinfo.customer
         return render(request, 'customer_profile.html', {'user': user,
@@ -132,11 +136,7 @@ def show_profile(request):
                                                            'profile_user': dealer,
                                                            'categories': categories})
         except Dealer.DoesNotExist:
-            if user.is_superuser:
-                return render(request, 'admin_profile.html', {'user': user,
-                                                              'profile_user': user,
-                                                              'categories': categories})
-    print('no cases {}'.format(user))
+            print('no cases {}'.format(user))
 
 
 def home(request):
