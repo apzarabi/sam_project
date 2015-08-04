@@ -25,6 +25,7 @@
 
 
 <form name="register_event" method="post" action="{% url 'events:register_event' %}" enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="form-inline">
         <div class="form-group">
             <label for="category"> دسته </label>
@@ -40,7 +41,7 @@
         <div class="form-inline">
             <div class="form-group">
                 <label for="category">زیردسته</label>
-                <select name="category" class="form-control" id="subcategory">
+                <select name="subcategory" class="form-control" id="subcategory">
 
                     {% for subcat in first_category.subcategory_set.all %}
                         <option value="{{ subcat.id }}"> {{ subcat.name }} </option>
@@ -52,6 +53,7 @@
     {% endwith %}
     <br>
     <br>
+    {{ eventform }}
     <br>
     <div class="form-inline">
     <label for="price"> قیمت</label>
@@ -69,9 +71,6 @@
         </ul>
     </div>
     <br>
-
-    <a href="/users/test/home/user/">
-        <div class="btn btn-success">ثبت</div>
-    </a>
+    <button type="submit" class="btn btn-success"> ثبت </button>
 </form>
 

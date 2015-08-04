@@ -8,7 +8,10 @@ from events.models import *
 from users.models import Dealer, Customer
 from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm, AddCategory
 from django.http import HttpResponse, HttpResponseRedirect
+from events.forms import EventForm
+
 from django.views.decorators.http import condition
+
 
 def make_sign_up_form():
     """ every view that has sign up button, should call this method and put the
@@ -122,11 +125,13 @@ def show_profile(request):
     user = request.user
     print("is auth? {}".format(user.is_authenticated()))
     categories = Category.objects.all()
+    allevents = Event.objects.all()
     if user.is_superuser:
                 return render(request, 'admin_profile.html', {'user': user,
                                                               'profile_user': user,
                                                               'categories': categories,
-                                                                'form':form})
+                                                                'form':form,
+                                                              'allevents': allevents})
     try:
         customer = user.userinfo.customer
         return render(request, 'customer_profile.html', {'user': user,
@@ -136,9 +141,11 @@ def show_profile(request):
         try:
             dealer = user.userinfo.dealer
             print("is auth dealer? {}".format(user.is_authenticated()))
+            eventform = EventForm()
             return render(request, 'dealer_profile.html', {'user': user,
                                                            'profile_user': dealer,
-                                                           'categories': categories})
+                                                           'categories': categories,
+                                                           'eventform': eventform})
         except Dealer.DoesNotExist:
             print('no cases {}'.format(user))
 

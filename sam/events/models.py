@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import uuid
 from django.db import models
-from users.models import Dealer, Customer
+from users.models import Customer, Dealer
+from django.contrib.auth.models import User
+
 
 def get_picture_path(instance, filename):
     """ this function is derived from a function by amirali moinfar for webcourse spring 2015."""
@@ -52,7 +54,7 @@ class Event(models.Model):
     neighborhood = models.CharField(u"نام محله\خلاصه‌ی مکان", max_length=50, null=False, blank=False)
     description = models.TextField(u"توضیحات", null=False, blank=False)
     condition = models.IntegerField(u"وضعیت", choices=CONDITION_CHOICES, default=2, null=False, blank=False)
-    condition_description = models.TextField(u"توضیحات وضعیت", null=False, blank=False)
+    condition_description = models.TextField(u"توضیحات وضعیت", null=True, blank=True)
     verification_file = models.FileField(u"مدرک اعتبار سنجی", null=True, blank=True)
     latitude = models.FloatField(u"عرض جغرافیایی", null=False, blank=False)
     longitude = models.FloatField(u"طول جغرافیایی", null=False, blank=False)
@@ -67,6 +69,9 @@ class Event(models.Model):
 
     def __unicode__(self):
         return u"رویداد {} ".format(self.name)
+
+    def __repr__(self):
+        return self.__unicode__()
 
     def first_picture(self):
         return EventPicture.objects.filter(event=self).first()
@@ -90,15 +95,15 @@ class Event(models.Model):
         return self.subcategory.category.name
 
     def rating(self):
-        temp=0
+        temp = 0
         for rate in self.rate_set.all():
             temp+=rate.rate_number
         if self.rate_set.count()>0:
             return int(temp/self.rate_set.count())
-        else :
+        else:
             return 4
 
-        
+
 class EventPicture(models.Model):
     picture = models.ImageField(u"تصویر", upload_to=get_picture_path, null=False, blank=False)
     event = models.ForeignKey(Event)

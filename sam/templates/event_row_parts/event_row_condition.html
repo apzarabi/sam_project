@@ -1,13 +1,25 @@
 {%  extends 'event_row_base.html' %}
 
+
+{% block numberOfItems %}
+   <div class="col-md-2">
+        <h5>تعداد بلیت‌ها</h5>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>{{ event.total_number_of_tickets }}عدد</h4>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {%  block lastcell %}
 <div class="col-md-1">
     <h5>وضعیت</h5>
     <div class="row">
         <div class="col-md-10">
-            {% if event.condition == 0 %}
+            {% if event.condition == 1 %}
                 <h4><span class="label label-danger">رد شده</span></h4>
-            {% else if event.condition ==1 %}
+            {% elif event.condition == 0 %}
                 <h4><span class="label label-success">تایید</span></h4>
             {% else %}
                 <h4><span class="label label-warning">انتظار</span></h4>
