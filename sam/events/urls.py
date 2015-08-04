@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'event_row_verify/$', views.event_row_verify, name='event_row_verify'),
     url(r'^subcategory/(?P<category_id>([0-9])+)/(?P<subcategory_id>([0-9])+)/$', views.show_subcategory, name='show_subcategory'),
     url(r'^(?P<event_id>\d+)/$', views.event_view, name='event_view'),
+    url(r'^delete_event/(?P<event_id>\d+)/$', views.delete, name='delete'),
 ]

@@ -104,3 +104,8 @@ def show_subcategory(request, **kwargs):
     return render(request, 'subcategory_result.html', {'events': events, 'categories': categories
                                                        , 'category': category, 'subcategory': subcategory})
 
+def delete(request, **kwargs):
+    event_id = int(kwargs.pop('event_id'))
+    Event.objects.get(id=event_id).delete()
+    message = "رویداد مورد نظر حذف شد."
+    return render(request, 'info_template.html', {'message': message})

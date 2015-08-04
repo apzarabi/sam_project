@@ -120,10 +120,12 @@ def show_profile(request):
     user = request.user
     print("is auth? {}".format(user.is_authenticated()))
     categories = Category.objects.all()
+    allevents = Event.objects.all()
     if user.is_superuser:
                 return render(request, 'admin_profile.html', {'user': user,
                                                               'profile_user': user,
-                                                              'categories': categories})
+                                                              'categories': categories,
+                                                              'allevents': allevents})
     try:
         customer = user.userinfo.customer
         return render(request, 'customer_profile.html', {'user': user,
@@ -144,11 +146,18 @@ def show_profile(request):
 
 def home(request):
     event = Event.objects.get(id=1)
-    forms = make_sign_up_form()
-    context = {}
-    context.update(forms)
     categories = Category.objects.all()
-    return render(request, 'home.html', {'context': context, 'categories': categories, 'event': event})
+    accepted = Event.objects.filter(condition=0).all()
+    time_sorted = sorted(accepted, key= lambda t: t.first_date())
+    newevents = time_sorted[:6]
+    
+    sell_sorted = sorted(accepted, key= lambda t: t.sold_tickets_number())
+    topsellerevents = sell_sorted[:6]
+    
+    popular_sorted = sorted(accepted, key= lambda t: t.rating())
+    popularevents = popular_sorted[:6]
+    return render(request, 'home.html', {'categories': categories, 'event': event, 'newevents': newevents,
+                                         'topsellerevents': topsellerevents, 'popularevents': popularevents})
 
 def logout(request):
     auth_logout(request)
