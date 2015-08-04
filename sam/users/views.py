@@ -168,7 +168,9 @@ def customer(request):
 
 
 def admin_test(request):
-    return render(request, 'right_sidebar_profile_admin.html', {})
+    print("HOI")
+    categories = Category.objects.all()
+    return render(request, 'right_sidebar_profile_admin.html', {'categories': categories})
 
 
 def menu(request):

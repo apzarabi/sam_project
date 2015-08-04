@@ -7,7 +7,7 @@
                 <label for="categories_add_select">دسته </label>
                 <select class="form-control" id="categories_add_select">
                     {% for category in categories %}
-                        <option>category.name</option>
+                        <option value="{{ category.id }}"> {{ category.name }} </option>
                     {% endfor %}
                 </select>
             </div>
