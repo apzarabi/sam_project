@@ -40,12 +40,24 @@ def event_view(request, event_id):
 
 
 def show_subcategory(request, **kwargs):
+    category_id = int(kwargs.pop('category_id'))
     subcategory_id = int(kwargs.pop('subcategory_id'))
     categories = Category.objects.all()
-    events = Event.objects.filter(subcategory=subcategory_id)
-    if(len(events) != 0):
-        category = Subcategory.objects.get(id=subcategory_id).category.name
-        subcategory = Subcategory.objects.get(id=subcategory_id).name
+    if(subcategory_id == 0):
+        subcategories = Subcategory.objects.filter(category_id=category_id)
+        events = Event.objects.filter(subcategory__in=subcategories)
+        category = subcategories[0].category
+        if len(events) == 0:
+            category = None
+        subcategory = None
+    else:
+        events = Event.objects.filter(subcategory=subcategory_id)
+        category = Subcategory.objects.get(id=subcategory_id).category
+        if len(events) == 0:
+            subcategory = None
+            category = None
+        else:
+            subcategory = events[0].subcategory
     return render(request, 'subcategory_result.html', {'events': events, 'categories': categories
                                                        , 'category': category, 'subcategory': subcategory})
 

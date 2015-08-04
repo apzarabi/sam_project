@@ -3,9 +3,19 @@
 {% load static %}
 {% block main_column %}
 <div class="well">
+    {% if category == None %}
+    <div class="alert alert-warning" role="alert">
+        <strong>
+            متاسفانه هنوز رخدادی در این دسته موجود نیست.
+        </strong>
+    </div>
+    {% endif %}
+    {% if category != None %}
     <ol class="breadcrumb">
-        <li><a href="#">{{category}}</a></li>
-        <li><a href="#">{{subcategory}}</a></li>
+        <li><a href="{% url 'events:show_subcategory' category.id 0 %}">{{category.name}}</a></li>
+        {% if subcategory != None %}
+        <li><a href="{% url 'events:show_subcategory' category.id subcategory.id %}">{{subcategory.name}}</a></li>
+        {% endif %}
     </ol>
     <div class="row">
         {% for event in events %}
@@ -14,5 +24,6 @@
         </div>
         {% endfor %}
     </div>
+    {% endif %}
 </div>
 {% endblock %}
