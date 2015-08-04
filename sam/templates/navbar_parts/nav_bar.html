@@ -1,12 +1,6 @@
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="col-md-12 container">
         <div class="col-md-4 sam-align-center">
-        <div class="alert alert-success">
-        {% if user.is_authenticated %}
-        authed
-        {% else %}
-        not auth
-        {% endif %}</div>
             {% if user.is_authenticated %}
                 {% include 'navbar_parts/nav_bar_logout.html' %}
             {% else %}

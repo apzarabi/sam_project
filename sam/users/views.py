@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login as login_auth, logout as aut
 from django.contrib.auth.decorators import login_required
 
 from events.models import *
+from users.models import Dealer, Customer
 from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm
 
 def make_sign_up_form():
@@ -123,16 +124,19 @@ def show_profile(request):
         return render(request, 'customer_profile.html', {'user': user,
                                                          'profile_user': customer,
                                                          'categories': categories})
-    except:
+    except Customer.DoesNotExist:
         try:
             dealer = user.userinfo.dealer
             print("is auth dealer? {}".format(user.is_authenticated()))
-            return render(request, 'dealer_profile.html', {'user': dealer,
+            return render(request, 'dealer_profile.html', {'user': user,
+                                                           'profile_user': dealer,
                                                            'categories': categories})
-        except:
+        except Dealer.DoesNotExist:
             if user.is_superuser:
                 return render(request, 'admin_profile.html', {'user': user,
+                                                              'profile_user': user,
                                                               'categories': categories})
+    print('no cases {}'.format(user))
 
 
 def home(request):
