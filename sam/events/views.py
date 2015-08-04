@@ -109,3 +109,17 @@ def delete(request, **kwargs):
     Event.objects.get(id=event_id).delete()
     message = "رویداد مورد نظر حذف شد."
     return render(request, 'info_template.html', {'message': message})
+
+def remove_category(request):
+    category_id = request.POST.get("category_id")
+    print(category_id)
+    subcategories = Subcategory.objects.filter(category_id=category_id)
+    events = Event.objects.filter(subcategory__in=subcategories)
+    category = subcategories[0].category
+    Category.objects.get(id=category_id).delete()
+    for subcat in subcategories:
+        Subcategory.objects.get(id=subcat.id).delete()
+    message = "دسته‌ی مورد نظر حذف شد."
+    return render(request, 'info_template.html', {'message': message})
+
+    
