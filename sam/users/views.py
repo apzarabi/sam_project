@@ -2,6 +2,7 @@
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as login_auth, logout as auth_logout
+from django.contrib.auth.decorators import login_required
 
 from events.models import *
 from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm
@@ -111,6 +112,21 @@ def signup_dealer(request):
                                                   'userInfoForm': userInfoForm,
                                                   'dealerForm': dealerForm,
             })
+
+@login_required
+def show_profile(request):
+    user = request.user
+    try:
+        customer = user.userinfo.customer
+        return render(request, 'customer_profile.html', {'user': customer})
+    except:
+        try:
+            dealer = user.userinfo.dealer
+            return render(request, 'dealer_profile.html', {'user': dealer})
+        except:
+            if user.is_superuser:
+                return render(request, 'admin_profile.html', {'user': user})
+
 
 def home(request):
     event = Event.objects.get(id=1)
