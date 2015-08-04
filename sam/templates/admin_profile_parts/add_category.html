@@ -1,7 +1,8 @@
 <br>
 <div class="row">
     <div class="col-md-5">
-        <form>
+        <form name="add_category" method="post" action="/users/add_category/">
+        {% csrf_token %}
             <div class="form-group">
                 <h4>افزودن یک زیردسته جدید:</h4>
                 <label for="categories_add_select">دسته </label>
@@ -12,8 +13,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="subcategories_add_select">زیردسته</label>
-                <input type="text" class="form-control" id="subcategories_add_select" placeholder="زیردسته‌ی جدید" >
+                <label for="subcategories_add_name">زیردسته</label>
+                <input type="text" class="form-control" id="subcategories_add_name" placeholder="زیردسته‌ی جدید" >
             </div>
             <button type="submit" class="btn btn-success">ثبت زیردسته‌ی جدید</button>
         </form>

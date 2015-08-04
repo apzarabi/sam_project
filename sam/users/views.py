@@ -139,6 +139,14 @@ def show_profile(request):
             print('no cases {}'.format(user))
 
 
+def add_category(request):
+    if request.method == 'POST':
+        new_name = request.POST.get('subcategories_add_name', None)
+        category_id = request.POST.get('categories_add_select', None)
+        print(new_name, category_id)
+        redirect('users:show_profile')
+
+
 def home(request):
     event = Event.objects.get(id=1)
     forms = make_sign_up_form()
