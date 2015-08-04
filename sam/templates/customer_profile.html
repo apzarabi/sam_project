@@ -2,15 +2,15 @@
 {% load static %}
 
 {% block right_sidebar %}
-
     <div class="row">
         {% include 'right_sidebar_profile_customer.html' %}
     </div>
 {% endblock %}
 
 {% block main_column %}
+    {% for item in purchased_events %}
     <div>
-        {% include 'event_row_parts/event_row_showing_user.html' %}
-
+        {% include 'event_row_purchased' with event=item %}
     </div>
+    {% endfor %}
 {% endblock %}

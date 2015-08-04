@@ -5,9 +5,13 @@
     <h5>وضعیت</h5>
     <div class="row">
         <div class="col-md-10">
-           <h4><span class="label label-danger">رد شده</span></h4>
-           <!--<h4><span class="label label-success">تایید</span></h4>-->
-           <!--<h4><span class="label label-warning">انتظار</span></h4>-->
+            {% if event.condition == 0 %}
+                <h4><span class="label label-danger">رد شده</span></h4>
+            {% else if event.condition ==1 %}
+                <h4><span class="label label-success">تایید</span></h4>
+            {% else %}
+                <h4><span class="label label-warning">انتظار</span></h4>
+            {% endif %}
         </div>
         <div class="col-md-2"></div>
     </div>
