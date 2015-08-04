@@ -52,8 +52,8 @@ class Event(models.Model):
     verification_file = models.FileField(u"مدرک اعتبار سنجی", null=True, blank=True)
     latitude = models.FloatField(u"عرض جغرافیایی", null=False, blank=False)
     longitude = models.FloatField(u"طول جغرافیایی", null=False, blank=False)
-    #phone_number = models.IntegerField(u"شماره تلفن", null=False, blank=False)
-
+    phone_number = models.CharField(u"شماره تلفن", max_length=12, null=False, blank=False)
+    
     subcategory = models.ForeignKey(Subcategory)
     dealer = models.ForeignKey(Dealer)
 
