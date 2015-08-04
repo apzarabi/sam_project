@@ -19,9 +19,10 @@ urlpatterns = [
     url(r'^test/menu/$', 'users.views.menu', name='test'),
     url(r'^test/customer/$', 'users.views.customer_profile', name='test_customer'),
     url(r'^test/dealer/$', 'users.views.dealer_profile', name='test'),
-    url(r'^test/admin/$', 'users.views.admin', name='test'),
+    url(r'^test/admin/$', 'users.views.admin', name='test_admin'),
     url(r'^test/$', 'users.views.test', name='test'),
     url(r'^admin/$', 'users.views.admin', name='admin'),
     url(r'^profile/username', 'users.views.customer_profile', name='customer_profile'),
     url(r'^profile/dealer', 'users.views.dealer_profile', name='dealer_profile'),
+    url(r'^add_category', 'users.views.add_category', name='add_category')
 ]

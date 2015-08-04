@@ -6,8 +6,12 @@ from django.contrib.auth.decorators import login_required
 
 from events.models import *
 from users.models import Dealer, Customer
-from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm
+from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm, AddCategory
+from django.http import HttpResponse, HttpResponseRedirect
 from events.forms import EventForm
+
+from django.views.decorators.http import condition
+
 
 def make_sign_up_form():
     """ every view that has sign up button, should call this method and put the
@@ -117,6 +121,7 @@ def signup_dealer(request):
 
 @login_required
 def show_profile(request):
+    form = AddCategory()
     user = request.user
     print("is auth? {}".format(user.is_authenticated()))
     categories = Category.objects.all()
@@ -125,6 +130,7 @@ def show_profile(request):
                 return render(request, 'admin_profile.html', {'user': user,
                                                               'profile_user': user,
                                                               'categories': categories,
+                                                                'form':form,
                                                               'allevents': allevents})
     try:
         customer = user.userinfo.customer
@@ -142,6 +148,20 @@ def show_profile(request):
                                                            'eventform': eventform})
         except Dealer.DoesNotExist:
             print('no cases {}'.format(user))
+
+
+def add_category(request):
+    form = AddCategory()
+    categories = Category.objects.all()
+    if request.method == 'POST':
+        form = AddCategory(request.POST)
+        print(form)
+        if form.is_valid():
+            print("HELLO")
+            form.save()
+        return HttpResponseRedirect('\show_profile')
+    return render(request,'admin_profile.html',{'form' : form, 'categories':categories})
+
 
 
 def home(request):
@@ -180,7 +200,9 @@ def customer(request):
 
 
 def admin_test(request):
-    return render(request, 'right_sidebar_profile_admin.html', {})
+    print("HOI")
+    categories = Category.objects.all()
+    return render(request, 'right_sidebar_profile_admin.html', {'categories': categories})
 
 
 def menu(request):

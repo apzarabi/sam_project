@@ -1,3 +1,26 @@
+<script type="text/javascript">
+    function configureDropDownLists(ddl1,ddl2) {
+        switch (ddl1.value) {
+            {% for category in categories %}
+            case "{{ category.id }}":
+                ddl2.options.length = 0;
+                {% for subcat in category.subcategory_set.all %}
+                    createOption(ddl2, "{{ subcat.name }}", {{ subcat.id }});
+                {% endfor %}
+                break;
+            {% endfor %}
+        }
+
+    }
+
+    function createOption(ddl, text, value) {
+        var opt = document.createElement('option');
+        opt.value = value;
+        opt.text = text;
+        ddl.options.add(opt);
+    }
+</script>
+
 <br>
 <div class="row">
     <div class="col-md-5">
@@ -7,7 +30,7 @@
                 <label for="categories_remove_select">دسته</label>
                 <select class="form-control" id="categories_remove_select">
                     {% for category in categories %}
-                        <option>category.name</option>
+                            <option value="{{ category.id }}"> {{ category.name }} </option>
                     {% endfor %}
                 </select>
             </div>
@@ -15,7 +38,7 @@
                 <label for="subcategories_remove_select">زیردسته</label>
                 <select class="form-control" id="subcategories_remove_select" disabled>
                     {% for subcategory in categorie %}
-                        <option>category.name</option>
+                        <option>{{subcategory.name}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -30,7 +53,7 @@
                 <label for="category">دسته</label>
                 <select class="form-control" id="subcategories_remove">
                     {% for category in categories %}
-                        <option>category.name</option>
+                        <option>{{ category.name}}</option>
                     {% endfor %}
                 </select>
             </div>

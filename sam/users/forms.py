@@ -4,7 +4,7 @@ import re
 
 from django import forms
 from django.contrib.auth.models import User
-
+from events.models import Category, Subcategory
 from .models import UserInfo, Customer, Dealer
 
 EMAIL_REGEX = re.compile(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
@@ -123,3 +123,20 @@ class CustomerForm(forms.ModelForm):
                                                   'id': "customer_date",
                                                   'placeholder': u"تاریخ",
                                                   })
+
+class AddCategory(forms.ModelForm):
+    class Meta:
+        model = Subcategory
+        fields = [ 'category','name']
+        labels = {'category':'دسته'}
+
+    def __init__(self, *args, **kwargs):
+        super(AddCategory, self).__init__()
+        self.fields['category'].error_messages = persian_default_errors
+        self.fields['name'].error_messages = persian_default_errors
+        self.fields['category'].widget.attrs.update({'class':"form-control form-group",
+                                                     'id':"category"})
+        self.fields['name'].widget.attrs.update({'class':"form-control form-group",
+                                                'id':"subcategory_name"
+                                                    })
+
