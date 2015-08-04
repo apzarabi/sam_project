@@ -1,0 +1,23 @@
+{%  extends 'event_row_base.html' %}
+
+{% block numberOfItems %}
+   <div class="col-md-2">
+        <h5>تعداد بلیت‌ها</h5>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>{{ event.total_number_of_tickets }}عدد</h4>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{%  block lastcell %}
+<div class="col-md-1">
+    <div class="row">
+    </div>
+    <h5></h5>
+    <a href="{% url 'events:delete' event.id %}"><button class="btn btn-default " type="button" title="حذف">
+        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+    </button></a>
+</div>
+{%  endblock %}

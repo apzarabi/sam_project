@@ -120,10 +120,12 @@ def show_profile(request):
     user = request.user
     print("is auth? {}".format(user.is_authenticated()))
     categories = Category.objects.all()
+    allevents = Event.objects.all()
     if user.is_superuser:
                 return render(request, 'admin_profile.html', {'user': user,
                                                               'profile_user': user,
-                                                              'categories': categories})
+                                                              'categories': categories,
+                                                              'allevents': allevents})
     try:
         customer = user.userinfo.customer
         return render(request, 'customer_profile.html', {'user': user,
