@@ -32,19 +32,20 @@ def event_row_print(request):
 
 
 def event_view(request, event_id):
-    print(event_id)
     event_id = int(event_id)
     event = Event.objects.get(id=event_id)
     categories = Category.objects.all()
-    offered_events = event.subcategory.event_set.exclude(id=event.id).filter(pk__in=[0,1,2,3,4,5])
-    return render(request, 'event_page.html', {'offered_events':offered_events, 'event': event,  'categories':categories, 'side_bar_offer_topic':"از همین زیردسته"})
+    offered_events = event.subcategory.event_set.exclude(id=event.id).filter(pk__in=[0, 1, 2, 3, 4, 5])
+    return render(request, 'event_page.html', {'offered_events':offered_events, 'event': event, 'categories':categories, 'side_bar_offer_topic':"از همین زیردسته"})
 
 
-def show_subcategory(request, subcategory_id):
+def show_subcategory(request, **kwargs):
+    subcategory_id = int(kwargs.pop('subcategory_id'))
     categories = Category.objects.all()
     events = Event.objects.filter(subcategory=subcategory_id)
-    category = Subcategory.objects.get(id=subcategory_id).category.name
-    subcategory = Subcategory.objects.get(id=subcategory_id).name
+    if(len(events) != 0):
+        category = Subcategory.objects.get(id=subcategory_id).category.name
+        subcategory = Subcategory.objects.get(id=subcategory_id).name
     return render(request, 'subcategory_result.html', {'events': events, 'categories': categories
                                                        , 'category': category, 'subcategory': subcategory})
 

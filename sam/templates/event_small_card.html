@@ -1,5 +1,5 @@
-
 {% load static %}
+{% load farsi_num %}
 <html>
     <head></head>
     <body>
@@ -17,11 +17,11 @@
                 </a>
             </div>
             <div class="row sam-event-small-card-detail">
-                    <div class="col-md-6 ">
-                        <div class="raty-star"></div>
+                    <div class="col-md-5 ">
+                       <div class="raty-star"></div>
                     </div>
-                    <div class="col-md-3 col-md-offset-3 ">
-                        {{ event.sold_tickets_number }} <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                    <div class="col-md-4 col-md-offset-3 ">
+                        {{ event.sold_tickets_number|farsi_num }} <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                     </div>
             </div>
         </div>
