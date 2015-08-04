@@ -1,5 +1,5 @@
 {% load farsi_num %}
-{% load static %}
+
 <div class="col-md-12 sam-border">
     <div class="thumbnail sam-event-big-card">
         <div class="row">
@@ -48,8 +48,8 @@
             </div>
             <div class="col-md-4 sam-border">
                 <ol class="breadcrumb">
-                    <li><a href="#">{{event.category}}</a></li>
-                    <li><a href="#">{{event.subcategory.name}}</a></li>
+                    <li><a href="{% url 'events:show_subcategory' event.subcategory.category.id 0 %}">{{event.category}}</a></li>
+                    <li><a href="{% url 'events:show_subcategory' event.subcategory.category.id event.subcategory.id%}">{{event.subcategory.name}}</a></li>
                 </ol>
                 <h2>
                     <a href= {% url 'events:event_view' event.id %}>

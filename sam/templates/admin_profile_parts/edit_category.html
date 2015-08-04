@@ -7,7 +7,7 @@
                 <label for="categories_remove_select">دسته</label>
                 <select class="form-control" id="categories_remove_select">
                     {% for category in categories %}
-                        <option>category.name</option>
+                        <option>{{  category.name}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -15,7 +15,7 @@
                 <label for="subcategories_remove_select">زیردسته</label>
                 <select class="form-control" id="subcategories_remove_select" disabled>
                     {% for subcategory in categorie %}
-                        <option>category.name</option>
+                        <option>{{  category.name}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -34,7 +34,7 @@
                 <label for="category">دسته</label>
                 <select class="form-control" id="subcategories_remove">
                     {% for category in categories %}
-                        <option>category.name</option>
+                        <option>{{ category.name}}</option>
                     {% endfor %}
                 </select>
             </div>

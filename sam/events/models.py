@@ -16,7 +16,8 @@ class Category(models.Model):
     class Meta:
         verbose_name = u"دسته"
         verbose_name_plural = u"دسته‌ها"
-
+    def __str__(self):
+        return self.name
     def __unicode__(self):
             return u"دسته {}".format(self.name)
 
@@ -24,11 +25,14 @@ class Category(models.Model):
 class Subcategory(models.Model):
     name = models.CharField(u"نام زیردسته", max_length=255, null=False, blank=False)
 
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category,)
 
     class Meta:
         verbose_name = u"زیردسته"
         verbose_name_plural = u"زیردسته‌ها"
+
+    def __str__(self):
+        return self.name
 
     def __unicode__(self):
         return u"زیردسته‌ی {} در دسته‌ی {}".format(self.name, self.category.name)
