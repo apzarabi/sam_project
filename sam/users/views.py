@@ -116,16 +116,23 @@ def signup_dealer(request):
 @login_required
 def show_profile(request):
     user = request.user
+    print("is auth? {}".format(user.is_authenticated()))
+    categories = Category.objects.all()
     try:
         customer = user.userinfo.customer
-        return render(request, 'customer_profile.html', {'user': customer})
+        return render(request, 'customer_profile.html', {'user': user,
+                                                         'profile_user': customer,
+                                                         'categories': categories})
     except:
         try:
             dealer = user.userinfo.dealer
-            return render(request, 'dealer_profile.html', {'user': dealer})
+            print("is auth dealer? {}".format(user.is_authenticated()))
+            return render(request, 'dealer_profile.html', {'user': dealer,
+                                                           'categories': categories})
         except:
             if user.is_superuser:
-                return render(request, 'admin_profile.html', {'user': user})
+                return render(request, 'admin_profile.html', {'user': user,
+                                                              'categories': categories})
 
 
 def home(request):

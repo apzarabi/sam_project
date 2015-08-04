@@ -7,7 +7,7 @@ urlpatterns = [
     url(r'^signup/customer', 'users.views.signup_customer', name='signup_customer'),
     url(r'^signup/dealer', 'users.views.signup_dealer', name='signup_dealer'),
     url(r'^home/$', 'users.views.home', name='home'),
-    url(r'^show_profile$/', 'users.views.show_profile', name='show_profile'),
+    url(r'^show_profile/$', 'users.views.show_profile', name='show_profile'),
 
     url(r'^test/ticket/$', 'users.views.print_ticket', name='ticket'),
     url(r'^test/home/user/$', 'users.views.home_log_out', name='homelogout'),
