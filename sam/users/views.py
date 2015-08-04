@@ -2,8 +2,10 @@
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as login_auth, logout as auth_logout
+from django.contrib.auth.decorators import login_required
 
 from events.models import *
+from users.models import Dealer, Customer
 from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm
 from django.views.decorators.http import condition
 
@@ -112,6 +114,31 @@ def signup_dealer(request):
                                                   'userInfoForm': userInfoForm,
                                                   'dealerForm': dealerForm,
             })
+
+@login_required
+def show_profile(request):
+    user = request.user
+    print("is auth? {}".format(user.is_authenticated()))
+    categories = Category.objects.all()
+    if user.is_superuser:
+                return render(request, 'admin_profile.html', {'user': user,
+                                                              'profile_user': user,
+                                                              'categories': categories})
+    try:
+        customer = user.userinfo.customer
+        return render(request, 'customer_profile.html', {'user': user,
+                                                         'profile_user': customer,
+                                                         'categories': categories})
+    except Customer.DoesNotExist:
+        try:
+            dealer = user.userinfo.dealer
+            print("is auth dealer? {}".format(user.is_authenticated()))
+            return render(request, 'dealer_profile.html', {'user': user,
+                                                           'profile_user': dealer,
+                                                           'categories': categories})
+        except Dealer.DoesNotExist:
+            print('no cases {}'.format(user))
+
 
 def home(request):
     event = Event.objects.get(id=1)

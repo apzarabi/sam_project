@@ -1,31 +1,56 @@
-<form>
+<script type="text/javascript">
+    function configureDropDownLists(ddl1,ddl2) {
+        switch (ddl1.value) {
+            {% for category in categories %}
+            case "{{ category.id }}":
+                ddl2.options.length = 0;
+                {% for subcat in category.subcategory_set.all %}
+                    createOption(ddl2, "{{ subcat.name }}", {{ subcat.id }});
+                {% endfor %}
+                break;
+            {% endfor %}
+        }
+
+    }
+
+    function createOption(ddl, text, value) {
+        var opt = document.createElement('option');
+        opt.value = value;
+        opt.text = text;
+        ddl.options.add(opt);
+    }
+</script>
+
+
+
+
+<form name="register_event" method="post" action="{% url 'events:register_event' %}" enctype="multipart/form-data">
     <div class="form-inline">
         <div class="form-group">
             <label for="category"> دسته </label>
-            <select class="form-control" id="category">
-                <option> کنسرت</option>
+            <select name="category" class="form-control" id="category" onchange="configureDropDownLists(this,document.getElementById('subcategory'))">
+                {% for category in categories %}
+                    <option value="{{ category.id }}"> {{ category.name }} </option>
+                {% endfor %}
             </select>
         </div>
     </div>
     <br>
+    {% with categories.all|first as first_category %}
+        <div class="form-inline">
+            <div class="form-group">
+                <label for="category">زیردسته</label>
+                <select name="category" class="form-control" id="subcategory">
 
-    <div class="form-inline">
-        <div class="form-group">
-            <label for="category">زیردسته</label>
-            <select class="form-control" id="category">
-                <option> پاپ</option>
-                <option> سنتی</option>
-                <option> راک</option>
-            </select>
+                    {% for subcat in first_category.subcategory_set.all %}
+                        <option value="{{ subcat.id }}"> {{ subcat.name }} </option>
+                    {% endfor %}
+
+                </select>
+            </div>
         </div>
-    </div>
+    {% endwith %}
     <br>
-
-    <div class="form-group">
-        <label for="exampleInputEmail1">نام رخداد</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="نام رخداد">
-    </div>
-    <input type="date" class="form-control" id="start_data" placeholder="تاریخ شروع">
     <br>
     <br>
     <div class="form-inline">
@@ -49,5 +74,4 @@
         <div class="btn btn-success">ثبت</div>
     </a>
 </form>
-
 
