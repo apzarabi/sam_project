@@ -1,6 +1,5 @@
 <script type="text/javascript">
     function configureDropDownLists(ddl1,ddl2) {
-        console.log('changed' + ddl1.value);
         switch (ddl1.value) {
             {% for category in categories %}
             case "{{ category.id }}":
@@ -15,7 +14,6 @@
     }
 
     function createOption(ddl, text, value) {
-        console.log('option created: ' + text + " " + value);
         var opt = document.createElement('option');
         opt.value = value;
         opt.text = text;
@@ -26,7 +24,7 @@
 
 
 
-<form>
+<form name="register_event" method="post" action="{% url 'events:register_event' %}" enctype="multipart/form-data">
     <div class="form-inline">
         <div class="form-group">
             <label for="category"> دسته </label>
@@ -53,12 +51,6 @@
         </div>
     {% endwith %}
     <br>
-
-    <div class="form-group">
-        <label for="exampleInputEmail1">نام رخداد</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="نام رخداد">
-    </div>
-    <input type="date" class="form-control" id="start_data" placeholder="تاریخ شروع">
     <br>
     <br>
     <div class="form-inline">
