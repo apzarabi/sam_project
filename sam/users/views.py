@@ -69,7 +69,7 @@ def signup_customer(request):
             auth_user = authenticate(username=new_user.username, password=request.POST['password'])
             login_auth(request, auth_user)
             return redirect(reverse('users:home'))
-        else:   # if errors
+        else:  # if errors
             print("sign up errors: {}".format(errors))
             return render(request, 'auth/signup_page.html', {'signup_customer_errors': errors,
                                                  'userForm': userForm,
@@ -104,7 +104,7 @@ def signup_dealer(request):
             auth_user = authenticate(username=new_user.username, password=request.POST['password'])
             login_auth(request, auth_user)
             return redirect(reverse('users:home'))
-        else:   # if errors
+        else:  # if errors
             print("sign up errors: {}".format(errors))
             return render(request, 'auth/signup_page.html', {'signup_customer_errors': errors,
                                                  'userForm': userForm,
@@ -113,10 +113,12 @@ def signup_dealer(request):
             })
 
 def home(request):
+    event = Event.objects.get(id=1)
     forms = make_sign_up_form()
     context = {}
     context.update(forms)
-    return render(request, 'home.html', context)
+    categories = Category.objects.all()
+    return render(request, 'home.html', {'context': context, 'categories': categories, 'event': event})
 
 def logout(request):
     auth_logout(request)
@@ -144,11 +146,6 @@ def admin_test(request):
 
 def menu(request):
     return render(request, 'right_sidebar_menu.html', {})
-
-
-def home(request):
-    event = Event.objects.get(id=1)
-    return render(request, 'home.html', {'event': event})
 
 
 def home_log_out(request):

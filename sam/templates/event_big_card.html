@@ -33,11 +33,6 @@
                                 {% if forloop.counter0 != 0 %}
                                 <div class="item">
                                     <a href= {% url 'events:event_view' event.id %}>
-                                        <img src="{% static 'tmp_media/music2.jpg' %}">
-                                    </a>
-                                </div>
-                                <div class="item">
-                                    <a href= {% url 'events:event_view' event.id %}>
                                         <img src="{{ image.picture.url }}">
                                     </a>
                                 </div>

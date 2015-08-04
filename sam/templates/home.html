@@ -1,82 +1,79 @@
-<!DOCTYPE html>
-<html>
-    <head></head>
-    <body>
-        {% extends 'base.html' %}
-        {% load static %}
-        {% block main_column %}
-        <div class="row">
-            {% include 'event_big_card.html' with event=event %}
+{% extends 'base.html' %}
+{% load static %}
+{% block right_sidebar %}
+    {% include 'right_sidebar_menu.html' with categories=categories %}
+{% endblock%}
+{% block main_column %}
+<div class="row">
+    {% include 'event_big_card.html' with event=event %}
+</div>
+<div class="well">
+    <h3>جدیدترین ها</h3>
+    <div class="row">
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
         </div>
-        <div class="well">
-            <h3>جدیدترین ها</h3>
-            <div class="row">
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-            </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
         </div>
-        <div class="well">
-            <h3>محبوب ترین ها</h3>
-            <div class="row">
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-            </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
         </div>
-        <div class="well">
-            <h3>پرفروش ترین ها</h3>
-            <div class="row">
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-                <div class="col-md-4 sam-border">
-                    {% include 'event_small_card.html' %}
-                </div>
-            </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
         </div>
-        {% endblock %}
-    </body>
-</html>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+    </div>
+</div>
+<div class="well">
+    <h3>محبوب ترین ها</h3>
+    <div class="row">
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+    </div>
+</div>
+<div class="well">
+    <h3>پرفروش ترین ها</h3>
+    <div class="row">
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+        <div class="col-md-4 sam-border">
+            {% include 'event_small_card.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}
