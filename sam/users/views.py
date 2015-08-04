@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from events.models import *
 from users.models import Dealer, Customer
 from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm
+from events.forms import EventForm
 
 def make_sign_up_form():
     """ every view that has sign up button, should call this method and put the
@@ -132,9 +133,11 @@ def show_profile(request):
         try:
             dealer = user.userinfo.dealer
             print("is auth dealer? {}".format(user.is_authenticated()))
+            eventform = EventForm()
             return render(request, 'dealer_profile.html', {'user': user,
                                                            'profile_user': dealer,
-                                                           'categories': categories})
+                                                           'categories': categories,
+                                                           'eventform': eventform})
         except Dealer.DoesNotExist:
             print('no cases {}'.format(user))
 
