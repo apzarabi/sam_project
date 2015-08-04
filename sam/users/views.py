@@ -114,11 +114,8 @@ def signup_dealer(request):
 
 def home(request):
     event = Event.objects.get(id=1)
-    forms = make_sign_up_form()
-    context = {}
-    context.update(forms)
     categories = Category.objects.all()
-    return render(request, 'home.html', {'context': context, 'categories': categories, 'event': event})
+    return render(request, 'home.html', {'categories': categories, 'event': event})
 
 def logout(request):
     auth_logout(request)
