@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login as login_auth, logout as aut
 
 from events.models import *
 from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm
+from django.views.decorators.http import condition
 
 def make_sign_up_form():
     """ every view that has sign up button, should call this method and put the
@@ -115,7 +116,17 @@ def signup_dealer(request):
 def home(request):
     event = Event.objects.get(id=1)
     categories = Category.objects.all()
-    return render(request, 'home.html', {'categories': categories, 'event': event})
+    accepted = Event.objects.filter(condition=0).all()
+    time_sorted = sorted(accepted, key= lambda t: t.first_date())
+    newevents = time_sorted[:6]
+    
+    sell_sorted = sorted(accepted, key= lambda t: t.sold_tickets_number())
+    topsellerevents = sell_sorted[:6]
+    
+    popular_sorted = sorted(accepted, key= lambda t: t.rating())
+    popularevents = popular_sorted[:6]
+    return render(request, 'home.html', {'categories': categories, 'event': event, 'newevents': newevents,
+                                         'topsellerevents': topsellerevents, 'popularevents': popularevents})
 
 def logout(request):
     auth_logout(request)
