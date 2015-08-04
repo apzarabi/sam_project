@@ -46,6 +46,25 @@ def register_event(request):
             print("this is the dealer = {} {}".format(dealer, dealer.id))
             event.dealer = dealer
             event.save()
+            i = 0
+            while True:
+                priceinput = request.POST.get("ticket-price-{}".format(i), None)
+                print(priceinput)
+                if priceinput is None:
+                    break
+                countinput = request.POST.get("ticket-num-{}".format(i), None)
+                dateinput = request.POST.get("ticket-date-{}".format(i), None)
+                nameinput = request.POST.get("ticket-name-{}".format(i), None)
+                t = TicketType()
+                t.price = priceinput
+                t.datetime = dateinput
+                t.total = countinput
+                t.available = countinput
+                t.name = nameinput
+                t.event = event
+                print('i was here {}'.format(t))
+                t.save()
+                i += 1
         else:
             print('didn"t validate')
             return render(request, 'dealer_profile.html', {'categories': Category.objects.all(),
