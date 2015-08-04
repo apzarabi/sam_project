@@ -230,10 +230,6 @@ body{
     padding-top:10px;
 }
 
-.sam-offered-events{
-    margin-top:20px;
-}
-
 .sam-event-edit{
     background-color: #f0ede5 !important;
     padding-top:10px !important;
@@ -279,11 +275,22 @@ html, body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
+    margin: 0 auto; /* the bottom margin is the negative value of the footer's height */
 }
 
-.footer, .push {
+.footer{
     background-image: linear-gradient(to bottom,#3c3c3c 0,#222 100%);
+    min-height: 100px; /* .push must be the same height as .footer */
+    padding-top:10px;
+    padding-bottom: 0px;
+    padding-right:40px;
+    padding-left:40px;
+    color:white;
+    margin-top: -100px;
+}
+
+
+.push {
     min-height: 100px; /* .push must be the same height as .footer */
     padding-top:10px;
     padding-bottom: 0px;
