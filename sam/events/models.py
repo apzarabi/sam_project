@@ -27,7 +27,7 @@ class Category(models.Model):
 class Subcategory(models.Model):
     name = models.CharField(u"نام زیردسته", max_length=255, null=False, blank=False)
 
-    category = models.ForeignKey(Category,)
+    category = models.ForeignKey(Category,null=True,blank=True)
 
     class Meta:
         verbose_name = u"زیردسته"

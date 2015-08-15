@@ -127,16 +127,16 @@ class CustomerForm(forms.ModelForm):
 class AddCategory(forms.ModelForm):
     class Meta:
         model = Subcategory
-        fields = [ 'category','name']
+        fields = ['category','name']
         labels = {'category':'دسته'}
 
+
     def __init__(self, *args, **kwargs):
-        super(AddCategory, self).__init__()
+        super(AddCategory, self).__init__(*args, **kwargs)
         self.fields['category'].error_messages = persian_default_errors
         self.fields['name'].error_messages = persian_default_errors
         self.fields['category'].widget.attrs.update({'class':"form-control form-group",
                                                      'id':"category"})
         self.fields['name'].widget.attrs.update({'class':"form-control form-group",
-                                                'id':"subcategory_name"
+                                                'id':"subcategory_name",
                                                     })
-

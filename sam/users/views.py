@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import pdb
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as login_auth, logout as auth_logout
@@ -151,15 +152,16 @@ def show_profile(request):
 
 
 def add_category(request):
-    form = AddCategory()
+    print(request.POST)
     categories = Category.objects.all()
     if request.method == 'POST':
         form = AddCategory(request.POST)
-        print(form)
         if form.is_valid():
-            print("HELLO")
-            form.save()
+            print("hellloooo")
+            subcat = form.save()
         return HttpResponseRedirect('\show_profile')
+    else:
+        form = AddCategory()
     return render(request,'admin_profile.html',{'form' : form, 'categories':categories})
 
 
