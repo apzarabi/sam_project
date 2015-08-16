@@ -72,8 +72,9 @@ def register_event(request):
     return redirect(reverse('users:show_profile'))
 
 
-def event_edit_page(request):
-    event = Event.objects.get(id=1)
+def event_edit_page(request, **kwargs):
+    event_id = int(kwargs.pop('event_id'))
+    event = Event.objects.get(id=event_id)
     return render(request, 'event_edit/event_edit_page.html', {'event': event})
 
 
@@ -132,13 +133,10 @@ def delete(request, **kwargs):
 def remove_category(request):
     category_id = request.POST.get("category_id")
     print(category_id)
-    subcategories = Subcategory.objects.filter(category_id=category_id)
-    events = Event.objects.filter(subcategory__in=subcategories)
-    category = subcategories[0].category
     Category.objects.get(id=category_id).delete()
-    for subcat in subcategories:
-        Subcategory.objects.get(id=subcat.id).delete()
     message = "دسته‌ی مورد نظر حذف شد."
-    return render(request, 'info_template.html', {'message': message})
+    return_url = reverse('users:show_profile')
+    print(return_url)
+    return render(request, 'info_template.html', {'message': message, 'return_url': return_url})
 
     

@@ -5,9 +5,10 @@
     <div class="row">
     </div>
     <h5></h5>
-    <button class="btn btn-default " type="button" title="بررسی وضعیت">
+    <a href="{% url 'events:event_edit' event.id %}"><button class="btn btn-default " type="button" title="بررسی وضعیت">
         <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
     </button>
+    </a>
 </div>
 
 {%  endblock %}
