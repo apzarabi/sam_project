@@ -24,5 +24,7 @@ urlpatterns = [
     url(r'^admin/$', 'users.views.admin', name='admin'),
     url(r'^profile/username', 'users.views.customer_profile', name='customer_profile'),
     url(r'^profile/dealer', 'users.views.dealer_profile', name='dealer_profile'),
-    url(r'^add_category', 'users.views.add_category', name='add_category')
+    url(r'^add_category', 'users.views.add_category', name='add_category'),
+    url(r'^add_subcategory', 'users.views.add_subcategory', name="add_subcategory"),
+    url(r'^edit_category', 'users.views.edit_category', name="edit_category")
 ]

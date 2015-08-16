@@ -1,35 +1,18 @@
 <br>
 <div class="row">
     <div class="col-md-5">
-        <form name="add_category" method="post" action="/users/add_category/">
+        <form name="add_category" method="post" action="/users/add_subcategory/">
         {% csrf_token %}
-            {{ form }}
-
-            <!--<div class="form-group">
-                <h4>افزودن یک زیردسته جدید:</h4>
-                <label for="categories_add_select">دسته </label>
-                <select class="form-control" id="categories_add_select">
-                    {% for category in categories %}
-                        <option value="{{ category.id }}"> {{ category.name }} </option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="subcategories_add_name">زیردسته</label>
-                <input type="text" class="form-control" id="subcategories_add_name" placeholder="زیردسته‌ی جدید" >
-            </div>-->
-            <button type="submit" class="btn btn-success">ثبت زیردسته‌ی جدید</button>
+            {{ form1 }}
+            <button type="submit" class="btn btn-success" name="add_subcat">ثبت زیردسته‌ی جدید</button>
         </form>
     </div>
 
     <div class="col-md-5 col-md-offset-2">
-        <form>
-            <h4>افزودن یک دسته جدید:</h4>
-            <div class="form-group">
-                <label for="category_add">دسته</label>
-                <input type="text" class="form-control" id="category_add" placeholder="دسته‌ی جدید">
-            </div>
-            <button type="submit" class="btn btn-success">ثبت دسته‌ی جدید</button>
+        <form name="add_category" method="post" action="/users/add_category/">
+        {% csrf_token %}
+            {{ form2 }}
+            <button type="submit" class="btn btn-success" name="add_cat">ثبت دسته‌ی جدید</button>
         </form>
     </div>
 

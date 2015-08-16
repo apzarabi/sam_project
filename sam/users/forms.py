@@ -124,15 +124,14 @@ class CustomerForm(forms.ModelForm):
                                                   'placeholder': u"تاریخ",
                                                   })
 
-class AddCategory(forms.ModelForm):
+class AddSubCategory(forms.ModelForm):
     class Meta:
         model = Subcategory
         fields = ['category','name']
         labels = {'category':'دسته'}
 
-
     def __init__(self, *args, **kwargs):
-        super(AddCategory, self).__init__(*args, **kwargs)
+        super(AddSubCategory, self).__init__(*args, **kwargs)
         self.fields['category'].error_messages = persian_default_errors
         self.fields['name'].error_messages = persian_default_errors
         self.fields['category'].widget.attrs.update({'class':"form-control form-group",
@@ -140,3 +139,33 @@ class AddCategory(forms.ModelForm):
         self.fields['name'].widget.attrs.update({'class':"form-control form-group",
                                                 'id':"subcategory_name",
                                                     })
+
+class AddCategory(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = {'name'}
+        labels = {'name':'نام'}
+
+    def __init__(self, *args, **kwargs):
+        super(AddCategory, self).__init__(*args, **kwargs)
+        self.fields['name'].error_messages = persian_default_errors
+        self.fields['name'].widget.attrs.update({'class':"form-control form-group",
+                                                 'id':"category_name"})
+
+
+class EditCategory(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = {'subject', 'name'}
+        labels = {'name':'نام جدید'}
+
+    subject = forms.ModelChoiceField(label = "دسته", queryset=Category.objects.all())
+
+    def __init__(self, *args, **kwargs):
+        super(EditCategory, self).__init__(*args, **kwargs)
+        self.fields['subject'].error_messages = persian_default_errors
+        self.fields['subject'].widget.attrs.update({'class':"form-control form-group",
+                                                 'id':"category_name"})
+        self.fields['name'].error_messages = persian_default_errors
+        self.fields['name'].widget.attrs.update({'class':"form-control form-group",
+                                                 'id':"category_name"})

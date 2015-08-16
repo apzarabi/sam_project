@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from events.models import *
 from users.models import Dealer, Customer
-from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm, AddCategory
+from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm, AddSubCategory, AddCategory, EditCategory
 from django.http import HttpResponse, HttpResponseRedirect
 from events.forms import EventForm
 
@@ -122,7 +122,9 @@ def signup_dealer(request):
 
 @login_required
 def show_profile(request):
-    form = AddCategory()
+    form1 = AddSubCategory()
+    form2 = AddCategory()
+    edit_form1 = EditCategory()
     user = request.user
     print("is auth? {}".format(user.is_authenticated()))
     categories = Category.objects.all()
@@ -131,7 +133,9 @@ def show_profile(request):
                 return render(request, 'admin_profile.html', {'user': user,
                                                               'profile_user': user,
                                                               'categories': categories,
-                                                                'form':form,
+                                                              'form1': form1,
+                                                              'form2': form2,
+                                                              'edit_form1': edit_form1,
                                                               'allevents': allevents})
     try:
         customer = user.userinfo.customer
@@ -151,18 +155,52 @@ def show_profile(request):
             print('no cases {}'.format(user))
 
 
-def add_category(request):
-    print(request.POST)
+def add_subcategory(request):
     categories = Category.objects.all()
-    if request.method == 'POST':
-        form = AddCategory(request.POST)
-        if form.is_valid():
+    if request.method == 'POST' and 'add_subcat' in request.POST:
+        form1 = AddSubCategory(request.POST)
+        if form1.is_valid():
             print("hellloooo")
-            subcat = form.save()
-        return HttpResponseRedirect('\show_profile')
+            subcat = form1.save()
+        return_url = reverse('users:show_profile')
+        return render(request, 'info_template.html', {'message':"زیر دسته مورد نظر اضافه شد.", 'return_url': return_url})
     else:
-        form = AddCategory()
-    return render(request,'admin_profile.html',{'form' : form, 'categories':categories})
+        form1 = AddSubCategory()
+        form2 = AddCategory()
+    return render(request, 'admin_profile.html', {'form2': form2, 'form1': form1, 'categories':categories})
+
+def add_category(request):
+    print("ei baba")
+    categories = Category.objects.all()
+    if request.method == 'POST' and 'add_cat' in request.POST:
+        form2 = AddCategory(request.POST)
+        if form2.is_valid():
+            cat = form2.save()
+        return_url = reverse('users:show_profile')
+        return render(request, 'info_template.html', {'message':"دسته مورد نظر اضافه شد.", 'return_url': return_url})
+    else:
+        form1 = AddSubCategory()
+        form2 = AddCategory()
+    return render(request, 'admin_profile.html', {'form2': form2, 'form1': form1, 'categories':categories})
+
+def edit_category(request):
+    categories = Category.objects.all()
+    if request.method == 'POST' and 'edit_cat' in request.POST:
+        edit_form1 = EditCategory(request.POST)
+        if edit_form1.is_valid():
+            prev_cat = Category.objects.get(id= request.POST.get('subject'))
+            prev_cat.name = request.POST.get('name')
+            new_cat = prev_cat.save()
+        return_url = reverse('users:show_profile')
+        return render(request, 'info_template.html', {'message':"نام دسته مورد نظر به روزرسانی شد.", 'return_url': return_url})
+    else:
+        form1 = AddSubCategory()
+        form2 = AddCategory()
+        edit_form1 = EditCategory()
+    return render(request, 'admin_profile.html', {'form1':form1, 'form2':form2, 'edit_form1':edit_form1, 'categories':categories})
+
+
+
 
 
 
