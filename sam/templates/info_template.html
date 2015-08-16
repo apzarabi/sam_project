@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block main_column %}
-<div class="well">
-    <div class="alert alert-info" role="alert">
-        <strong>
-        {{message}}
-        </strong>
-    </div>
+<div class="alert alert-info" role="alert">
+    <strong>
+    {{message}}
+    </strong>
 </div>
+<a href="{{ return_url }}">
+    <button type="button" class="btn btn-primary">بازگشت</button>
+</a>
 {% endblock %}

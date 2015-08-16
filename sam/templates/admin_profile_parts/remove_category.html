@@ -54,7 +54,7 @@
                 <label for="category">دسته</label>
                 <select class="form-control" id="subcategories_remove" name="category_id">
                     {% for category in categories %}
-                        <option>{{ category.name}}</option>
+                        <option value="{{ category.id }}"> {{ category.name }} </option>
                     {% endfor %}
                 </select>
             </div>

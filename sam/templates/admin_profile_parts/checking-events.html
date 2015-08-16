@@ -1,5 +1,7 @@
 <div class="row">
     {% for event in allevents %}
-        {% include 'event_row_parts/event_row_delete.html' with event=event %}
+        {% if event.condition == 2 %}
+        {% include 'event_row_parts/event_row_verify.html' with event=event %}
+        {% endif %}
     {% endfor %}
 </div>
