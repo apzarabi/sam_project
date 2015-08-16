@@ -88,16 +88,23 @@
                         </small>
                     </h2>
                 </div>
+                {% if request.user.is_authenticated %}
                 <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#price-details">
                 خرید کنید
                 </button>
+                {% endif %}
+                {% if not request.user.is_authenticated %}
+                 <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#price-details">
+                خرید کنید
+                </button>
+                {% endif %}
                 <!-- Modal -->
                 <div class="modal fade" id="price-details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                <h4 class="modal-title" id="myModalLabel">خرید نام رویداد</h4>
+                                <h4 class="modal-title" id="myModalLabel">{{event.name}}</h4>
                             </div>
                             <div class="modal-body sam-purchase-modal-body">
                                 {% include 'event_row_parts/event_row_purchase.html' %}
