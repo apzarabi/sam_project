@@ -94,9 +94,11 @@
                 </button>
                 {% endif %}
                 {% if not request.user.is_authenticated %}
-                 <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#price-details">
-                خرید کنید
-                </button>
+                <a href="{% url 'users:login' %}">
+                    <button type="button" class="btn btn-success btn-lg btn-block">
+                     خرید کنید
+                    </button>
+                </a>
                 {% endif %}
                 <!-- Modal -->
                 <div class="modal fade" id="price-details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
