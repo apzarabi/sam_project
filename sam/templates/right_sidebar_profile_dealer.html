@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block image %}
-    <img class="img-responsive img-circle" src="{% static 'tmp_media/semantic_ui_default_avatar/joe.jpg' %}">
+    <img class="img-responsive img-circle" src="{{ profile_user.userInfo.picture.url }}">
 {% endblock %}
 
 {% block info %}
     <h3>{{ profile_user.userInfo.user.get_full_name }}</h3>
-    <div class="row">
+     <div class="row">
         <div class="col-md-4 sam-align-left-bold">
             نام کاربری
         </div>
@@ -16,21 +16,28 @@
         </div>
     </div>
     <div class="row">
-
         <div class="col-md-4 sam-align-left-bold">
             شماره ثبت
         </div>
         <div class="col-md-8 sam-align-right">
-            123456
+            {{ profile_user.registryNumber }}
         </div>
     </div>
     <div class="row">
-
         <div class="col-md-4 sam-align-left-bold">
             وضعیت
         </div>
         <div class="col-md-8 sam-align-right">
-            تایید شده
+            {{ profile_user.get_status }}
         </div>
     </div>
 {% endblock %}
+{% block button %}
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-8">
+        <a href="{% url 'users:edit_profile' %}">
+            <button type="button" class="btn btn-primary">ویرایش</button>
+        </a>    
+    </div>
+ {% endblock %}

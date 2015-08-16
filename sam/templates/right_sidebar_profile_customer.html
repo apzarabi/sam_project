@@ -1,17 +1,16 @@
 {% extends 'right_sidebar_profile.html' %}
 {% load static %}
 {% block image %}
-    <img class="img-responsive img-circle" src="{% static 'tmp_media/semantic_ui_default_avatar/jenny.jpg' %}">
+    <img class="img-responsive img-circle" src="{{ profile_user.userInfo.picture.url }}">
 {% endblock %}
 {% block info %}
     <h3> {{ profile_user.userInfo.user.get_full_name }}</h3>
-    {{ user.userInfo.datetime }}
     <div class="row">
         <div class="col-md-4 sam-align-left-bold">
             نام کاربری
         </div>
         <div class="col-md-8 sam-align-right">
-      خریدار
+            {{ profile_user.userInfo.user.username }}
         </div>
     </div>
     <div class="row">
@@ -22,23 +21,13 @@
             {{ user.email }}
         </div>
     </div>
-    <div class="row">
-
-        <div class="col-md-4 sam-align-left-bold">
-    تلفن
-        </div>
-        <div class="col-md-8 sam-align-right">
-            09111111111
-        </div>
-    </div>
-
-    <div class="row">
-
-        <div class="col-md-4 sam-align-left-bold">
-  آدرس
-        </div>
-        <div class="col-md-8 sam-align-right">
-تهران
-        </div>
-    </div>
 {% endblock %}
+{% block button %}
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-8">
+        <a href="{% url 'users:edit_profile' %}">
+            <button type="button" class="btn btn-primary">ویرایش</button>
+        </a>    
+    </div>
+ {% endblock %}

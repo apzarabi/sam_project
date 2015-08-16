@@ -48,7 +48,7 @@ class Dealer(models.Model):
     REJECTED = 1
     PENDING = 2
     CONDITION_CHOICES = (
-        (ACCEPTED, u"تأیید"),
+        (ACCEPTED, u"تأیید شده"),
         (REJECTED, u"رد شده"),
         (PENDING, u"بررسی"),
     )
@@ -68,9 +68,9 @@ class Dealer(models.Model):
     def __unicode__(self):
         return u"فروشنده {}".format(self.userInfo.user.username)
 
-
-
-
+    def get_status(self):
+        return  self.CONDITION_CHOICES[self.condition][1]
+    
 
 
 

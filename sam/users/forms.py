@@ -18,10 +18,10 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'password', 'email']
+        fields = ['first_name', 'last_name' ,'username', 'password', 'email']
 
     def __init__(self, *args, **kwargs):
-        super(UserForm, self).__init__(*args, **kwargs)
+        super(UserForm, self).__init__(*args, **kwargs) 
         self.fields['password'].widget.attrs.update({'type': "email",
                                                      'class': "form-control",
                                                      'id': "password",
@@ -42,13 +42,26 @@ class UserForm(forms.ModelForm):
                                                      'id': "username",
                                                      'placeholder': u"نام کاربری",
                                                      })
+        self.fields['first_name'].widget.attrs.update({'type': "email",
+                                                     'class': "form-control",
+                                                     'id': "first_name",
+                                                     'placeholder': u"نام",
+                                                     })
+        self.fields['last_name'].widget.attrs.update({'type': "email",
+                                                     'class': "form-control",
+                                                     'id': "last_name",
+                                                     'placeholder': u"نام خانوادگی",
+                                                     })
+        
         username_error = {'unique': u"نام کاربری باید یکتا باشد."}
         username_error.update(persian_default_errors)
         self.fields['username'].error_messages = username_error
         self.fields['email'].error_messages = persian_default_errors
         self.fields['re_password'].error_messages = persian_default_errors
         self.fields['password'].error_messages = persian_default_errors
-
+        self.fields['first_name'].error_messages = persian_default_errors
+        self.fields['last_name'].error_messages = persian_default_errors
+        
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if not email:
@@ -169,3 +182,76 @@ class EditCategory(forms.ModelForm):
         self.fields['name'].error_messages = persian_default_errors
         self.fields['name'].widget.attrs.update({'class':"form-control form-group",
                                                  'id':"category_name"})
+        
+class EditUserForm(forms.ModelForm):
+    password = forms.CharField(max_length=80, widget=forms.PasswordInput)
+    re_password = forms.CharField(max_length=80, widget=forms.PasswordInput)
+    
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name' , 'password', 'email']
+
+    def __init__(self, *args, **kwargs):
+        super(EditUserForm, self).__init__(*args, **kwargs) 
+        self.fields['password'].widget.attrs.update({'type': "email",
+                                                     'class': "form-control",
+                                                     'id': "password",
+                                                     'placeholder': u"رمز عبور",
+                                                     })
+        self.fields['re_password'].widget.attrs.update({'type': "email",
+                                                        'class': "form-control",
+                                                        'id': "re_password",
+                                                        'placeholder': u"تکرار رمز عبور",
+                                                        })
+        self.fields['email'].widget.attrs.update({'type': "email",
+                                                  'class': "form-control",
+                                                  'id': "email",
+                                                  'placeholder': u"ایمیل",
+                                                  })
+        self.fields['first_name'].widget.attrs.update({'type': "email",
+                                                     'class': "form-control",
+                                                     'id': "first_name",
+                                                     'placeholder': u"نام",
+                                                     })
+        self.fields['last_name'].widget.attrs.update({'type': "email",
+                                                     'class': "form-control",
+                                                     'id': "last_name",
+                                                     'placeholder': u"نام خانوادگی",
+                                                     })
+        
+        self.fields['email'].error_messages = persian_default_errors
+        self.fields['first_name'].error_messages = persian_default_errors
+        self.fields['last_name'].error_messages = persian_default_errors
+        
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if not email:
+            raise forms.ValidationError(u"باید آدرس ایمیل خود را وارد کنید.", code='required')
+        if not EMAIL_REGEX.match(email):
+            raise forms.ValidationError(u"آدرس ایمیل معتبر وارد کنید.")
+        return email
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if password is None:
+            return None
+        if len(password) < 6 and password is not None:
+            raise forms.ValidationError(u"رمز عبور باید حداقل ۶ حرف داشته باشد.", code='invalid')
+        return password
+
+    def clean_re_password(self):
+        password = self.cleaned_data.get('password')
+        if password is None:
+            return None
+        re_password = self.cleaned_data.get('re_password')
+        if password != re_password:
+            raise forms.ValidationError(u"دو رمز یکسان نیستند.", code='invalid')
+        return re_password
+
+    def save(self):
+        user = super(EditUserForm, self).save()
+        if self.cleaned_data["password"] is not None:
+            user.set_password(self.cleaned_data["password"])
+            user.save()
+        return user
+        
