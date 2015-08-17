@@ -17,7 +17,6 @@ from django.core import serializers
 from django.views.decorators.http import condition
 
 from random import randint
-from numpy.f2py.auxfuncs import throw_error
 
 def make_sign_up_form():
     """ every view that has sign up button, should call this method and put the

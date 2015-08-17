@@ -3,9 +3,11 @@
 <div class="col-md-12 sam-event-edit">
     <div class="col-md-12">
         <div class="row">
+             <a href="/users/show_profile/#checking-events">
               <button class="col-md-12 btn sam-event-button thumbnail" href="#" target="_blank">
     بازگشت به صفحه بررسی رویداد‌ها
               </button>
+             </a>
         </div>
       <div class="row">
           <h5><b>
@@ -13,7 +15,7 @@
           </b></h5>
       </div>
         <div class="row">
-            <textarea class="form-control" rows="10" id="information" name="admin_comment">{{ event.condition_description }}</textarea>
+            <textarea class="form-control" rows="10" id="information" name="admin_comment" disabled>{{ event.condition_description }}</textarea>
         </div>
         <div class="row">
             <div class="col-md-12">

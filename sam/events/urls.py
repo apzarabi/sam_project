@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'event_row_purchase/$', views.event_row_purchase, name='event_row_purchase'),
     url(r'event_row_print/$', views.event_row_print, name='event_row_print'),
     url(r'event_cards/$', views.event_cards, name='event_cards'),
+    url(r'^edit_details/(?P<event_id>\d+)/$', views.edit_details, name="edit_details"),
     url(r'^edit_event/(?P<event_id>\d+)/(?P<done>\d+)$', views.event_edit_page, name='event_edit'),
     url(r'event_row_verify/$', views.event_row_verify, name='event_row_verify'),
     url(r'^remove_category/$', views.remove_category, name='remove_category'),
@@ -16,5 +17,4 @@ urlpatterns = [
     url(r'^(?P<event_id>\d+)/$', views.event_view, name='event_view'),
     url(r'^delete_event/(?P<event_id>\d+)/$', views.delete, name='delete'),
     url(r'^info_template/', views.info_template, name="info_template"),
-    url(r'^edit_event_details/$', views.edit_event_details, name="edit_event_details"),
 ]

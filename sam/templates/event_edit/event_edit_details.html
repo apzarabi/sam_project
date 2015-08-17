@@ -7,7 +7,12 @@
 {% endblock %}
 
 {% block main_column %}
+
+<form name="event_details" method="post" action="{% url 'events:edit_details' event.id %}" enctype="multipart/form-data">
+    {% csrf_token %}
     {{ editeventform }}
+
+    <input type="hidden" name="event_id" id="event_id" value="{{ event.id }}">
 
     <div id="add-ticket-type" class="btn btn-info"> افزودن نوع بلیط </div>
 
@@ -36,6 +41,6 @@
         </div>
     </div>
     <div><h5></h5></div>
-
+</form>
 {% endblock %}
 

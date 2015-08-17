@@ -88,61 +88,60 @@ def register_event(request):
 
 
 @login_required
-def edit_event_details(request):
+def edit_details(request, **kwargs):
+    event_id = int(kwargs.pop('event_id'))
+    event = Event.objects.get(id=event_id)
+    editeventform = EventForm(instance = Event.objects.get(id=event_id))
+    errors = {}
     if request.method == "POST":
-        editeventform = EventForm(request.POST, request.FILES)
-        if editeventform.is_valid():
-            event = editeventform.save(commit=False)
-            event.condition = 2
-            subcat = request.POST.get('subcategory', None)
-            print("this has come from form = {}".format(subcat))
-            if subcat is None:
-                event.subcategory = Subcategory.objects.get(id=1)
-            else:
-                event.subcategory = Subcategory.objects.get(id=format(subcat))
-            user_dealer = User.objects.get(username=request.user.username)
-            dealer = user_dealer.userinfo.dealer
-            print("this is the dealer = {} {}".format(dealer, dealer.id))
-            event.dealer = dealer
-            event.save()
-            i = 0
-            while True:
-                priceinput = request.POST.get("ticket-price-{}".format(i), None)
-                print(priceinput)
-                if priceinput is None:
-                    break
-                countinput = request.POST.get("ticket-num-{}".format(i), None)
-                dateinput = request.POST.get("ticket-date-{}".format(i), None)
-                nameinput = request.POST.get("ticket-name-{}".format(i), None)
-                t = TicketType()
-                t.price = priceinput
-                t.datetime = dateinput
-                t.total = countinput
-                t.available = countinput
-                t.name = nameinput
-                t.event = event
-                print('i was here {}'.format(t))
-                t.save()
-                i += 1
-            i=0
-            while True:
-                print(request.FILES);
-                picinput = request.FILES.get("picture-{}".format(i), None)
-                print(str(picinput) + "hooooooooooooo")
-                if picinput is None:
-                    break
-                print("???")
-                mypic = EventPicture()
-                mypic.picture = picinput
-                mypic.event = event
-                mypic.save()
-                i += 1
-                print("injaaast :| ")
-        else:
-            print('didn"t validate')
-            return render(request, 'dealer_profile.html', {'categories': Category.objects.all(),
-                                                           'eventform': eventform})
-    return redirect(reverse('users:show_profile'))
+            editeventform = EventForm(request.POST, request.FILES)
+            if editeventform.is_valid():
+                eventForm = EventForm(request.POST, instance=event)
+            if not eventForm.is_valid():
+                    errors = errors.copy()
+                    errors.update(eventForm.errors)
+            if not errors:
+                myevent = eventForm.save()
+                myevent.condition = 2
+                i = 0
+                while True:
+                    priceinput = request.POST.get("ticket-price-{}".format(i), None)
+                    print(priceinput)
+                    if priceinput is None:
+                        break
+                    countinput = request.POST.get("ticket-num-{}".format(i), None)
+                    dateinput = request.POST.get("ticket-date-{}".format(i), None)
+                    nameinput = request.POST.get("ticket-name-{}".format(i), None)
+                    t = TicketType()
+                    t.price = priceinput
+                    t.datetime = dateinput
+                    t.total = countinput
+                    t.available = countinput
+                    t.name = nameinput
+                    t.event = myevent
+                    print('i was here {}'.format(t))
+                    t.save()
+                    i += 1
+                i=0
+                while True:
+                    print(request.FILES);
+                    picinput = request.FILES.get("picture-{}".format(i), None)
+                    print(str(picinput) + "hooooooooooooo")
+                    if picinput is None:
+                        break
+                    print("???")
+                    mypic = EventPicture()
+                    mypic.picture = picinput
+                    mypic.event = myevent
+                    mypic.save()
+                    i += 1
+                    print("injaaast :| ")
+                return redirect(reverse('users:show_profile'))
+            else:  # if errors
+                return render(request, 'event_edit/event_edit_details.html', {'signup_customer_errors': errors,
+                                                     'editeventform': editeventform,
+                })
+    return render(request, 'event_edit/event_edit_details.html', {'cateogries':Category.objects.all(), 'editeventform':editeventform, 'event':event})
 
 
 def event_edit_page(request, **kwargs):
