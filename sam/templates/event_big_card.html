@@ -75,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="raty-star"> </div>
+                <div id="event_score" class="raty-star"> </div>
                 <div class="sam-price-place">
                     <h2><small>
                         از
@@ -108,15 +108,19 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                 <h4 class="modal-title" id="myModalLabel">{{event.name}}</h4>
                             </div>
-                            <div class="modal-body sam-purchase-modal-body">
-                                {% include 'event_row_parts/event_row_purchase.html' %}
-                                {% include 'event_row_parts/event_row_purchase.html' %}
-                                {% include 'event_row_parts/event_row_purchase.html' %}
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
-                                <a href="/users/test/payment/"><button type="button" class="btn btn-success">پرداخت</button></a>
-                            </div>
+                            <form id="pay" name="pay" method="post" action="{% url 'users:payment' %}">
+                                {% csrf_token %}
+                                <div class="modal-body sam-purchase-modal-body">
+                                {% for type in ticket_types %}
+                                    {% include 'event_row_parts/event_row_purchase.html' with price=type.price ticket_type=type %}
+                                {% endfor %}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                                    <button type="submit" class="btn btn-success">پرداخت</button>
+                                    <input type="hidden" id="event_{{event.id}}" name="event_id" value="{{event.id}}">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -175,10 +175,14 @@ def event_row_print(request):
 def event_view(request, event_id):
     event_id = int(event_id)
     event = Event.objects.get(id=event_id)
+    ticket_types = TicketType.objects.filter(event=event)
     categories = Category.objects.all()
     offered_events = event.subcategory.event_set.exclude(id=event.id).filter(pk__in=[0, 1, 2, 3, 4, 5])
-    return render(request, 'event_page.html', {'offered_events':offered_events, 'event': event, 'categories':categories, 'side_bar_offer_topic':"از همین زیردسته"})
-
+    return render(request, 'event_page.html', {'offered_events':offered_events,
+                                               'event': event,
+                                               'ticket_types': ticket_types, 
+                                               'categories':categories, 
+                                               'side_bar_offer_topic':"از همین زیردسته"})
 
 def show_subcategory(request, **kwargs):
     category_id = int(kwargs.pop('category_id'))
@@ -186,13 +190,13 @@ def show_subcategory(request, **kwargs):
     categories = Category.objects.all()
     if(subcategory_id == 0):
         subcategories = Subcategory.objects.filter(category_id=category_id)
-        events = Event.objects.filter(subcategory__in=subcategories)
+        events = Event.objects.filter(subcategory__in=subcategories).filter(condition=0)
         category = subcategories[0].category
         if len(events) == 0:
             category = None
         subcategory = None
     else:
-        events = Event.objects.filter(subcategory=subcategory_id)
+        events = Event.objects.filter(subcategory=subcategory_id).filter(condition=0)
         category = Subcategory.objects.get(id=subcategory_id).category
         if len(events) == 0:
             subcategory = None
@@ -217,5 +221,4 @@ def remove_category(request):
     return_url = reverse('users:show_profile')
     print(return_url)
     return render(request, 'info_template.html', {'message': message, 'return_url': return_url})
-
-    
+   

@@ -19,32 +19,34 @@
 <body>
 <div class="row"></div>
 <div class="col-md-6 col-md-offset-3">
-
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>کنسرت رضا یزدانی</th>
-            <th>26 مرداد</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>خریدار</td>
-            <td>خریدارنده</td>
-        </tr>
-        <tr>
-            <td>شرکت فروشنده</td>
-            <td>قروشنده</td>
-        </tr>
-        <tr>
-            <td>قیمت</td>
-            <td>120000 تومان</td>
-        </tr>
-        <tr>
-            <td>صندلی</td>
-            <td>ردیف 12، صندلی 4</td>
-        </tr>
-        </tbody>
-    </table>
+    {% for ticket in tickets %}
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>{{ticket.event.name}}</th>
+                <th>{{ticket.event.neighborhood}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>خریدار</td>
+                <td>{{ticket.order.customer.userInfo.user.get_full_name}}</td>
+            </tr>
+            <tr>
+                <td>شرکت فروشنده</td>
+                <td>{{ticket.event.dealer.userInfo.user.username}}</td>
+            </tr>
+            <tr>
+                <td>قیمت</td>
+                <td>{{ticket.type.price}} تومان</td>
+            </tr>
+            <tr>
+                <td>صندلی</td>
+                <td>ردیف {{ticket.row}}، صندلی {{ticket.column}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+    {% endfor %}
 </div>
 </body>

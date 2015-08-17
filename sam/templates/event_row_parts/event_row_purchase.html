@@ -10,10 +10,11 @@
     </div>
     <div class="row">
         <div class="col-md-12 sam-align-right">
-            <input type="number"  id="number_input{{ event.id }}" style = "padding:0; padding-right: 5px;" min="0" max="30" class="form-control" placeholder=" 0">
+            <input type="number" name="type_{{ ticket_type.id }}" id="type_{{ ticket_type.id }}" style = "padding:0; padding-right: 5px;" min="0" max="{{ticet_type.available}}" class="form-control" placeholder="0">
         </div>
     </div>
 </div>
+<!--
 <div class="col-md-2">
     <h5>مجموع</h5>
     <div class="row">
@@ -22,4 +23,5 @@
         </div>
     </div>
 </div>
+-->
 {%  endblock %}
