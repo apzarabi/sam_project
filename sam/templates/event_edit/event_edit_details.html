@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block right_sidebar %}
+    {% include 'event_edit/right_sidebar_event_edit_cond.html' with prev_tab=prev_tab %}
+{% endblock %}
+
+{% block main_column %}
+    {{ editeventform }}
+
+    <div id="add-ticket-type" class="btn btn-info"> افزودن نوع بلیط </div>
+
+    <div>
+        <ul id="sam-ticket-types">
+
+        </ul>
+    </div>
+    <br>
+
+    <div id="add-picture" class="btn btn-info">افزودن تصویر</div>
+
+    <div>
+        <ul id="sam-pictures">
+
+        </ul>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-success col-md-12"> ثبت </button>
+            </div>
+        </div>
+    </div>
+    <div><h5></h5></div>
+
+{% endblock %}
+

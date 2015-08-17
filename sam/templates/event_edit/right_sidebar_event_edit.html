@@ -24,8 +24,12 @@
           </button>
        </div>
       <div class="row">
-          <a href="{{ event.verification_file.url }}">
-              <button class="col-md-12 btn sam-event-button thumbnail" href="#" target="_blank">
+          {% ifequal event.verifiction_file None %}
+            <a href="#" title="فایل بارگذاری نشده است.">
+          {% else %}
+            <a href="{{ event.verification_file.url }}"  target="_blank">
+          {% endifequal %}
+              <button class="col-md-12 btn sam-event-button thumbnail">
                   <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
     مشاهده مدارک اعتبارسنجی
               </button>
@@ -36,27 +40,38 @@
     توضیحات مدیر:
           </b></h5>
       </div>
-        <form>
+        <form name="admin_comment" method="post" action="/users/admin_comment/" id="admin_comment">
+            {% csrf_token %}
+            <input type="hidden" value="{{ event.id }}" name="event_id" />
             <div class="row">
-                <textarea class="form-control" rows="10" id="information"></textarea>
+                <textarea class="form-control" rows="10" id="information" name="admin_comment">{{ event.condition_description }}</textarea>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="row choices">
                         <label class="col-md-6 label label-success">
-                            <input type="radio" id="accept" name="quality[21]" value="تایید" />
-                            تایید
-                        </label>
-                        <label class="col-md-6 label label-danger">
-                            <input type="radio" id="reject" name="quality[21]" checked="checked" value="عدم تایید" />
-                            عدم تایید
-                        </label>
+                        {% ifequal event.condition 0 %}
+                        <input type="radio" id="accept" name="result" checked="check" value="0" />
+                        {% else %}
+                        <input type="radio" id="accept" name="result" value="0" />
+                        {% endifequal %}
+تایید
+                    </label>
+
+                    <label class="col-md-6 label label-danger">
+                        {% ifequal event.condition 1 %}
+                        <input type="radio" id="reject" name="result" checked="check" value="1" >
+                        {% else %}
+                        <input type="radio" id="reject" name="result" value="1" >
+                        {% endifequal %}
+عدم تایید
+                    </label>
                     </div>
                 </div>
             </div>
             <br/>
             <div class="row">
-                <button type="submit" class=" col-md-12 btn sam-event-button ">
+                <button type="submit" class=" col-md-12 btn sam-event-button " name="submit_admin_comment" id="submit_admin_comment">
                     <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
                     ارسال
                 </button>

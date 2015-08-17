@@ -33,4 +33,5 @@ urlpatterns = [
     url(r'^removeCat/(?P<catpk>[-\w]+)/all_json_subs/$', 'users.views.all_json_subs'),
     url(r'^edit_profile', 'users.views.edit_profile', name='edit_profile'),
     url(r'^submit_edit_profile', 'users.views.submit_edit_profile', name='submit_edit_profile'),
+    url(r'^admin_comment/', 'users.views.admin_comment', name="admin_comment"),
 ]

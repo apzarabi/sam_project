@@ -5,7 +5,6 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from events.models import *
 from django.contrib.auth.decorators import login_required
-
 from .forms import *
 
 def event_cards(request):
@@ -32,13 +31,13 @@ def register_event(request):
         eventform = EventForm(request.POST, request.FILES)
         if eventform.is_valid():
             event = eventform.save(commit=False)
-            event.condition = 0
+            event.condition = 2
             subcat = request.POST.get('subcategory', None)
             print("this has come from form = {}".format(subcat))
-            # if subcat is None:
-            subcat = Subcategory.objects.get(id=1)
-            # else:
-            #     subcat = Subcategory.objects.get(id=subcat)
+            if subcat is None:
+                subcat = Subcategory.objects.get(id=1)
+            else:
+                subcat = Subcategory.objects.get(id=subcat)
             print("f {} {}".format(subcat, subcat.id))
             event.subcategory = subcat
             user_dealer = User.objects.get(username=request.user.username)
@@ -65,6 +64,80 @@ def register_event(request):
                 print('i was here {}'.format(t))
                 t.save()
                 i += 1
+            i=0
+            while True:
+                print(request.FILES);
+                picinput = request.FILES.get("picture-{}".format(i), None)
+                print(str(picinput) + "hooooooooooooo")
+                if picinput is None:
+                    break
+                print("???")
+                mypic = EventPicture()
+                mypic.picture = picinput
+                mypic.event = event
+                mypic.save()
+                i += 1
+                print("injaaast :| ")
+        else:
+            print('didn"t validate')
+            return render(request, 'dealer_profile.html', {'categories': Category.objects.all(),
+                                                           'eventform': eventform})
+    return redirect(reverse('users:show_profile'))
+
+
+
+
+@login_required
+def edit_event_details(request):
+    if request.method == "POST":
+        editeventform = EventForm(request.POST, request.FILES)
+        if editeventform.is_valid():
+            event = editeventform.save(commit=False)
+            event.condition = 2
+            subcat = request.POST.get('subcategory', None)
+            print("this has come from form = {}".format(subcat))
+            if subcat is None:
+                event.subcategory = Subcategory.objects.get(id=1)
+            else:
+                event.subcategory = Subcategory.objects.get(id=format(subcat))
+            user_dealer = User.objects.get(username=request.user.username)
+            dealer = user_dealer.userinfo.dealer
+            print("this is the dealer = {} {}".format(dealer, dealer.id))
+            event.dealer = dealer
+            event.save()
+            i = 0
+            while True:
+                priceinput = request.POST.get("ticket-price-{}".format(i), None)
+                print(priceinput)
+                if priceinput is None:
+                    break
+                countinput = request.POST.get("ticket-num-{}".format(i), None)
+                dateinput = request.POST.get("ticket-date-{}".format(i), None)
+                nameinput = request.POST.get("ticket-name-{}".format(i), None)
+                t = TicketType()
+                t.price = priceinput
+                t.datetime = dateinput
+                t.total = countinput
+                t.available = countinput
+                t.name = nameinput
+                t.event = event
+                print('i was here {}'.format(t))
+                t.save()
+                i += 1
+            i=0
+            while True:
+                print(request.FILES);
+                picinput = request.FILES.get("picture-{}".format(i), None)
+                print(str(picinput) + "hooooooooooooo")
+                if picinput is None:
+                    break
+                print("???")
+                mypic = EventPicture()
+                mypic.picture = picinput
+                mypic.event = event
+                mypic.save()
+                i += 1
+                print("injaaast :| ")
         else:
             print('didn"t validate')
             return render(request, 'dealer_profile.html', {'categories': Category.objects.all(),
@@ -74,12 +147,17 @@ def register_event(request):
 
 def event_edit_page(request, **kwargs):
     event_id = int(kwargs.pop('event_id'))
+    done = int(kwargs.pop('done'))
     event = Event.objects.get(id=event_id)
-    return render(request, 'event_edit/event_edit_page.html', {'event': event})
+    return render(request, 'event_edit/event_edit_page.html', {'done': done, 'event': event})
 
 
 def event_row_verify(request):
     return render(request, 'event_row_parts/event_row_verify.html', {})
+
+
+def info_template(request, return_url, message):
+    return render(request, 'info_template.html', {'return_url':return_url, 'message':message})
 
 
 def event_row_condition(request):

@@ -253,6 +253,21 @@ def edit_subcategory(request):
         edit_form1 = EditCategory()
     return render(request, 'admin_profile.html', {'form1':form1, 'form2':form2, 'edit_form1':edit_form1, 'categories':categories})
 
+def admin_comment(request):
+    subcategories = Subcategory.objects.all()
+    categories = Category.objects.all()
+    print(request.POST)
+    if request.method == 'POST' and 'submit_admin_comment' in request.POST:
+        print("miad inja baba!")
+        myevent = Event.objects.get(id=request.POST.get('event_id'))
+        myevent.condition_description = request.POST.get('admin_comment')
+        myevent.condition = int(request.POST.get('result'))
+        myevent.save()
+        return HttpResponseRedirect('/events/edit_event/'+str(myevent.id)+'/1')
+    form1 = AddSubCategory()
+    form2 = AddCategory()
+    edit_form1 = EditCategory()
+    return render(request, 'admin_profile.html', {'form1':form1, 'form2':form2, 'edit_form1':edit_form1, 'categories':categories})
 
 def remove_subcategory(request):
     subcategories = Subcategory.objects.all()
