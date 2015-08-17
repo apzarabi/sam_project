@@ -154,7 +154,8 @@ def show_profile(request):
             return render(request, 'dealer_profile.html', {'user': user,
                                                            'profile_user': dealer,
                                                            'categories': categories,
-                                                           'eventform': eventform})
+                                                           'eventform': eventform,
+                                                           'allevents': allevents})
         except Dealer.DoesNotExist:
             print('no cases {}'.format(user))
 

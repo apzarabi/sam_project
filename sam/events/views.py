@@ -93,6 +93,7 @@ def edit_details(request, **kwargs):
     event = Event.objects.get(id=event_id)
     editeventform = EventForm(instance = Event.objects.get(id=event_id))
     errors = {}
+    user = request.user
     if request.method == "POST":
             editeventform = EventForm(request.POST, request.FILES)
             if editeventform.is_valid():
@@ -102,7 +103,9 @@ def edit_details(request, **kwargs):
                     errors.update(eventForm.errors)
             if not errors:
                 myevent = eventForm.save()
-                myevent.condition = 2
+                if not user.is_superuser:
+                    myevent.condition = 2
+                    myevent.save()
                 i = 0
                 while True:
                     priceinput = request.POST.get("ticket-price-{}".format(i), None)
@@ -176,7 +179,7 @@ def event_view(request, event_id):
     event = Event.objects.get(id=event_id)
     ticket_types = TicketType.objects.filter(event=event)
     categories = Category.objects.all()
-    offered_events = event.subcategory.event_set.exclude(id=event.id).filter(pk__in=[0, 1, 2, 3, 4, 5])
+    offered_events = event.subcategory.event_set.exclude(id=event.id)[:4]
     return render(request, 'event_page.html', {'offered_events':offered_events,
                                                'event': event,
                                                'ticket_types': ticket_types, 
