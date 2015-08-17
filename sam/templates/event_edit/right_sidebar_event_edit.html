@@ -10,7 +10,7 @@
             </a>
         </div>
         <div class="row">
-            <a href="/events/edit_events/remove/{{ event.id }}">
+            <a href="/events/delete_event/{{ event.id }}">
               <button class="col-md-12 btn sam-event-button thumbnail" href="#" target="_blank">
                   <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                   حذف رویداد
@@ -24,10 +24,12 @@
           </button>
        </div>
       <div class="row">
+          <a href="{{ event.verification_file.url }}">
               <button class="col-md-12 btn sam-event-button thumbnail" href="#" target="_blank">
                   <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
     مشاهده مدارک اعتبارسنجی
               </button>
+              </a>
       </div>
       <div class="row">
           <h5><b>

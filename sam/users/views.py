@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from events.models import *
 from users.models import Dealer, Customer
-from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm, AddSubCategory, AddCategory, EditCategory
+from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm, AddSubCategory, AddCategory, EditCategory, EditUserForm
 from django.http import HttpResponse, HttpResponseRedirect
 from events.forms import EventForm
 from django.core import serializers
@@ -156,7 +156,42 @@ def show_profile(request):
         except Dealer.DoesNotExist:
             print('no cases {}'.format(user))
 
+@login_required
+def edit_profile(request):
+    id = request.user.id
+    user = User.objects.get(id=id)
+    if request.method == "POST":
+        ret = {
+            'userForm': EditUserForm(request.POST, instance=user),
+        }
+    else:
+        ret = {
+            'userForm': EditUserForm(instance=user),
+        }
+    return render(request, 'auth/edit_user_page.html', ret)
 
+@login_required  
+def submit_edit_profile(request):
+    user = request.user
+    errors = {}
+    if request.method == "POST":
+        userForm = EditUserForm(request.POST, instance=user)
+        if not userForm.is_valid():
+                errors = errors.copy()
+                errors.update(userForm.errors)
+        if not errors:
+            new_user = userForm.save()
+            auth_user = authenticate(username=new_user.username, password=request.POST['password'])
+            login_auth(request, auth_user)
+            return redirect(reverse('users:home'))
+        else:  # if errors
+            print("sign up errors: {}".format(errors))
+            return render(request, 'auth/edit_user_page.html', {'signup_customer_errors': errors,
+                                                 'userForm': userForm,
+            })
+    else:
+        return redirect(reverse('users:home'))
+        
 def add_subcategory(request):
     categories = Category.objects.all()
     if request.method == 'POST' and 'add_subcat' in request.POST:

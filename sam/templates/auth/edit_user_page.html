@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block main_column %}
+<div class="row">
+    <form name="submit_edit_profile" method="post" action="{% url 'users:submit_edit_profile' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ userForm.first_name.field.widget.attrs.id }}">نام</label>
+            {% if userForm.first_name.errors %}
+                <span class="small" role="alert"> {{ userForm.first_name.errors }}</span>
+            {% endif %}
+            {{ userForm.first_name }}
+        </div>
+        <div class="form-group">
+            <label for="{{ userForm.last_name.field.widget.attrs.id }}">نام خانوادگی</label>
+            {% if userForm.last_name.errors %}
+                <span class="small" role="alert"> {{ userForm.last_name.errors }}</span>
+            {% endif %}
+            {{ userForm.last_name }}
+        </div>
+        <div class="form-group">
+            <label for="{{ userForm.email.field.widget.attrs.id }}">آدرس ایمیل</label>
+            {% if userForm.email.errors %}
+                <span class="small" role="alert"> {{ userForm.email.errors }}</span>
+            {% endif %}
+            {{ userForm.email }}
+        </div>
+        <div class="form-group">
+            <label for="{{ userForm.password.field.widget.attrs.id }}">رمز عبور</label>
+            {% if userForm.password.errors %}
+                <span class="small" role="alert"> {{ userForm.password.errors }}</span>
+            {% endif %}
+            {{ userForm.password }}
+        </div>
+        <div class="form-group">
+            <label for="{{ userForm.re_password.field.widget.attrs.id }}"> تکرار رمز عبور</label>
+            {% if userForm.re_password.errors %}
+                <span class="small" role="alert"> {{ userForm.re_password.errors }}</span>
+            {% endif %}
+            {{ userForm.re_password }}
+        </div>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-success">ثبت</button>
+    </form>
+</div>
+{% endblock %}
