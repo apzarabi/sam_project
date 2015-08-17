@@ -29,7 +29,7 @@
                 <h5>قیمت بلیت</h5>
                 <div class="row">
                     <div class="col-md-12">
-                        <h4> {{ event.cheapest_ticket |farsi_num}} تومان</h4>
+                        <h4> {{ price |farsi_num}} تومان</h4>
                     </div>
                 </div>
             </div>
@@ -48,8 +48,8 @@
             <h5>فروشنده</h5>
             <div class="row">
                 <div class="col-md-12">
-                    {% if event.dealer.name|length > 0 %}
-                        <h4>{{ event.dealer.name |farsi_num}}</h4>
+                    {% if event.dealer.userInfo.user.get_full_name|length > 0 %}
+                        <h4>{{ event.dealer.userInfo.user.get_full_name }}</h4>
                     {% else %}
                         <h4>-</h4>
                     {% endif %}

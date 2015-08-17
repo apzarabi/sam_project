@@ -6,13 +6,16 @@ from django.contrib.auth import authenticate, login as login_auth, logout as aut
 from django.contrib.auth.decorators import login_required
 
 from events.models import *
-from users.models import Dealer, Customer
+from users.models import Dealer, Customer, UserInfo
 from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm, AddSubCategory, AddCategory, EditCategory, EditUserForm
 from django.http import HttpResponse, HttpResponseRedirect
 from events.forms import EventForm
+from django.contrib.auth.models import User
 
 from django.views.decorators.http import condition
 
+from random import randint
+from numpy.f2py.auxfuncs import throw_error
 
 def make_sign_up_form():
     """ every view that has sign up button, should call this method and put the
@@ -234,25 +237,27 @@ def edit_category(request):
         edit_form1 = EditCategory()
     return render(request, 'admin_profile.html', {'form1':form1, 'form2':form2, 'edit_form1':edit_form1, 'categories':categories})
 
-
-
-
-
-
 def home(request):
-    event = Event.objects.get(id=1)
-    categories = Category.objects.all()
     accepted = Event.objects.filter(condition=0).all()
+    rand_id = randint(1,len(accepted))
+    event = accepted[rand_id-1]
+    ticket_types = TicketType.objects.filter(event=event)
+    
+    categories = Category.objects.all()
     time_sorted = sorted(accepted, key= lambda t: t.first_date())
+    time_sorted.reverse()
     newevents = time_sorted[:6]
     
     sell_sorted = sorted(accepted, key= lambda t: t.sold_tickets_number())
-    topsellerevents = sell_sorted[:6]
+    sell_sorted.reverse()
+    topsellerevents = sell_sorted[-6:]
     
     popular_sorted = sorted(accepted, key= lambda t: t.rating())
+    popular_sorted.reverse()
     popularevents = popular_sorted[:6]
     return render(request, 'home.html', {'categories': categories, 'event': event, 'newevents': newevents,
-                                         'topsellerevents': topsellerevents, 'popularevents': popularevents})
+                                         'topsellerevents': topsellerevents, 'popularevents': popularevents,
+                                         'ticket_types': ticket_types})
 
 def logout(request):
     auth_logout(request)
@@ -289,7 +294,63 @@ def home_log_out(request):
 
 
 def payment(request):
-    return render(request, 'payment.html', {})
+    try:
+        if request.user.is_superuser:
+            raise Customer.DoesNotExist()
+        customer = request.user.userinfo.customer
+        if request.method == "POST":
+            event_id = request.POST.get("event_id")
+            event = Event.objects.get(id=event_id)
+            ticket_types = TicketType.objects.filter(event=event)
+            total = 0
+            order = Order()
+            order.event = event
+            order.customer = customer
+            order.save()
+            for type in ticket_types:
+                bought = request.POST.get("type_"+str(type.id))
+                if len(bought) > 0:
+                    col = randint(1,80)
+                    row = randint(1,80)
+                    total = total + int(bought) * int(type.price)
+                    bought = int(bought)
+                    type.buy(bought)
+                    for i in range(0, bought):
+                        ticket = Ticket()
+                        ticket.event = event
+                        ticket.type = type
+                        ticket.order = order
+                        ticket.row = row
+                        ticket.column = col
+                        col += 1
+                        ticket.save()
+            if total > 0:        
+                return render(request, 'payment.html', {'price': total})
+            else:
+                return redirect(reverse('users:home'))
+    except Customer.DoesNotExist:
+        return_url = reverse('users:home')
+        return render(request, 'info_template.html', {'message':"متاسفانه سطح کاربری شما اجازه‌ی خرید ندارد.", 
+                                                      'return_url': return_url})
+
+def cancel_payment(request):
+    try:
+        if request.user.is_superuser:
+            raise Customer.DoesNotExist()
+        customer = request.user.userinfo.customer
+        orders = Order.objects.filter(customer=customer).all()
+        order = orders[len(orders) - 1]
+        event = order.event
+        tickets = Ticket.objects.filter(order=order).all()
+        for ticket in tickets:
+            ticket.type.cancel()
+            ticket.delete()
+        order.delete()
+        return redirect(reverse('users:home'))
+    except Customer.DoesNotExist:
+        return_url = reverse('users:home')
+        return render(request, 'info_template.html', {'message':"متاسفانه خظایی در سامانه رخ داده است.", 
+                                                      'return_url': return_url})
 
 
 def search(request):
@@ -301,11 +362,39 @@ def admin(request):
 
 
 def payment_success(request):
-    return render(request, 'successful_payment.html', {})
+    try:
+        if request.user.is_superuser:
+            raise Customer.DoesNotExist()
+        customer = request.user.userinfo.customer
+        orders = Order.objects.filter(customer=customer).all()
+        order = orders[len(orders) - 1]
+        random = 132*1000
+        return_code = random + order.id
+        return render(request, 'successful_payment.html', {'order': order, 'return_code': return_code})
+    except Customer.DoesNotExist:
+        return_url = reverse('users:home')
+        return render(request, 'info_template.html', {'message':"متاسفانه خظایی در سامانه رخ داده است.", 
+                                                      'return_url': return_url})
 
+def print_ticket(request, **kwargs):
+    order_id = int(kwargs.pop('return_code')) % 1000
+    try:
+        if request.user.is_superuser:
+            raise Customer.DoesNotExist()
+        customer = request.user.userinfo.customer
+        try:
+            order = Order.objects.filter(customer=customer).get(id=order_id)
+            tickets = Ticket.objects.filter(order=order).all()
+            return render(request, 'printable_ticket.html', {'tickets': tickets})
+        except Exception:
+            return_url = reverse('users:home')
+            return render(request, 'info_template.html', {'message':"شماره‌ی پیگیری را اشتباه وارد کرده‌اید.", 
+                                                      'return_url': return_url})
+    except Customer.DoesNotExist:
+        return_url = reverse('users:home')
+        return render(request, 'info_template.html', {'message':"متاسفانه خظایی در سامانه رخ داده است.", 
+                                                      'return_url': return_url})
 
-def print_ticket(request):
-    return render(request, 'printable_ticket.html', {})
 
 
 def customer_profile(request):

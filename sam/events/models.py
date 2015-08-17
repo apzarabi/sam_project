@@ -3,7 +3,7 @@ import uuid
 from django.db import models
 from users.models import Customer, Dealer
 from django.contrib.auth.models import User
-
+from datetime import datetime  
 
 def get_picture_path(instance, filename):
     """ this function is derived from a function by amirali moinfar for webcourse spring 2015."""
@@ -131,10 +131,16 @@ class TicketType(models.Model):
 
     def __unicode__(self):
         return u"بلیط {} از رویداد {}".format(self.name, self.event.name)
-
-
+    
+    def buy(self, bought):
+        self.available = self.available - bought
+        self.save()
+        
+    def cancel(self):
+        self.available = self.available + 1
+        
 class Order(models.Model):
-    datetime = models.DateTimeField(u"زمان", null=False, blank=False)
+    datetime = models.DateTimeField(u"زمان", default=datetime.now, null=False, blank=False)
 
     event = models.ForeignKey(Event)
     customer = models.ForeignKey(Customer)
@@ -150,11 +156,12 @@ class Ticket(models.Model):
 
     event = models.ForeignKey(Event)
     order = models.ForeignKey(Order)
-
+    type = models.ForeignKey(TicketType, null=True)
+    
+    
     class Meta:
         verbose_name = u"بلیط"
         verbose_name_plural = u"بلیط‌ها"
-
 
 class Comment(models.Model):
     text = models.TextField(u"متن", null=False, blank=False)

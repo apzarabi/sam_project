@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="rtl">
@@ -9,6 +11,21 @@
     <meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5"/>
     <link href="Resource/MergedStyle.css" rel="stylesheet"/>
     <link href="Resource/OriginalResource/timeTo.css" rel="stylesheet" type="text/css"/>
+       <!-- Bootstrap core CSS -->
+    <link href="{% static 'frameworks/bootstrap-rtl/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Bootstrap RTL theme -->
+    <link href="{% static 'frameworks/bootstrap-rtl/dist/css/bootstrap-rtl.min.css' %}" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="{% static 'frameworks/bootstrap-rtl/bootstrap/dist/css/bootstrap-theme.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'frameworks/bootstrap-rtl/examples/rtl/rtl.css' %}" rel="stylesheet">
+
+    <!-- style for raty -->
+    <link href="{% static 'frameworks/raty/lib/jquery.raty.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/main_style_sheet.css' %}" rel="stylesheet">
+
 </head>
 <body>
 <form name="Form1" method="post" action="default.aspx?au=257415373" onsubmit="javascript:return WebForm_OnSubmit();"
@@ -58,8 +75,6 @@
         <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
                value="/wEWDAKf65CECwKpm7aDBAKpm6qFBwKpm77gDwKpm9K7CAL/+tKdDgKGqOnTDwL3h7HQDAKz2tiJCAKg5NvXBAKgkIrxDQKQ9M/rBdkLK/mBD4c6/E5N+ByADheV2QQf"/>
     </div>
-    <div id="imgCaptchaToolTip" class="dynatip" dir="rtl">
-        &nbsp;</div>
     <div id="imgbtnRefreshCaptchaToolTip" class="dynatip" dir="rtl">
         &nbsp;</div>
     <div id="KeyPadToolTip" class="dynatip" dir="rtl">
@@ -70,7 +85,6 @@
         <tr>
             <td class="LogoBox">
 
-                <img id="bankimg" src="Resource/shaparak.jpg" style="border-width:0px;"/>
             </td>
             <td id="celHdr" class="CaptionBox">
                 <div>
@@ -141,7 +155,7 @@
                         <td class="PGW1">
                             مبلغ خريد
                         </td>
-                        <td id="cellAmount" class="PGW2">50,000 ريال</td>
+                        <td id="cellAmount" class="PGW2">{{price}} ريال</td>
 
                     </tr>
                 </table>
@@ -219,26 +233,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" colspan="2">
-                            <center>
-                                <img id="imgCaptcha" src="JpegImage.aspx" alt="" class="CaptchImg"/>
-                                <span id="imgbtnRefreshCaptcha" class="RefreshCaptchaImg"></span>
-                            </center>
-                        </td>
-                    </tr>
-                    <tr>
                         <td colspan="2" align="center">
                         </td>
                     </tr>
                     <tr class="footerOwner">
                         <td class="PGWFooter" align="center" colspan="2">
-                            <a href="/users/test/payment/successful/">
+                            <a href="{% url 'users:success' %}">
                                 <div class="btn btn-success">پرداخت</div>
                             </a>
                             &nbsp; &nbsp; &nbsp;&nbsp;
-                            <input type="submit" name="btnCancel" value="انصراف" id="btnCancel" tabindex="10"
-                                   class="Button_Public"/>
-                            <span id="valPecCard" style="color:Red;visibility:hidden;"></span>
+                            <a href="{% url 'users:cancel_payment' %}">
+                                <div class="btn btn-default">انصراف</div>
+                            </a>
                         </td>
                     </tr>
                 </table>
@@ -331,6 +337,15 @@
     });
 
 </script>
+
+<script src="{% static 'jquery-1.11.1.min.js' %}" type="text/javascript" charset="utf-8"></script>
+<script src="{% static 'frameworks/bootstrap-rtl/bootstrap/dist/js/bootstrap.min.js' %}" type="text/javascript"
+        charset="utf-8"></script>
+<script src="{% static 'frameworks/bootstrap-rtl/bootstrap/docs/assets/js/docs.min.js' %}" type="text/javascript"
+        charset="utf-8"></script>
+<script src="{% static 'frameworks/raty/lib/jquery.raty.js' %}"></script>
+<script src="{% static 'js/main_scripts.js' %}"></script>
+
 
 </body>
 </html>

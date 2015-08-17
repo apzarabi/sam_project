@@ -1,4 +1,4 @@
-{% extends 'home_log_out.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block main_column %}
@@ -7,8 +7,8 @@
             پرداخت شما با موفقیت انجام شد.
         </strong>
         <br>
-        کد رهگیری شما: 03452345
+        کد رهگیری شما: {{return_code}}
     </div>
-    <a href="/users/test/ticket/">
+    <a href="{% url 'users:ticket' return_code %}">
         <div type="button" class="btn btn-default">چاپ بلیط</div>
 {% endblock %}
