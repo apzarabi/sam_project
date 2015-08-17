@@ -144,8 +144,10 @@ def show_profile(request):
                                                               'allevents': allevents})
     try:
         customer = user.userinfo.customer
+        orders = Order.objects.filter(customer=customer).all()
         return render(request, 'customer_profile.html', {'user': user,
                                                          'profile_user': customer,
+                                                         'orders': orders,
                                                          'categories': categories})
     except Customer.DoesNotExist:
         try:

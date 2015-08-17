@@ -8,9 +8,9 @@
 {% endblock %}
 
 {% block main_column %}
-    {% for item in purchased_events %}
+    {% for order in orders %}
     <div>
-        {% include 'event_row_purchased' with event=item %}
+        {% include 'event_row_parts/event_row_print.html' with order=order %}
     </div>
     {% endfor %}
 {% endblock %}

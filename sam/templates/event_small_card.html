@@ -1,7 +1,8 @@
 {% load static %}
 {% load farsi_num %}
 <html>
-    <head></head>
+    <head>
+    </head>
     <body>
         {% load static %}
         <div class="thumbnail">
@@ -12,15 +13,15 @@
             <div class="caption">
                 <a href= {% url 'events:event_view' event.id %}>
                     <h4> {{ event.name }}
-                        <small class="badge"> {{ event.neighborhood }}</small>
                     </h4>
+                    <small class="badge"> {{ event.neighborhood }}</small>
                 </a>
             </div>
             <div class="row sam-event-small-card-detail">
-                    <div class="col-md-5 ">
+                    <div class="col-md-6 ">
                        <div class="raty-star"></div>
                     </div>
-                    <div class="col-md-4 col-md-offset-3 ">
+                    <div class="col-md-4 col-md-offset-2 ">
                         {{ event.sold_tickets_number|farsi_num }} <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                     </div>
             </div>

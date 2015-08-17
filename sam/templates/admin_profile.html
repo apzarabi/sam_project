@@ -37,6 +37,7 @@ $(window).on('popstate', function() {
             <li role="presentation"><a href="#report" aria-controls="report" role="tab" data-toggle="tab"> گزارش </a></li>
             <li role="presentation"><a href="#checking-events" aria-controls="checking-events" role="tab" data-toggle="tab">رویداهای منتظر بررسی</a></li>
             <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab">لیست رویدادها</a></li>
+            <li role="presentation"><a href="#users" aria-controls="users" role="tab" data-toggle="tab">لیست کاربران</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -47,6 +48,7 @@ $(window).on('popstate', function() {
             <div role="tabpanel" class="tab-pane" id="report"> {% include 'admin_profile_parts/report.html' %} </div>
             <div role="tabpanel" class="tab-pane" id="checking-events">{% include 'admin_profile_parts/checking-events.html' with allevents=allevents %}</div>
             <div role="tabpanel" class="tab-pane" id="events">{% include 'admin_profile_parts/events.html' with allevents=allevents %}</div>
+            <div role="tabpanel" class="tab-pane" id="users">{% include 'admin_profile_parts/users.html' with allevents=allevents allusers=allusers %}</div>
         </div>
 
     </div>

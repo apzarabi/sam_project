@@ -54,6 +54,7 @@ class Dealer(models.Model):
     )
     condition = models.IntegerField(u"وضعیت", choices=CONDITION_CHOICES, default=2, null=False, blank=False)
     condition_description = models.TextField(u"توضیحات وضعیت", null=False, blank=False)
+    starred = models.BooleanField(u"ویژه", blank=True, default=False)
     userInfo = models.OneToOneField(UserInfo, null=False, blank=False)
     registryNumber = models.CharField(u"شماره‌ی ثبت", max_length=10, null=False, blank=False, unique=True)
     certificate = models.FileField(u"مدرک اعتبار سنجی", upload_to='certifications/', null=True, blank=True)
