@@ -152,6 +152,7 @@ class AddSubCategory(forms.ModelForm):
         self.fields['name'].widget.attrs.update({'class':"form-control form-group",
                                                 'id':"subcategory_name",
                                                     })
+        self.fields['category'].empty_label = None
 
 class AddCategory(forms.ModelForm):
     class Meta:
@@ -167,12 +168,14 @@ class AddCategory(forms.ModelForm):
 
 
 class EditCategory(forms.ModelForm):
+    subject = forms.ModelChoiceField(label = "نام دسته", queryset=Category.objects.all(), empty_label=None)
+    ORDER=('name', 'subject')
     class Meta:
         model = Category
-        fields = {'subject', 'name'}
+        fields = {'name', 'subject'}
         labels = {'name':'نام جدید'}
 
-    subject = forms.ModelChoiceField(label = "دسته", queryset=Category.objects.all())
+
 
     def __init__(self, *args, **kwargs):
         super(EditCategory, self).__init__(*args, **kwargs)

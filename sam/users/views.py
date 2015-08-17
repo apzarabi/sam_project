@@ -11,6 +11,8 @@ from .forms import UserForm, UserInfoForm, CustomerForm, DealerForm, AddSubCateg
 from django.http import HttpResponse, HttpResponseRedirect
 from events.forms import EventForm
 from django.contrib.auth.models import User
+from django.core import serializers
+
 
 from django.views.decorators.http import condition
 
@@ -208,7 +210,6 @@ def add_subcategory(request):
     return render(request, 'admin_profile.html', {'form2': form2, 'form1': form1, 'categories':categories})
 
 def add_category(request):
-    print("ei baba")
     categories = Category.objects.all()
     if request.method == 'POST' and 'add_cat' in request.POST:
         form2 = AddCategory(request.POST)
@@ -236,6 +237,41 @@ def edit_category(request):
         form2 = AddCategory()
         edit_form1 = EditCategory()
     return render(request, 'admin_profile.html', {'form1':form1, 'form2':form2, 'edit_form1':edit_form1, 'categories':categories})
+
+
+def edit_subcategory(request):
+    subcategories = Subcategory.objects.all()
+    categories = Category.objects.all()
+    print(request.POST)
+    if request.method == 'POST' and 'edit_subcat' in request.POST:
+        print(request.POST)
+        subcat = Subcategory.objects.get(id=request.POST.get('editSub'))
+        subcat.name = request.POST.get('subcat_name')
+        subcat.save()
+        return_url = reverse('users:show_profile')
+        return render(request, 'info_template.html', {'message':"نام زیردسته مورد نظر به روزرسانی شد.", 'return_url': return_url})
+    else:
+        form1 = AddSubCategory()
+        form2 = AddCategory()
+        edit_form1 = EditCategory()
+    return render(request, 'admin_profile.html', {'form1':form1, 'form2':form2, 'edit_form1':edit_form1, 'categories':categories})
+
+
+def remove_subcategory(request):
+    subcategories = Subcategory.objects.all()
+    categories = Category.objects.all()
+    print(request.POST)
+    if request.method == 'POST' and 'remove_subcat' in request.POST:
+        print(request.POST)
+        Subcategory.objects.filter(id=request.POST.get('removeSub')).delete()
+        return_url = reverse('users:show_profile')
+        return render(request, 'info_template.html', {'message':"زیردسته مورد نظر حذف شد.", 'return_url': return_url})
+    else:
+        form1 = AddSubCategory()
+        form2 = AddCategory()
+        edit_form1 = EditCategory()
+    return render(request, 'admin_profile.html', {'form1':form1, 'form2':form2, 'edit_form1':edit_form1, 'categories':categories})
+
 
 def home(request):
     accepted = Event.objects.filter(condition=0).all()
@@ -403,3 +439,15 @@ def customer_profile(request):
 
 def dealer_profile(request):
     return render(request, 'dealer_profile.html', {})
+
+
+def all_json_subs(request, catpk):
+    print(catpk)
+    print("HHHHH")
+    current_cat = Category.objects.get(pk=catpk)
+    print(current_cat)
+    subs = Subcategory.objects.all().filter(category=current_cat)
+    print(subs)
+    json_subs = serializers.serialize("json", subs)
+    print(json_subs)
+    return HttpResponse(json_subs)

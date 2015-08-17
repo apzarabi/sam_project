@@ -3,15 +3,33 @@
 <div class="col-md-12 sam-event-edit">
     <div class="col-md-12">
         <div class="row">
-              <button class="col-md-12 btn sam-event-button thumbnail" href="#" target="_blank">
+            <a href="/users/show_profile/#checking-events">
+              <button class="col-md-12 btn sam-event-button thumbnail">
     بازگشت به صفحه بررسی رویداد‌ها
               </button>
+            </a>
         </div>
+        <div class="row">
+            <a href="/events/delete_event/{{ event.id }}">
+              <button class="col-md-12 btn sam-event-button thumbnail" href="#" target="_blank">
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  حذف رویداد
+              </button>
+             </a>
+       </div>
+        <div class="row">
+          <button class="col-md-12 btn sam-event-button thumbnail" href="#" target="_blank">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+ویرایش رویداد
+          </button>
+       </div>
       <div class="row">
+          <a href="{{ event.verification_file.url }}">
               <button class="col-md-12 btn sam-event-button thumbnail" href="#" target="_blank">
                   <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
     مشاهده مدارک اعتبارسنجی
               </button>
+              </a>
       </div>
       <div class="row">
           <h5><b>
@@ -44,5 +62,5 @@
                 </button>
             </div>
         </form>
-    </div>
+      </div>
 </div>

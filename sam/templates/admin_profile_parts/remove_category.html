@@ -1,55 +1,9 @@
-<script type="text/javascript">
-    function configureDropDownLists(ddl1,ddl2) {
-        switch (ddl1.value) {
-            {% for category in categories %}
-            case "{{ category.id }}":
-                ddl2.options.length = 0;
-                {% for subcat in category.subcategory_set.all %}
-                    createOption(ddl2, "{{ subcat.name }}", {{ subcat.id }});
-                {% endfor %}
-                break;
-            {% endfor %}
-        }
-
-    }
-
-    function createOption(ddl, text, value) {
-        var opt = document.createElement('option');
-        opt.value = value;
-        opt.text = text;
-        ddl.options.add(opt);
-    }
-</script>
-
 <br>
 <div class="row">
-    <div class="col-md-5">
-        <form>
-            <h4>حذف یک زیردسته:</h4>
-            <div class="form-group">
-                <label for="categories_remove_select">دسته</label>
-                <select class="form-control" id="categories_remove_select">
-                    {% for category in categories %}
-                            <option value="{{ category.id }}"> {{ category.name }} </option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="subcategories_remove_select">زیردسته</label>
-                <select class="form-control" id="subcategories_remove_select" disabled>
-                    {% for subcategory in categorie %}
-                        <option>{{subcategory.name}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <button type="submit" class="btn btn-danger">حذف زیردسته</button>
-        </form>
-    </div>
-
-    <div class="col-md-5 col-md-offset-2">
+    <div class="col-md-5 ">
         <form method="post" action="{%url 'events:remove_category' %}">
             {% csrf_token %}
-            <h4>حذف یک دسته:</h4>
+            <label>حذف یک دسته:</label>
             <div class="form-group">
                 <label for="category">دسته</label>
                 <select class="form-control" id="subcategories_remove" name="category_id">
@@ -61,5 +15,62 @@
             <button type="submit" class="btn btn-danger">حذف دسته‌</button>
         </form>
     </div>
+    <div class="col-md-5 col-md-offset-2">
+        <label>حذف یک زیردسته:</label>
+        <form id="subcatRemoveForm" method="post" accept-charset="utf-8" action="/users/remove_subcategory" name="remove_subcategory">
+            {% csrf_token %}
+            <label for="removeCat">نام دسته:</label>
+            <select class="form-control form-group" name="removeCat" id="removeCat">
+                <option value="Z">دسته</option>
+                {% for category in categories %}
+                    <option class="form-control" value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="removeSub">نام زیردسته:</label>
+            <select  class="form-control form-group" name="removeSub" id="removeSub" disabled="true">
+                <option value="Z" class="form-control" >زیردسته</option>
+            </select>
+            <button type="submit" class="btn btn-danger" name="remove_subcat" id="remove_subcat_submit">حذف زیردسته</button>
+        </form>
+        <script>
+            $(document).ready(
+                 function() {
+                     $("select#removeCat").change(function() {
+                         if ($(this).val() == 'Z') {
+                             $("select#removeSub").html("<option>زیردسته</option>");
+                             $("select#removeSub").attr('disabled', true);
+                         }
+                         else {
+                             var url = "/users/removeCat/" + $(this).val() + "/all_json_subs/";
+                             var cat = $(this).val();
+                             $.getJSON(url, function(categories) {
+                                 console.log("hello");
+                                 var options = '<option class="col-md-12" value="Z">زیردسته</option>';
+                                 if (categories.length == 0){
+                                     $("select#removeSub").html("<option>زیردسته</option>");
+                                     $("select#removeSub").attr('disabled', true);
+                                 }
+                                 else{
+                                     options='';
+                                     for (var i = 0; i < categories.length; i++) {
+                                        options += '<option class="col-md-12" value="' + categories[i].pk + '">' + categories[i].fields['name'] + '</option>';
+                                     }
+                                     $("select#removeSub").html(options);
+                                     $("select#removeSub option:first").attr('selected', 'selected');
+                                     $("select#removeSub").attr('disabled', false);
+                                 }
+                             });
+                         }
+                     });
 
+
+                     $("select#removeSub").change(function(vent) {
+                         if ($(this).val() == -1) {
+                             return;
+                         }
+                     });
+                 }
+            );
+        </script>
+    </div>
 </div>

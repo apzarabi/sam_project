@@ -132,7 +132,8 @@ def delete(request, **kwargs):
     event_id = int(kwargs.pop('event_id'))
     Event.objects.get(id=event_id).delete()
     message = "رویداد مورد نظر حذف شد."
-    return render(request, 'info_template.html', {'message': message})
+    return_url = reverse('users:show_profile')
+    return render(request, 'info_template.html', {'message': message, 'return_url': return_url})
 
 def remove_category(request):
     category_id = request.POST.get("category_id")

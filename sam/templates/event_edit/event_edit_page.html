@@ -25,7 +25,7 @@
 
 
 {% block right_sidebar %}
-        {% include 'event_edit/right_sidebar_event_edit.html' %}
+        {% include 'event_edit/right_sidebar_event_edit.html' with prev_tab=prev_tab %}
 {% endblock %}
 
 {% block main_column %}
@@ -34,24 +34,6 @@
 </div>
 <div class="row">
     {% include 'event_info_addr_card.html' %}
-</div>
-
-<div class="row">
-    <div class="col-md-4 sam-border">
-        {% include 'event_small_card.html' with event=event%}
-    </div>
-    <div class="col-md-4 sam-border">
-        {% include 'event_small_card.html' %}
-    </div>
-    <div class="col-md-4 sam-border">
-        {% include 'event_small_card.html' %}
-    </div>
-    <div class="col-md-4 sam-border">
-        {% include 'event_small_card.html' %}
-    </div>
-    <div class="col-md-4 sam-border">
-        {% include 'event_small_card.html' %}
-    </div>
 </div>
 {% endblock %}
 

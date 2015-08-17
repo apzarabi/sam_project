@@ -27,6 +27,10 @@ urlpatterns = [
     url(r'^add_category', 'users.views.add_category', name='add_category'),
     url(r'^add_subcategory', 'users.views.add_subcategory', name="add_subcategory"),
     url(r'^edit_category', 'users.views.edit_category', name="edit_category"),
+    url(r'^edit_subcategory', 'users.views.edit_subcategory', name="edit_category"),
+    url(r'^editCat/(?P<catpk>[-\w]+)/all_json_subs/$', 'users.views.all_json_subs'),
+    url(r'^remove_subcategory', 'users.views.remove_subcategory', name="remove_category"),
+    url(r'^removeCat/(?P<catpk>[-\w]+)/all_json_subs/$', 'users.views.all_json_subs'),
     url(r'^edit_profile', 'users.views.edit_profile', name='edit_profile'),
     url(r'^submit_edit_profile', 'users.views.submit_edit_profile', name='submit_edit_profile'),
 ]
