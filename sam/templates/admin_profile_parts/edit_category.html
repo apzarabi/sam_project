@@ -1,11 +1,76 @@
 <br>
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-5 ">
+        <label>ویرایش نام یک دسته:</label>
         <form name="edit_category" method="post" action="/users/edit_category/">
         {% csrf_token %}
             {{ edit_form1 }}
-            <button type="submit" class="btn btn-success" name="edit_cat">ویرایش نام دسته</button>
+            <button type="submit" class="btn btn-success" name="edit_cat">تغییر نام دسته</button>
         </form>
     </div>
+    <div class="col-md-5 col-md-offset-2">
+        <label>ویرایش نام یک زیردسته:</label>
+        <form id="subcatForm" method="post" accept-charset="utf-8" action="/users/edit_subcategory" name="edit_subcategory">
+            {% csrf_token %}
+            <label for="editCat">نام دسته:</label>
+            <select class="form-control form-group" name="editCat" id="editCat">
+                <option value="Z">دسته</option>
+                {% for category in categories %}
+                    <option class="form-control" value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="editSub">نام زیردسته:</label>
+            <select  class="form-control form-group" name="editSub" id="editSub" disabled="true">
+                <option value="Z" class="form-control" >زیردسته</option>
+            </select>
+            <label>نام جدید:</label>
+            <input class="form-control form-group" id="subcat_name" maxlength="255" name="subcat_name" type="text" disabled>
+            <button type="submit" class="btn btn-success" name="edit_subcat" id="edit_subcat_submit">تغییر نام زیردسته</button>
+        </form>
+        <script>
+            $(document).ready(
+                 function() {
+                     $("select#editCat").change(function() {
+                         if ($(this).val() == 'Z') {
+                             $("select#editSub").html("<option>زیردسته</option>");
+                             $("select#editSub").attr('disabled', true);
+                             $("#subcat_name").attr('disabled', true);
+                         }
+                         else {
+                             var url = "/users/editCat/" + $(this).val() + "/all_json_subs/";
+                             var cat = $(this).val();
+                             $.getJSON(url, function(categories) {
+                                 console.log("hello");
+                                 var options = '<option class="col-md-12" value="Z">زیردسته</option>';
+                                 if (categories.length == 0){
+                                     $("select#editSub").html("<option>زیردسته</option>");
+                                     $("select#editSub").attr('disabled', true);
+                                     $("#subcat_name").attr('disabled', true);
+                                 }
+                                 else{
+                                     options='';
+                                     for (var i = 0; i < categories.length; i++) {
+                                        options += '<option class="col-md-12" value="' + categories[i].pk + '">' + categories[i].fields['name'] + '</option>';
+                                     }
+                                     $("select#editSub").html(options);
+                                     $("select#editSub option:first").attr('selected', 'selected');
+                                     $("select#editSub").attr('disabled', false);
+                                     $("#subcat_name").removeAttr('disabled');
+                                 }
+                             });
+                         }
+                     });
 
+
+                     $("select#editSub").change(function(vent) {
+                         if ($(this).val() == -1) {
+                             return;
+                         }
+                         console.log("ajaaaaaaaaaaaab");
+                         $("#subcat_name").removeAttr('disabled');
+                     });
+                 }
+            );
+        </script>
+    </div>
 </div>
