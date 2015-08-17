@@ -17,7 +17,6 @@ from django.core import serializers
 from django.views.decorators.http import condition
 
 from random import randint
-from numpy.f2py.auxfuncs import throw_error
 
 def make_sign_up_form():
     """ every view that has sign up button, should call this method and put the
@@ -157,7 +156,8 @@ def show_profile(request):
             return render(request, 'dealer_profile.html', {'user': user,
                                                            'profile_user': dealer,
                                                            'categories': categories,
-                                                           'eventform': eventform})
+                                                           'eventform': eventform,
+                                                           'allevents': allevents})
         except Dealer.DoesNotExist:
             print('no cases {}'.format(user))
 
@@ -258,6 +258,21 @@ def edit_subcategory(request):
         edit_form1 = EditCategory()
     return render(request, 'admin_profile.html', {'form1':form1, 'form2':form2, 'edit_form1':edit_form1, 'categories':categories})
 
+def admin_comment(request):
+    subcategories = Subcategory.objects.all()
+    categories = Category.objects.all()
+    print(request.POST)
+    if request.method == 'POST' and 'submit_admin_comment' in request.POST:
+        print("miad inja baba!")
+        myevent = Event.objects.get(id=request.POST.get('event_id'))
+        myevent.condition_description = request.POST.get('admin_comment')
+        myevent.condition = int(request.POST.get('result'))
+        myevent.save()
+        return HttpResponseRedirect('/events/edit_event/'+str(myevent.id)+'/1')
+    form1 = AddSubCategory()
+    form2 = AddCategory()
+    edit_form1 = EditCategory()
+    return render(request, 'admin_profile.html', {'form1':form1, 'form2':form2, 'edit_form1':edit_form1, 'categories':categories})
 
 def remove_subcategory(request):
     subcategories = Subcategory.objects.all()

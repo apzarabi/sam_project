@@ -13,18 +13,17 @@
                                 توضیحات
                             </h5>
                             <p>{{event.description}}</p>
-                            <!--<h5 class="sam-info-title">
+                            <h5 class="sam-info-title">
                                <span class="glyphicon glyphicon-phone-alt sam-info-title" aria-hidden="true"></span>
 شماره تماس:
                             </h5>
-                            <p>شعبه یک (ونک) -------------- ۰۲۱-۷۷۹۷۱۲۳۳</p>
-                            <p>شعبه دو (تهران پارس) ---------- ۰۲۱-۸۸۹۰۱۲۱۲</p>-->
+                            <p>{{ event.phone_number }}</p>
                              <h5 class="sam-info-title">
                                <span class="glyphicon glyphicon-briefcase sam-info-title" aria-hidden="true"></span>
 فروشنده:
                             </h5>
-                            {% if event.dealer.name|length > 0 %}
-                              <p>{{ event.dealer.name }}</p>
+                            {% if event.dealer.userInfo.user.get_full_name|length > 0 %}
+                              <p>{{ event.dealer.userInfo.user.get_full_name }}</p>
                             {% else %}
                               <p>نامشخص</p>
                             {% endif %}

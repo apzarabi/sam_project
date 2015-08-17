@@ -25,7 +25,11 @@
 
 
 {% block right_sidebar %}
+    {% if done == 0 %}
         {% include 'event_edit/right_sidebar_event_edit.html' with prev_tab=prev_tab %}
+    {%  else %}
+        {% include 'event_edit/right_sidebar_event_edit_done.html' with prev_tab=prev_tab %}
+    {% endif %}
 {% endblock %}
 
 {% block main_column %}

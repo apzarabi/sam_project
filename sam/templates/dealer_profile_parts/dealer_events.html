@@ -1,0 +1,5 @@
+{% for event in allevents %}
+    {% if event.dealer == profile_user %}
+        {% include 'event_row_parts/event_row_condition_dealer.html' with event=event %}
+    {% endif %}
+{% endfor %}

@@ -4,6 +4,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 from .models import Event
+from .models import EventPicture
 
 persian_default_errors = {
     'required': u"این فیلد الزامی است.",
@@ -51,3 +52,7 @@ class EventForm(forms.ModelForm):
                                                      'id': "phone_number",
                                                      'placeholder': u"شماره تلفن",
                                                      })
+class EventPictureForm(forms.ModelForm):
+    class Meta:
+        model = EventPicture
+        fields = ['picture','event']

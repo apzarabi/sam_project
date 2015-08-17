@@ -9,8 +9,38 @@
 {% endblock %}
 
 {% block main_column %}
+    <script>
+        $(document).ready(function() {
+        if(location.hash) {
+            $('a[href=' + location.hash + ']').tab('show');
+            setTimeout(function() {
+
+            window.scrollTo(0, 0);
+            }, 1);
+        }
+        $(document.body).on("click", "a[data-toggle]", function(event) {
+            location.hash = this.getAttribute("href");
+        });
+    });
+    $(window).on('popstate', function() {
+        var anchor = location.hash || $("a[data-toggle=tab]").first().attr("href");
+        $('a[href=' + anchor + ']').tab('show');
+    });
+    </script>
     <div>
-        {% include 'event_row_parts/register_event.html' %}
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#add_event" aria-controls="add_event" role="tab" data-toggle="tab"> اضافه کردن رویداد‌ </a></li>
+            <li role="presentation"><a href="#checking-events" aria-controls="checking-events" role="tab" data-toggle="tab">رویداهای  من</a></li>
+            <li role="presentation"><a href="#report" aria-controls="report" role="tab" data-toggle="tab"> گزارش</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="add_event">{% include 'dealer_profile_parts/register_event.html' %}</div>
+            <div role="tabpanel" class="tab-pane" id="checking-events">{% include 'dealer_profile_parts/dealer_events.html' %}</div>
+            <div role="tabpanel" class="tab-pane" id="report">{% include 'dealer_profile_parts/dealer_reports.html' %}</div>
+        </div>
 
     </div>
 {% endblock %}
